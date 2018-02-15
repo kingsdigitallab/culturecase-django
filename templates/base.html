@@ -1,89 +1,50 @@
-{% load staticfiles compress  %}
+{% load staticfiles compress %}
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
-
 <head>
-
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="shortcut icon"
-    href="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/favicon.ico' %}" />
+<link rel="shortcut icon" href="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/favicon.ico' %}" />
 <title>CultureCase</title>
-<link rel="stylesheet" type="text/css" media="print"
-    href="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/print.css' %}" />
-
+<link rel="stylesheet" type="text/css" media="print" href="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/print.css' %}" />
 <!--[if lte IE 8]>
     <link rel="stylesheet" href="{% static 'www.culturecase.org/wp-content/themes/Avada/css/ie8.css' %}" />
     <![endif]-->
 <!--[if IE]>
     <link rel="stylesheet" href="{% static 'www.culturecase.org/wp-content/themes/Avada/css/ie.css' %}" />
     <![endif]-->
-<meta name="viewport"
-    content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <!--[if lt IE 10]>
     <style type="text/css">
     .animated { visibility:visible;}
     </style>
     <![endif]-->
-<link rel="alternate" type="application/rss+xml"
-    title="CultureCase &raquo; Feed"
-    href="http://www.culturecase.org/feed/" />
-<link rel="alternate" type="application/rss+xml"
-    title="CultureCase &raquo; Comments Feed"
-    href="http://www.culturecase.org/comments/feed/" />
-<link rel="alternate" type="application/rss+xml"
-    title="CultureCase &raquo; CultureCase | putting research to work Comments Feed"
-    href="http://www.culturecase.org/sample-page/feed/" />
-<link rel='stylesheet' id='style-css-css'
-    href="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/style.css' %}"
-    type='text/css' media='all' />
-<link rel='stylesheet' id='media-css-css'
-    href="{% static 'www.culturecase.org/wp-content/themes/Avada/css/media.css' %}"
-    type='text/css' media='all' />
-<link rel='stylesheet' id='animate-css-css'
-    href="{% static 'www.culturecase.org/wp-content/themes/Avada/css/animate-custom.css' %}"
-    type='text/css' media='all' />
-<link rel='stylesheet' id='rs-plugin-settings-css'
-    href="{% static 'www.culturecase.org/wp-content/plugins/revslider/rs-plugin/css/settings.css' %}"
-    type='text/css' media='all' />
-<link rel='stylesheet' id='layerslider_css-css'
-    href="{% static 'www.culturecase.org/wp-content/themes/Avada/framework/plugins/LayerSlider/css/layerslider.css' %}"
-    type='text/css' media='all' />
-<link rel='stylesheet' id='wooslider-flexslider-css'
-    href="{% static 'www.culturecase.org/wp-content/themes/Avada/framework/plugins/tf-flexslider/assets/css/flexslider.css' %}"
-    type='text/css' media='all' />
-<link rel='stylesheet' id='wooslider-common-css'
-    href="{% static 'www.culturecase.org/wp-content/themes/Avada/framework/plugins/tf-flexslider/assets/css/style.css' %}"
-    type='text/css' media='all' />
-<link rel='stylesheet' id='mc4wp-form-themes-css'
-    href="{% static 'www.culturecase.org/wp-content/plugins/mailchimp-for-wp/assets/css/form-themes.min.css' %}"
-    type='text/css' media='all' />
-
-
-
-<script type='text/javascript'
-    src="{% static 'www.culturecase.org/wp-includes/js/jquery/jquery.js' %}"></script>
-<script type='text/javascript'
-    src="{% static 'www.culturecase.org/wp-includes/js/jquery/jquery-migrate.min.js' %}"></script>
-<script type='text/javascript'
-    src="{% static 'www.culturecase.org/wp-content/plugins/revslider/rs-plugin/js/jquery.themepunch.tools.min.js' %}"></script>
-<script type='text/javascript'
-    src="{% static 'www.culturecase.org/wp-content/plugins/revslider/rs-plugin/js/jquery.themepunch.revolution.min.js' %}"></script>
-<script type='text/javascript'
-    src="{% static 'www.culturecase.org/wp-content/themes/Avada/framework/plugins/LayerSlider/js/layerslider.kreaturamedia.jquery.js' %}"></script>
-<script type='text/javascript'
-    src="{% static 'www.culturecase.org/wp-content/themes/Avada/framework/plugins/LayerSlider/js/jquery-easing-1.3.js' %}"></script>
-<script type='text/javascript'
-    src="{% static 'www.culturecase.org/wp-content/themes/Avada/framework/plugins/LayerSlider/js/jquerytransit.js' %}"></script>
-<script type='text/javascript'
-    src="{% static 'www.culturecase.org/wp-content/themes/Avada/framework/plugins/LayerSlider/js/layerslider.transitions.js' %}"></script>
-<link rel="EditURI" type="application/rsd+xml" title="RSD"
-    href="{% static 'www.culturecase.org/xmlrpc.php' %}" />
-<link rel="wlwmanifest" type="application/wlwmanifest+xml"
-    href="{% static 'www.culturecase.org/wp-includes/wlwmanifest.xml' %}" />
+<link rel="alternate" type="application/rss+xml" title="CultureCase &raquo; Feed" href="/feed/" />
+<link rel="alternate" type="application/rss+xml" title="CultureCase &raquo; Comments Feed" href="/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="CultureCase &raquo; CultureCase | putting research to work Comments Feed" href="/sample-page/feed/" />
+<link rel='stylesheet' id='style-css-css' href="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/style.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='media-css-css' href="{% static 'www.culturecase.org/wp-content/themes/Avada/css/media.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='animate-css-css' href="{% static 'www.culturecase.org/wp-content/themes/Avada/css/animate-custom.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='rs-plugin-settings-css' href="{% static 'www.culturecase.org/wp-content/plugins/revslider/rs-plugin/css/settings.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='layerslider_css-css' href="{% static 'www.culturecase.org/wp-content/themes/Avada/framework/plugins/LayerSlider/css/layerslider.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='wooslider-flexslider-css' href="{% static 'www.culturecase.org/wp-content/themes/Avada/framework/plugins/tf-flexslider/assets/css/flexslider.css' %}" type='text/css'
+  media='all'
+/>
+<link rel='stylesheet' id='wooslider-common-css' href="{% static 'www.culturecase.org/wp-content/themes/Avada/framework/plugins/tf-flexslider/assets/css/style.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='mc4wp-form-themes-css' href="{% static 'www.culturecase.org/wp-content/plugins/mailchimp-for-wp/assets/css/form-themes.min.css' %}" type='text/css' media='all' />
+<script type='text/javascript' src="{% static 'www.culturecase.org/wp-includes/js/jquery/jquery.js' %}"></script>
+<script type='text/javascript' src="{% static 'www.culturecase.org/wp-includes/js/jquery/jquery-migrate.min.js' %}"></script>
+<script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/plugins/revslider/rs-plugin/js/jquery.themepunch.tools.min.js' %}"></script>
+<script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/plugins/revslider/rs-plugin/js/jquery.themepunch.revolution.min.js' %}"></script>
+<script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/themes/Avada/framework/plugins/LayerSlider/js/layerslider.kreaturamedia.jquery.js' %}"></script>
+<script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/themes/Avada/framework/plugins/LayerSlider/js/jquery-easing-1.3.js' %}"></script>
+<script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/themes/Avada/framework/plugins/LayerSlider/js/jquerytransit.js' %}"></script>
+<script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/themes/Avada/framework/plugins/LayerSlider/js/layerslider.transitions.js' %}"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="{% static 'www.culturecase.org/xmlrpc.php' %}" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="{% static 'www.culturecase.org/wp-includes/wlwmanifest.xml' %}" />
 <meta name="generator" content="WordPress 4.3" />
-<link rel='canonical' href='http://www.culturecase.org/' />
-<link rel='shortlink' href='http://www.culturecase.org/' />
+<link rel='canonical' href='/' />
+<link rel='shortlink' href='/' />
 <!--[if lte IE 8]>
     <script type="text/javascript">
     jQuery(document).ready(function() {
@@ -97,9 +58,7 @@
     });
     </script>
 <![endif]-->
-
 <script src="{% static 'js/main.js' %}"></script>
-
 {% if not DEBUG %}
 <script src="{% static 'js/google_analytics.js' %}"></script>
 <script>
@@ -107,1173 +66,489 @@
     ga('send', 'pageview');
 </script>
 {% endif %}
-
 <!--[if lte IE 8]>
     <script type="text/javascript" src="{% static 'www.culturecase.org/wp-content/themes/Avada/js/respond.js' %}"></script>
     <![endif]-->
-
-  {% compress css %}
-  <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/main.scss' %}">
-  {% endcompress %}
-
-
+{% compress css %}
+<link rel="stylesheet" type="text/x-scss" href="{% static 'scss/main.scss' %}">
+{% endcompress %}
 </head>
-
 <body class="home page page-id-2 page-template-default light ">
-    <div id="wrapper">
-        <div class="header-wrapper">
-            <div class="header-v1">
-                <header id="header">
-                    <div class="avada-row"
-                        style="margin-top: 0; margin-bottom: 0;">
-                        <div class="logo"
-                            style="margin-right: 0; margin-top: 10px; margin-left: 0; margin-bottom: 10px;">
-                            <a href="http://www.culturecase.org"> <img
-                                src="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/images/logo-culturecase.png' %}"
-                                alt="CultureCase" class="normal_logo" />
-                            </a>
-                        </div>
-                        <nav id="nav" class="nav-holder">
-                            <ul id="nav" class="menu">
-                                <li id="menu-item-31"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-31"><a
-                                    href="http://www.culturecase.org/impacts/">Impacts</a>
-                                    <ul class="sub-menu">
-                                        <li id="menu-item-153"
-                                            class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-153"><a
-                                            href="http://www.culturecase.org/research-category/intrinsic-impacts/">Intrinsic</a></li>
-                                        <li id="menu-item-83"
-                                            class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-83"><a
-                                            href="http://www.culturecase.org/research-category/education/">Educational</a></li>
-                                        <li id="menu-item-140"
-                                            class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-140"><a
-                                            href="http://www.culturecase.org/research-category/economic/">Economic</a></li>
-                                        <li id="menu-item-141"
-                                            class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-141"><a
-                                            href="http://www.culturecase.org/research-category/neighbourhood/">Neighbourhood</a></li>
-                                        <li id="menu-item-152"
-                                            class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-152"><a
-                                            href="http://www.culturecase.org/research-category/health-wellbeing/">Health
-                                                and wellbeing</a></li>
-                                        <li id="menu-item-816"
-                                            class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-816"><a
-                                            href="http://www.culturecase.org/research-category/creativity-impacts/">Creativity</a></li>
-                                        <li id="menu-item-142"
-                                            class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-142"><a
-                                            href="http://www.culturecase.org/research-category/other-social-impacts/">Other
-                                                social impacts</a></li>
-                                    </ul></li>
-                                <li id="menu-item-30"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-30"><a
-                                    href="http://www.culturecase.org/insights/">Insights</a>
-                                    <ul class="sub-menu">
-                                        <li id="menu-item-154"
-                                            class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-154"><a
-                                            href="http://www.culturecase.org/research-category/consumer-behaviour/">Consumer
-                                                behaviour</a></li>
-                                        <li id="menu-item-145"
-                                            class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-145"><a
-                                            href="http://www.culturecase.org/research-category/fundraising/">Fundraising</a></li>
-                                        <li id="menu-item-85"
-                                            class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-85"><a
-                                            href="http://www.culturecase.org/research-category/audiences/">Developing
-                                                new audiences</a></li>
-                                        <li id="menu-item-155"
-                                            class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-155"><a
-                                            href="http://www.culturecase.org/research-category/live-and-digital/">Live
-                                                and digital engagement</a></li>
-                                        <li id="menu-item-156"
-                                            class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-156"><a
-                                            href="http://www.culturecase.org/research-category/community-engagement/">Models
-                                                of community engagement</a></li>
-                                        <li id="menu-item-157"
-                                            class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-157"><a
-                                            href="http://www.culturecase.org/research-category/organisational-change/">Organisational
-                                                change</a></li>
-                                    </ul></li>
-                                <li id="menu-item-615"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-615"><a
-                                    href="http://www.culturecase.org/contents/">Contents</a></li>
-                                <li id="menu-item-28"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28"><a
-                                    href="http://www.culturecase.org/how-to-use/">How
-                                        to use</a></li>
-                                <li id="menu-item-27"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a
-                                    href="http://www.culturecase.org/faqs/">FAQs</a></li>
-                                <li id="menu-item-29"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29"><a
-                                    href="http://www.culturecase.org/about/">About
-                                        us</a></li>
-                                <li id="menu-item-37"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-37"><a
-                                    href="http://www.culturecase.org/links/">Other
-                                        resources</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </header>
+  <div id="wrapper">
+    <div class="header-wrapper">
+      <div class="header-v1">
+        <header id="header">
+          <div class="avada-row" style="margin-top: 0; margin-bottom: 0;">
+            <div class="logo" style="margin-right: 0; margin-top: 10px; margin-left: 0; margin-bottom: 10px;">
+              <a href="/"> <img src="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/images/logo-culturecase.png' %}" alt="CultureCase" class="normal_logo" />
+              </a>
             </div>
-            <div class="search-bar">
-                <form role="search" method="get"
-                    action="http://www.culturecase.org/">
-                    <input type="text" value="" name="s" id="s"
-                        placeholder="Search..."> <input
-                        type="submit" id="searchsubmit" value="">
-                </form>
-            </div>
-        </div>
-        <header id="header" class="sticky-header">
-            <div class="sticky-shadow">
-                <div class="avada-row">
-                    <div class="logo">
-                        <a href="http://www.culturecase.org"> <img
-                            src="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/images/logo-culturecase.png' %}"
-                            alt="CultureCase" class="normal_logo" />
-                        </a>
-                    </div>
-                    <nav id="nav" class="nav-holder">
-                        <ul id="nav" class="menu">
-                            <li
-                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-31"><a
-                                href="http://www.culturecase.org/impacts/">Impacts</a>
-                                <ul class="sub-menu">
-                                    <li
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-153"><a
-                                        href="http://www.culturecase.org/research-category/intrinsic-impacts/">Intrinsic</a></li>
-                                    <li
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-83"><a
-                                        href="http://www.culturecase.org/research-category/education/">Educational</a></li>
-                                    <li
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-140"><a
-                                        href="http://www.culturecase.org/research-category/economic/">Economic</a></li>
-                                    <li
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-141"><a
-                                        href="http://www.culturecase.org/research-category/neighbourhood/">Neighbourhood</a></li>
-                                    <li
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-152"><a
-                                        href="http://www.culturecase.org/research-category/health-wellbeing/">Health
-                                            and wellbeing</a></li>
-                                    <li
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-816"><a
-                                        href="http://www.culturecase.org/research-category/creativity-impacts/">Creativity</a></li>
-                                    <li
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-142"><a
-                                        href="http://www.culturecase.org/research-category/other-social-impacts/">Other
-                                            social impacts</a></li>
-                                </ul></li>
-                            <li
-                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-30"><a
-                                href="http://www.culturecase.org/insights/">Insights</a>
-                                <ul class="sub-menu">
-                                    <li
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-154"><a
-                                        href="http://www.culturecase.org/research-category/consumer-behaviour/">Consumer
-                                            behaviour</a></li>
-                                    <li
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-145"><a
-                                        href="http://www.culturecase.org/research-category/fundraising/">Fundraising</a></li>
-                                    <li
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-85"><a
-                                        href="http://www.culturecase.org/research-category/audiences/">Developing
-                                            new audiences</a></li>
-                                    <li
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-155"><a
-                                        href="http://www.culturecase.org/research-category/live-and-digital/">Live
-                                            and digital engagement</a></li>
-                                    <li
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-156"><a
-                                        href="http://www.culturecase.org/research-category/community-engagement/">Models
-                                            of community engagement</a></li>
-                                    <li
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-157"><a
-                                        href="http://www.culturecase.org/research-category/organisational-change/">Organisational
-                                            change</a></li>
-                                </ul></li>
-                            <li
-                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-615"><a
-                                href="http://www.culturecase.org/contents/">Contents</a></li>
-                            <li
-                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28"><a
-                                href="http://www.culturecase.org/how-to-use/">How
-                                    to use</a></li>
-                            <li
-                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a
-                                href="http://www.culturecase.org/faqs/">FAQs</a></li>
-                            <li
-                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29"><a
-                                href="http://www.culturecase.org/about/">About
-                                    us</a></li>
-                            <li
-                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-37"><a
-                                href="http://www.culturecase.org/links/">Other
-                                    resources</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
+            <nav id="nav" class="nav-holder">
+              <ul id="nav" class="menu">
+                <li id="menu-item-31" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-31"><a href="/impacts/">Impacts</a>
+                  <ul class="sub-menu">
+                    <li id="menu-item-153" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-153"><a
+                      href="/research-category/intrinsic-impacts/"
+                    >Intrinsic</a></li>
+                    <li id="menu-item-83" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-83"><a
+                      href="/research-category/education/"
+                    >Educational</a></li>
+                    <li id="menu-item-140" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-140"><a
+                      href="/research-category/economic/"
+                    >Economic</a></li>
+                    <li id="menu-item-141" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-141"><a
+                      href="/research-category/neighbourhood/"
+                    >Neighbourhood</a></li>
+                    <li id="menu-item-152" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-152"><a
+                      href="/research-category/health-wellbeing/"
+                    >Health and wellbeing</a></li>
+                    <li id="menu-item-816" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-816"><a
+                      href="/research-category/creativity-impacts/"
+                    >Creativity</a></li>
+                    <li id="menu-item-142" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-142"><a
+                      href="/research-category/other-social-impacts/"
+                    >Other social impacts</a></li>
+                  </ul></li>
+                <li id="menu-item-30" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-30"><a href="/insights/">Insights</a>
+                  <ul class="sub-menu">
+                    <li id="menu-item-154" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-154"><a
+                      href="/research-category/consumer-behaviour/"
+                    >Consumer behaviour</a></li>
+                    <li id="menu-item-145" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-145"><a
+                      href="/research-category/fundraising/"
+                    >Fundraising</a></li>
+                    <li id="menu-item-85" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-85"><a
+                      href="/research-category/audiences/"
+                    >Developing new audiences</a></li>
+                    <li id="menu-item-155" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-155"><a
+                      href="/research-category/live-and-digital/"
+                    >Live and digital engagement</a></li>
+                    <li id="menu-item-156" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-156"><a
+                      href="/research-category/community-engagement/"
+                    >Models of community engagement</a></li>
+                    <li id="menu-item-157" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-157"><a
+                      href="/research-category/organisational-change/"
+                    >Organisational change</a></li>
+                  </ul></li>
+                <li id="menu-item-615" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-615"><a href="/contents/">Contents</a></li>
+                <li id="menu-item-28" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28"><a href="/how-to-use/">How to use</a></li>
+                <li id="menu-item-27" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href="/faqs/">FAQs</a></li>
+                <li id="menu-item-29" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29"><a href="/about/">About us</a></li>
+                <li id="menu-item-37" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-37"><a href="/links/">Other resources</a></li>
+              </ul>
+            </nav>
+          </div>
         </header>
-        <div id="sliders-container"></div>
-        <p class="print-header">
-            <img
-                src="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/images/logo-culturecase.png' %}"
-                alt="Culture Case" />
-        </p>
-        <div class="page-title-container">
-            <div class="page-title">
-                <div class="page-title-wrapper">
-                    <div class="page-title-captions">
-                        <h1 class="entry-title">
-                            CultureCase | putting research to work
-                         </h1>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="search-bar">
+        <form role="search" method="get" action="/">
+          <input type="text" value="" name="s" id="s" placeholder="Search..."> <input type="submit" id="searchsubmit" value="">
+        </form>
+      </div>
+    </div>
+    <header id="header" class="sticky-header">
+      <div class="sticky-shadow">
+        <div class="avada-row">
+          <div class="logo">
+            <a href="http://www.culturecase.org"> <img src="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/images/logo-culturecase.png' %}" alt="CultureCase"
+              class="normal_logo"
+            />
+            </a>
+          </div>
+          <nav id="nav" class="nav-holder">
+            <ul id="nav" class="menu">
+              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-31"><a href="/impacts/">Impacts</a>
+                <ul class="sub-menu">
+                  <li class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-153"><a href="/research-category/intrinsic-impacts/">Intrinsic</a></li>
+                  <li class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-83"><a href="/research-category/education/">Educational</a></li>
+                  <li class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-140"><a href="/research-category/economic/">Economic</a></li>
+                  <li class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-141"><a href="/research-category/neighbourhood/">Neighbourhood</a></li>
+                  <li class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-152"><a href="/research-category/health-wellbeing/">Health
+                      and wellbeing</a></li>
+                  <li class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-816"><a href="/research-category/creativity-impacts/">Creativity</a></li>
+                  <li class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-142"><a href="/research-category/other-social-impacts/">Other
+                      social impacts</a></li>
+                </ul></li>
+              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-30"><a href="/insights/">Insights</a>
+                <ul class="sub-menu">
+                  <li class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-154"><a href="/research-category/consumer-behaviour/">Consumer
+                      behaviour</a></li>
+                  <li class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-145"><a href="/research-category/fundraising/">Fundraising</a></li>
+                  <li class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-85"><a href="/research-category/audiences/">Developing
+                      new audiences</a></li>
+                  <li class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-155"><a href="/research-category/live-and-digital/">Live
+                      and digital engagement</a></li>
+                  <li class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-156"><a href="/research-category/community-engagement/">Models
+                      of community engagement</a></li>
+                  <li class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-157"><a href="/research-category/organisational-change/">Organisational
+                      change</a></li>
+                </ul></li>
+              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-615"><a href="/contents/">Contents</a></li>
+              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28"><a href="/how-to-use/">How to use</a></li>
+              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href="/faqs/">FAQs</a></li>
+              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29"><a href="/about/">About us</a></li>
+              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-37"><a href="/links/">Other resources</a></li>
+            </ul>
+          </nav>
         </div>
-        <div id="main" class="" style="overflow: hidden !important;">
-            <div class="avada-row" style="">
-                <div id="content" style="float: left;">
-                    <div id="post-2"
-                        class="post-2 page type-page status-publish hentry">
-                        <span class="entry-title" style="display: none;">CultureCase
-                            | putting research to work</span> <span
-                            class="updated" style="display: none;">3
-                            December 2013</span> <span class="vcard"
-                            style="display: none;"><span
-                            class="fn"><a
-                                href="http://www.culturecase.org/author/timpoole/"
-                                title="Posts by Tim Poole" rel="author">Tim
-                                    Poole</a></span></span>
-                        <div class="post-content">
-                            <!-- START REVOLUTION SLIDER 4.6.1 fullwidth mode -->
-                            <div id="rev_slider_1_1_wrapper"
-                                class="rev_slider_wrapper fullwidthbanner-container"
-                                style="margin: 0px auto; background-color: #E9E9E9; padding: 0px; margin-top: 0px; margin-bottom: 0px; max-height: 438px;">
-                                <div id="rev_slider_1_1"
-                                    class="rev_slider fullwidthabanner"
-                                    style="display: none; max-height: 438px; height: 438px;">
-                                    <ul>
-                                        <!-- SLIDE  -->
-                                        <li
-                                            data-transition="slidehorizontal"
-                                            data-slotamount="7"
-                                            data-masterspeed="500"
-                                            data-link="http://www.culturecase.org/research/2017/08/using-the-audience-exchange-approach-to-help-first-time-audiences/"
-                                            data-saveperformance="off">
-                                            <!-- MAIN IMAGE --> <img
-                                            src="{% static 'www.culturecase.org/wp-content/plugins/revslider/images/transparent.png' %}"
-                                            style='background-color: #ffffff'
-                                            alt=""
-                                            data-bgposition="center top"
-                                            data-bgfit="cover"
-                                            data-bgrepeat="no-repeat">
-                                            <!-- LAYERS --> <!-- LAYER NR. 1 -->
-                                            <div
-                                                class="tp-caption tp-fade"
-                                                data-x="1"
-                                                data-y="center"
-                                                data-voffset="0"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 5;">
-                                                <img
-                                                    src="{% static 'www.culturecase.org/wp-content/uploads/2017/08/audience-exchange.jpg' %}"
-                                                    alt="" data-ww="45%"
-                                                    data-hh="438">
-                                            </div> <!-- LAYER NR. 2 -->
-                                            <div
-                                                class="tp-caption large-black_text tp-fade tp-resizeme"
-                                                data-x="right"
-                                                data-hoffset="-17"
-                                                data-y="58"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-splitin="none"
-                                                data-splitout="none"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 6; max-width: 439px; max-height: 80px; white-space: normal;">Using
-                                                the ‘audience exchange’
-                                                approach to help
-                                                first-time audiences</div> <!-- LAYER NR. 3 -->
-                                            <div
-                                                class="tp-caption small_thin_grey tp-fade tp-resizeme"
-                                                data-x="right"
-                                                data-hoffset="-49"
-                                                data-y="center"
-                                                data-voffset="99"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-splitin="none"
-                                                data-splitout="none"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 7; max-width: 400px; max-height: auto; white-space: normal;">
-                                            </div> <!-- LAYER NR. 4 -->
-                                            <div
-                                                class="tp-caption black tp-fade tp-resizeme"
-                                                data-x="770"
-                                                data-y="243"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-splitin="none"
-                                                data-splitout="none"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;">
-                                            </div> <!-- LAYER NR. 5 -->
-                                            <div
-                                                class="tp-caption blackbigger tp-fade tp-resizeme"
-                                                data-x="546"
-                                                data-y="270"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-splitin="none"
-                                                data-splitout="none"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 9; max-width: 416px; max-height: 80px; white-space: pre-wrap;">This
-                                                paper outlines the use
-                                                of the ‘audience
-                                                exchange’ approach to
-                                                audience development.
-                                                This involves
-                                                facilitated group
-                                                dialogue between
-                                                audience members who are
-                                                first-time attenders who
-                                                may lack confidence or
-                                                familiarity with the art
-                                                form they have just
-                                                encountered.</div>
-                                        </li>
-                                        <!-- SLIDE  -->
-                                        <li
-                                            data-transition="slidehorizontal"
-                                            data-slotamount="7"
-                                            data-masterspeed="300"
-                                            data-link="http://www.culturecase.org/research/2017/08/how-people-acquire-new-tastes-in-music/"
-                                            data-saveperformance="off">
-                                            <!-- MAIN IMAGE --> <img
-                                            src="{% static 'www.culturecase.org/wp-content/plugins/revslider/images/transparent.png' %}"
-                                            style='background-color: #000000'
-                                            alt=""
-                                            data-bgposition="center top"
-                                            data-bgfit="cover"
-                                            data-bgrepeat="no-repeat">
-                                            <!-- LAYERS --> <!-- LAYER NR. 1 -->
-                                            <div
-                                                class="tp-caption tp-fade"
-                                                data-x="0"
-                                                data-y="center"
-                                                data-voffset="0"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 5;">
-                                                <img
-                                                    src="{% static 'www.culturecase.org/wp-content/uploads/2017/08/new-music-tastes.jpg' %}"
-                                                    alt="" data-ww="45%"
-                                                    data-hh="438">
-                                            </div> <!-- LAYER NR. 2 -->
-                                            <div
-                                                class="tp-caption large_text tp-fade tp-resizeme"
-                                                data-x="right"
-                                                data-hoffset="-50"
-                                                data-y="30"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-splitin="none"
-                                                data-splitout="none"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 6; max-width: 400px; max-height: auto; white-space: normal;">How
-                                                people acquire new
-                                                tastes in music</div> <!-- LAYER NR. 3 -->
-                                            <div
-                                                class="tp-caption medium_text tp-fade tp-resizeme"
-                                                data-x="right"
-                                                data-hoffset="-51"
-                                                data-y="center"
-                                                data-voffset="73"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-splitin="none"
-                                                data-splitout="none"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 7; max-width: 400px; max-height: auto; white-space: normal;">This
-                                                study took place over 15
-                                                months via a combination
-                                                of observation and life
-                                                history interviews with
-                                                about 30 regulars at a
-                                                Honky Tonk Night Club in
-                                                a large mid-western US
-                                                city.</div> <!-- LAYER NR. 4 -->
-                                            <div
-                                                class="tp-caption black tp-fade tp-resizeme"
-                                                data-x="100"
-                                                data-y="100"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-splitin="none"
-                                                data-splitout="none"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;">
-                                            </div>
-                                        </li>
-                                        <!-- SLIDE  -->
-                                        <li
-                                            data-transition="slidehorizontal"
-                                            data-slotamount="7"
-                                            data-masterspeed="300"
-                                            data-link="http://www.culturecase.org/research/2017/08/the-positive-impacts-of-active-music-participation-for-infants/"
-                                            data-saveperformance="off">
-                                            <!-- MAIN IMAGE --> <img
-                                            src="{% static 'www.culturecase.org/wp-content/plugins/revslider/images/transparent.png' %}"
-                                            style='background-color: #ffffff'
-                                            alt=""
-                                            data-bgposition="center top"
-                                            data-bgfit="cover"
-                                            data-bgrepeat="no-repeat">
-                                            <!-- LAYERS --> <!-- LAYER NR. 1 -->
-                                            <div
-                                                class="tp-caption tp-fade"
-                                                data-x="1"
-                                                data-y="center"
-                                                data-voffset="0"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 5;">
-                                                <img
-                                                    src="{% static 'www.culturecase.org/wp-content/uploads/2017/08/infant-music.jpg' %}"
-                                                    alt="" data-ww="45%"
-                                                    data-hh="438">
-                                            </div> <!-- LAYER NR. 2 -->
-                                            <div
-                                                class="tp-caption large-black_text tp-fade tp-resizeme"
-                                                data-x="right"
-                                                data-hoffset="-17"
-                                                data-y="58"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-splitin="none"
-                                                data-splitout="none"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 6; max-width: 439px; max-height: 80px; white-space: normal;">The
-                                                positive impacts of
-                                                active music
-                                                participation for
-                                                infants</div> <!-- LAYER NR. 3 -->
-                                            <div
-                                                class="tp-caption small_thin_grey tp-fade tp-resizeme"
-                                                data-x="right"
-                                                data-hoffset="-49"
-                                                data-y="center"
-                                                data-voffset="99"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-splitin="none"
-                                                data-splitout="none"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 7; max-width: 400px; max-height: auto; white-space: normal;">
-                                            </div> <!-- LAYER NR. 4 -->
-                                            <div
-                                                class="tp-caption black tp-fade tp-resizeme"
-                                                data-x="770"
-                                                data-y="243"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-splitin="none"
-                                                data-splitout="none"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;">
-                                            </div> <!-- LAYER NR. 5 -->
-                                            <div
-                                                class="tp-caption blackbigger tp-fade tp-resizeme"
-                                                data-x="546"
-                                                data-y="270"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-splitin="none"
-                                                data-splitout="none"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 9; max-width: 416px; max-height: 80px; white-space: pre-wrap;">To
-                                                understand the
-                                                developmental impact of
-                                                active participation in
-                                                music, this study worked
-                                                with two groups of
-                                                six-month old infants
-                                                who attended music-based
-                                                sessions with teachers
-                                                and their parents.</div>
-                                        </li>
-                                        <!-- SLIDE  -->
-                                        <li
-                                            data-transition="slidehorizontal"
-                                            data-slotamount="7"
-                                            data-masterspeed="300"
-                                            data-link="http://www.culturecase.org/research/2017/07/how-learning-visual-art-improves-creativity-and-changes-the-brain/"
-                                            data-saveperformance="off">
-                                            <!-- MAIN IMAGE --> <img
-                                            src="{% static 'www.culturecase.org/wp-content/plugins/revslider/images/transparent.png' %}"
-                                            style='background-color: #ffffff'
-                                            alt=""
-                                            data-bgposition="center top"
-                                            data-bgfit="cover"
-                                            data-bgrepeat="no-repeat">
-                                            <!-- LAYERS --> <!-- LAYER NR. 1 -->
-                                            <div
-                                                class="tp-caption tp-fade"
-                                                data-x="1"
-                                                data-y="center"
-                                                data-voffset="0"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 5;">
-                                                <img
-                                                    src="{% static 'www.culturecase.org/wp-content/uploads/2017/07/brain.jpg' %}"
-                                                    alt="" data-ww="45%"
-                                                    data-hh="438">
-                                            </div> <!-- LAYER NR. 2 -->
-                                            <div
-                                                class="tp-caption large-black_text tp-fade tp-resizeme"
-                                                data-x="right"
-                                                data-hoffset="-17"
-                                                data-y="58"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-splitin="none"
-                                                data-splitout="none"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 6; max-width: 439px; max-height: 80px; white-space: normal;">How
-                                                learning visual art
-                                                improves creativity and
-                                                changes the brain</div> <!-- LAYER NR. 3 -->
-                                            <div
-                                                class="tp-caption small_thin_grey tp-fade tp-resizeme"
-                                                data-x="right"
-                                                data-hoffset="-49"
-                                                data-y="center"
-                                                data-voffset="99"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-splitin="none"
-                                                data-splitout="none"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 7; max-width: 400px; max-height: auto; white-space: normal;">
-                                            </div> <!-- LAYER NR. 4 -->
-                                            <div
-                                                class="tp-caption black tp-fade tp-resizeme"
-                                                data-x="770"
-                                                data-y="243"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-splitin="none"
-                                                data-splitout="none"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;">
-                                            </div> <!-- LAYER NR. 5 -->
-                                            <div
-                                                class="tp-caption blackbigger tp-fade tp-resizeme"
-                                                data-x="546"
-                                                data-y="270"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-splitin="none"
-                                                data-splitout="none"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 9; max-width: 416px; max-height: 80px; white-space: pre-wrap;">This
-                                                study investigated the
-                                                impact of visual art
-                                                training on young
-                                                adults’ behaviour and
-                                                changes in brain
-                                                activity.</div>
-                                        </li>
-                                        <!-- SLIDE  -->
-                                        <li
-                                            data-transition="slidehorizontal"
-                                            data-slotamount="7"
-                                            data-masterspeed="300"
-                                            data-link="http://www.culturecase.org/research/2017/07/managing-dementia-through-object-handing-in-museums/"
-                                            data-saveperformance="off">
-                                            <!-- MAIN IMAGE --> <img
-                                            src="{% static 'www.culturecase.org/wp-content/plugins/revslider/images/transparent.png' %}"
-                                            style='background-color: #000000'
-                                            alt=""
-                                            data-bgposition="center top"
-                                            data-bgfit="cover"
-                                            data-bgrepeat="no-repeat">
-                                            <!-- LAYERS --> <!-- LAYER NR. 1 -->
-                                            <div
-                                                class="tp-caption tp-fade"
-                                                data-x="0"
-                                                data-y="center"
-                                                data-voffset="0"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 5;">
-                                                <img
-                                                    src="{% static 'www.culturecase.org/wp-content/uploads/2017/07/dementia.jpg' %}"
-                                                    alt="" data-ww="45%"
-                                                    data-hh="438">
-                                            </div> <!-- LAYER NR. 2 -->
-                                            <div
-                                                class="tp-caption large_text tp-fade tp-resizeme"
-                                                data-x="right"
-                                                data-hoffset="-50"
-                                                data-y="30"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-splitin="none"
-                                                data-splitout="none"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 6; max-width: 400px; max-height: auto; white-space: normal;">Managing
-                                                dementia through object
-                                                handing in museums</div> <!-- LAYER NR. 3 -->
-                                            <div
-                                                class="tp-caption medium_text tp-fade tp-resizeme"
-                                                data-x="right"
-                                                data-hoffset="-51"
-                                                data-y="center"
-                                                data-voffset="73"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-splitin="none"
-                                                data-splitout="none"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 7; max-width: 400px; max-height: auto; white-space: normal;">
-                                                The authors of this
-                                                study propose that the
-                                                heritage sector could
-                                                have a role to play in
-                                                subjective health and
-                                                wellbeing for
-                                                individuals with
-                                                dementia.</div> <!-- LAYER NR. 4 -->
-                                            <div
-                                                class="tp-caption black tp-fade tp-resizeme"
-                                                data-x="100"
-                                                data-y="100"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-splitin="none"
-                                                data-splitout="none"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;">
-                                            </div>
-                                        </li>
-                                        <!-- SLIDE  -->
-                                        <li
-                                            data-transition="slidehorizontal"
-                                            data-slotamount="7"
-                                            data-masterspeed="300"
-                                            data-link="http://www.culturecase.org/research/2017/07/frequent-attendance-at-cultural-events-associated-with-reduced-cancer-mortality/"
-                                            data-saveperformance="off">
-                                            <!-- MAIN IMAGE --> <img
-                                            src="{% static 'www.culturecase.org/wp-content/plugins/revslider/images/transparent.png' %}"
-                                            style='background-color: #ffffff'
-                                            alt=""
-                                            data-bgposition="center top"
-                                            data-bgfit="cover"
-                                            data-bgrepeat="no-repeat">
-                                            <!-- LAYERS --> <!-- LAYER NR. 1 -->
-                                            <div
-                                                class="tp-caption tp-fade"
-                                                data-x="1"
-                                                data-y="center"
-                                                data-voffset="0"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 5;">
-                                                <img
-                                                    src="{% static 'www.culturecase.org/wp-content/uploads/2017/07/cancer.jpg' %}"
-                                                    alt="" data-ww="45%"
-                                                    data-hh="438">
-                                            </div> <!-- LAYER NR. 2 -->
-                                            <div
-                                                class="tp-caption large-black_text tp-fade tp-resizeme"
-                                                data-x="right"
-                                                data-hoffset="-17"
-                                                data-y="58"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-splitin="none"
-                                                data-splitout="none"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 6; max-width: 439px; max-height: 80px; white-space: normal;">Frequent
-                                                attendance at cultural
-                                                events associated with
-                                                reduced cancer mortality
-                                            </div> <!-- LAYER NR. 3 -->
-                                            <div
-                                                class="tp-caption small_thin_grey tp-fade tp-resizeme"
-                                                data-x="right"
-                                                data-hoffset="-49"
-                                                data-y="center"
-                                                data-voffset="99"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-splitin="none"
-                                                data-splitout="none"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 7; max-width: 400px; max-height: auto; white-space: normal;">
-                                            </div> <!-- LAYER NR. 4 -->
-                                            <div
-                                                class="tp-caption black tp-fade tp-resizeme"
-                                                data-x="770"
-                                                data-y="243"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-splitin="none"
-                                                data-splitout="none"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;">
-                                            </div> <!-- LAYER NR. 5 -->
-                                            <div
-                                                class="tp-caption blackbigger tp-fade tp-resizeme"
-                                                data-x="546"
-                                                data-y="270"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-splitin="none"
-                                                data-splitout="none"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 9; max-width: 416px; max-height: 80px; white-space: pre-wrap;">This
-                                                paper describes a
-                                                long-term study looking
-                                                at correlations between
-                                                taking part in certain
-                                                cultural activities and
-                                                cancer mortality.</div>
-                                        </li>
-                                        <!-- SLIDE  -->
-                                        <li
-                                            data-transition="slidehorizontal"
-                                            data-slotamount="7"
-                                            data-masterspeed="300"
-                                            data-link="http://www.culturecase.org/research/2017/07/musicians-react-faster-than-non-musicians/"
-                                            data-saveperformance="off">
-                                            <!-- MAIN IMAGE --> <img
-                                            src="{% static 'www.culturecase.org/wp-content/plugins/revslider/images/transparent.png' %}"
-                                            style='background-color: #000000'
-                                            alt=""
-                                            data-bgposition="center top"
-                                            data-bgfit="cover"
-                                            data-bgrepeat="no-repeat">
-                                            <!-- LAYERS --> <!-- LAYER NR. 1 -->
-                                            <div
-                                                class="tp-caption tp-fade"
-                                                data-x="0"
-                                                data-y="center"
-                                                data-voffset="0"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 5;">
-                                                <img
-                                                    src="{% static 'www.culturecase.org/wp-content/uploads/2017/07/musician-reflexes.jpg' %}"
-                                                    alt="" data-ww="45%"
-                                                    data-hh="438">
-                                            </div> <!-- LAYER NR. 2 -->
-                                            <div
-                                                class="tp-caption large_text tp-fade tp-resizeme"
-                                                data-x="right"
-                                                data-hoffset="-50"
-                                                data-y="30"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-splitin="none"
-                                                data-splitout="none"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 6; max-width: 400px; max-height: auto; white-space: normal;">Musicians
-                                                react faster than
-                                                non-musicians</div> <!-- LAYER NR. 3 -->
-                                            <div
-                                                class="tp-caption medium_text tp-fade tp-resizeme"
-                                                data-x="right"
-                                                data-hoffset="-51"
-                                                data-y="center"
-                                                data-voffset="73"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-splitin="none"
-                                                data-splitout="none"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 7; max-width: 400px; max-height: auto; white-space: normal;">This
-                                                study aimed to
-                                                investigate whether
-                                                long-term musical
-                                                training improves
-                                                unisensory (audio or
-                                                tactile) and
-                                                multisensory (audio and
-                                                tactile) processing
-                                                capacities.</div> <!-- LAYER NR. 4 -->
-                                            <div
-                                                class="tp-caption black tp-fade tp-resizeme"
-                                                data-x="100"
-                                                data-y="100"
-                                                data-speed="300"
-                                                data-start="500"
-                                                data-easing="Power3.easeInOut"
-                                                data-splitin="none"
-                                                data-splitout="none"
-                                                data-elementdelay="0.1"
-                                                data-endelementdelay="0.1"
-                                                data-endspeed="300"
-                                                style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;">
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <div
-                                        class="tp-bannertimer tp-bottom"
-                                        style="visibility: hidden !important;"></div>
-                                </div>
-                            </div>
-                            <!-- END REVOLUTION SLIDER -->
-                            <h2>Welcome to CultureCase</h2>
-                            <h3>
-                                <em>A resource for the cultural
-                                    sector<br />
-                                </em>
-                            </h3>
-                            <p>CultureCase comprises a vast array of
-                                carefully selected academic research
-                                from universities and scholars around
-                                the world that can add value to the work
-                                of the cultural sector.</p>
-                            <p>
-                                The research on the site has been edited
-                                into easily accessible summaries of key
-                                findings and insights to help inform the
-                                sector and provide the empirical
-                                evidence to support activities across
-                                arts and culture. We&#8217;ve created
-                                short accessible summaries of academic
-                                research that demonstrate the <a
-                                    href="http://www.culturecase.org/impacts/">impacts</a>
-                                of arts and culture, as well as
-                                highlighting a range of <a
-                                    href="http://www.culturecase.org/insight/">insights</a>
-                                to help inform future planning. You can
-                                use CultureCase to help:
-                            </p>
-                            <ul>
-                                <li>advocate for the value of
-                                    culture</li>
-                                <li>apply for funding</li>
-                                <li>inform programming, marketing
-                                    and strategic decision-making</li>
-                            </ul>
-                            <p style="text-align: left;">In
-                                collating research for this resource we
-                                have selected studies from peer reviewed
-                                academic journals that respond to the
-                                challenges set by a network of cultural
-                                sector partners. You don’t need to be an
-                                expert in research to use this site:
-                                simply use the search bar, research
-                                categories or contents page to explore
-                                what&#8217;s here.</p>
-                            <p>
-                                CultureCase is an experiment in
-                                communicating academic research. We want
-                                the site to evolve with your
-                                participation so please <a
-                                    href="mailto:culture@kcl.ac.uk">get
-                                    in touch</a> if you have a suggestion
-                                for how it might be improved or any
-                                additional academic studies you think
-                                should be included.
-                            </p>
-                            <p>CultureCase will soon also include an
-                                additional data portal to provide the
-                                sector with access to high-quality data
-                                to support decision-making, planning,
-                                advocacy and artistic practice. This
-                                &#8216;sister site&#8217; is being
-                                developed in collaboration with the
-                                Department of Informatics at
-                                King&#8217;s College London and will be
-                                launched later in 2018.</p>
-                        </div>
-                    </div>
-                </div>
-                <div id="sidebar" style="float: right;">
-                    <div id="dpe_fp_widget-2"
-                        class="widget widget_dpe_fp_widget">
-                        <div class="heading">
-                            <h3>Latest additions</h3>
-                        </div>
-                        <ul class="dpe-flexible-posts">
-                            <li id="post-1449"
-                                class="post-1449 research type-research status-publish hentry research-category-education research-tags-critical-thinking research-tags-education-2 research-tags-museums research-tags-students">
-                                <a
-                                href="http://www.culturecase.org/research/2018/02/an-art-museum-visit-can-enhance-students-critical-thinking-skills/">
-                                    <h4 class="title">An art museum
-                                        visit can enhance students’
-                                        critical thinking skills</h4>
-                            </a>
-                            </li>
-                            <li id="post-1431"
-                                class="post-1431 research type-research status-publish hentry research-category-health-wellbeing research-tags-arts research-tags-mental-health research-tags-social-inclusion research-tags-welllbeing">
-                                <a
-                                href="http://www.culturecase.org/research/2018/02/long-term-improvements-in-wellbeing-and-social-inclusion-through-art-for-people-with-mental-health-difficulties/">
-                                    <h4 class="title">Long-term
-                                        improvements in wellbeing and
-                                        social inclusion through art for
-                                        people with mental health
-                                        difficulties</h4>
-                            </a>
-                            </li>
-                            <li id="post-1439"
-                                class="post-1439 research type-research status-publish hentry research-category-audiences research-tags-audiences research-tags-classical-music research-tags-experience research-tags-study">
-                                <a
-                                href="http://www.culturecase.org/research/2018/02/the-experience-of-new-audiences-at-classical-music-performances/">
-                                    <h4 class="title">The
-                                        experience of new audiences at
-                                        classical music performances</h4>
-                            </a>
-                            </li>
-                            <li id="post-1456"
-                                class="post-1456 research type-research status-publish hentry research-category-intrinsic-impacts research-tags-emotions research-tags-experiment research-tags-germany research-tags-poetry">
-                                <a
-                                href="http://www.culturecase.org/research/2018/02/the-emotional-power-of-poetry-and-its-impact-on-our-brains/">
-                                    <h4 class="title">The emotional
-                                        power of poetry and its impact
-                                        on our brains</h4>
-                            </a>
-                            </li>
-                            <li id="post-1400"
-                                class="post-1400 research type-research status-publish hentry research-tags-audience research-tags-observation research-tags-talk research-tags-uk">
-                                <a
-                                href="http://www.culturecase.org/research/2017/08/using-the-audience-exchange-approach-to-help-first-time-audiences/">
-                                    <h4 class="title">Using the
-                                        ‘audience exchange’ approach to
-                                        help first-time audiences</h4>
-                            </a>
-                            </li>
-                        </ul>
-                        <!-- .dpe-flexible-posts -->
-                    </div>
-                </div>
-                <a href="http://www.kcl.ac.uk/" id="footer-logo"
-                    target="_blank"><img
-                    src="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/images/logo-kcl.png' %}"
-                    alt="King's College London"></a>
-            </div>
+      </div>
+    </header>
+    <div id="sliders-container"></div>
+    <p class="print-header">
+      <img src="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/images/logo-culturecase.png' %}" alt="Culture Case" />
+    </p>
+    <div class="page-title-container">
+      <div class="page-title">
+        <div class="page-title-wrapper">
+          <div class="page-title-captions">
+            <h1 class="entry-title">CultureCase | putting research to work</h1>
+          </div>
         </div>
-        <footer class="footer-area">
-            <div class="avada-row">
-                <section class="columns columns-1">
-                    <article class="col">
-                        <div id="text-2"
-                            class="footer-widget-col widget_text">
-                            <h3>Sign up to our newsletter</h3>
-                            <div class="textwidget">
-                                <!-- MailChimp for WordPress v3.0.2 - https://wordpress.org/plugins/mailchimp-for-wp/ -->
-                                <form id="mc4wp-form-1"
-                                    class="mc4wp-form mc4wp-form-974 mc4wp-form-theme mc4wp-form-theme-dark"
-                                    method="post" data-id="974"
-                                    data-name="Newsletter sign up form">
-                                    <div class="mc4wp-form-fields">
-                                        <p class="mc4wp-form-ccinput">
-                                            <label>First Name</label> <input
-                                                type="text" name="FNAME"
-                                                required>
-                                        </p>
-                                        <p class="mc4wp-form-ccinput">
-                                            <label>Last Name</label> <input
-                                                type="text" name="LNAME"
-                                                required>
-                                        </p>
-                                        <p class="mc4wp-form-ccinput">
-                                            <label>Organisation</label>
-                                            <input type="text"
-                                                name="ORG">
-                                        </p>
-                                        <p class="mc4wp-form-ccinput">
-                                            <label>Email address</label>
-                                            <input type="email"
-                                                id="mc4wp_email"
-                                                name="EMAIL" required />
-                                        </p>
-                                        <p class="mc4wp-form-ccsubmit">
-                                            <input type="submit"
-                                                value="Sign up" />
-                                        </p>
-                                        <div style="display: none;">
-                                            <input type="text"
-                                                name="_mc4wp_honeypot"
-                                                value="" tabindex="-1"
-                                                autocomplete="off" />
-                                        </div>
-                                        <input type="hidden"
-                                            name="_mc4wp_timestamp"
-                                            value="1518659561" /><input
-                                            type="hidden"
-                                            name="_mc4wp_form_id"
-                                            value="974" /><input
-                                            type="hidden"
-                                            name="_mc4wp_form_element_id"
-                                            value="mc4wp-form-1" /><input
-                                            type="hidden"
-                                            name="_mc4wp_form_nonce"
-                                            value="4184becd68" />
-                                    </div>
-                                    <div class="mc4wp-response"></div>
-                                </form>
-                                <!-- / MailChimp for WordPress Plugin -->
-                            </div>
-                            <div style="clear: both;"></div>
-                        </div>
-                    </article>
-                    <article class="col"></article>
-                    <article class="col"></article>
-                    <article class="col last"></article>
-                </section>
-            </div>
-        </footer>
-        <footer id="footer">
-            <div class="avada-row">
-                <ul class="social-networks social-networks-dark">
-                </ul>
-                <ul class="copyright">
-                    <li>©Copyright 2014. An initiative of the <a
-                        href='http://www.kcl.ac.uk/culturalinstitute'
-                        target='_blank'>Cultural Institute at King's
-                            College London</a>. All Rights Reserved. Built
-                        by <a href='http://www.weheartdigital.co.uk'
-                        target='_blank'>weheartdigital Ltd</a>.
+      </div>
+    </div>
+    <div id="main" class="" style="overflow: hidden !important;">
+      <div class="avada-row" style="">
+        <div id="content" style="float: left;">
+          <div id="post-2" class="post-2 page type-page status-publish hentry">
+            <span class="entry-title" style="display: none;">CultureCase | putting research to work</span> <span class="updated" style="display: none;">3 December 2013</span> <span class="vcard"
+              style="display: none;"
+            ><span class="fn"><a href="/author/timpoole/" title="Posts by Tim Poole" rel="author">Tim Poole</a></span></span>
+            <div class="post-content">
+              <!-- START REVOLUTION SLIDER 4.6.1 fullwidth mode -->
+              <div id="rev_slider_1_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container"
+                style="margin: 0px auto; background-color: #E9E9E9; padding: 0px; margin-top: 0px; margin-bottom: 0px; max-height: 438px;"
+              >
+                <div id="rev_slider_1_1" class="rev_slider fullwidthabanner" style="display: none; max-height: 438px; height: 438px;">
+                  <ul>
+                    <!-- SLIDE  -->
+                    <li data-transition="slidehorizontal" data-slotamount="7" data-masterspeed="500"
+                      data-link="/research/2017/08/using-the-audience-exchange-approach-to-help-first-time-audiences/" data-saveperformance="off"
+                    >
+                      <!-- MAIN IMAGE --> <img src="{% static 'www.culturecase.org/wp-content/plugins/revslider/images/transparent.png' %}" style='background-color: #ffffff' alt=""
+                      data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat"
+                    > <!-- LAYERS --> <!-- LAYER NR. 1 -->
+                      <div class="tp-caption tp-fade" data-x="1" data-y="center" data-voffset="0" data-speed="300" data-start="500" data-easing="Power3.easeInOut" data-elementdelay="0.1"
+                        data-endelementdelay="0.1" data-endspeed="300" style="z-index: 5;"
+                      >
+                        <img src="{% static 'www.culturecase.org/wp-content/uploads/2017/08/audience-exchange.jpg' %}" alt="" data-ww="45%" data-hh="438">
+                      </div> <!-- LAYER NR. 2 -->
+                      <div class="tp-caption large-black_text tp-fade tp-resizeme" data-x="right" data-hoffset="-17" data-y="58" data-speed="300" data-start="500" data-easing="Power3.easeInOut"
+                        data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300"
+                        style="z-index: 6; max-width: 439px; max-height: 80px; white-space: normal;"
+                      >Using the ‘audience exchange’ approach to help first-time audiences</div> <!-- LAYER NR. 3 -->
+                      <div class="tp-caption small_thin_grey tp-fade tp-resizeme" data-x="right" data-hoffset="-49" data-y="center" data-voffset="99" data-speed="300" data-start="500"
+                        data-easing="Power3.easeInOut" data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300"
+                        style="z-index: 7; max-width: 400px; max-height: auto; white-space: normal;"
+                      ></div> <!-- LAYER NR. 4 -->
+                      <div class="tp-caption black tp-fade tp-resizeme" data-x="770" data-y="243" data-speed="300" data-start="500" data-easing="Power3.easeInOut" data-splitin="none"
+                        data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300" style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;"
+                      ></div> <!-- LAYER NR. 5 -->
+                      <div class="tp-caption blackbigger tp-fade tp-resizeme" data-x="546" data-y="270" data-speed="300" data-start="500" data-easing="Power3.easeInOut" data-splitin="none"
+                        data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300" style="z-index: 9; max-width: 416px; max-height: 80px; white-space: pre-wrap;"
+                      >This paper outlines the use of the ‘audience exchange’ approach to audience development. This involves facilitated group dialogue between audience members who are first-time
+                        attenders who may lack confidence or familiarity with the art form they have just encountered.</div>
                     </li>
-                </ul>
+                    <!-- SLIDE  -->
+                    <li data-transition="slidehorizontal" data-slotamount="7" data-masterspeed="300" data-link="/research/2017/08/how-people-acquire-new-tastes-in-music/"
+                      data-saveperformance="off"
+                    >
+                      <!-- MAIN IMAGE --> <img src="{% static 'www.culturecase.org/wp-content/plugins/revslider/images/transparent.png' %}" style='background-color: #000000' alt=""
+                      data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat"
+                    > <!-- LAYERS --> <!-- LAYER NR. 1 -->
+                      <div class="tp-caption tp-fade" data-x="0" data-y="center" data-voffset="0" data-speed="300" data-start="500" data-easing="Power3.easeInOut" data-elementdelay="0.1"
+                        data-endelementdelay="0.1" data-endspeed="300" style="z-index: 5;"
+                      >
+                        <img src="{% static 'www.culturecase.org/wp-content/uploads/2017/08/new-music-tastes.jpg' %}" alt="" data-ww="45%" data-hh="438">
+                      </div> <!-- LAYER NR. 2 -->
+                      <div class="tp-caption large_text tp-fade tp-resizeme" data-x="right" data-hoffset="-50" data-y="30" data-speed="300" data-start="500" data-easing="Power3.easeInOut"
+                        data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300"
+                        style="z-index: 6; max-width: 400px; max-height: auto; white-space: normal;"
+                      >How people acquire new tastes in music</div> <!-- LAYER NR. 3 -->
+                      <div class="tp-caption medium_text tp-fade tp-resizeme" data-x="right" data-hoffset="-51" data-y="center" data-voffset="73" data-speed="300" data-start="500"
+                        data-easing="Power3.easeInOut" data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300"
+                        style="z-index: 7; max-width: 400px; max-height: auto; white-space: normal;"
+                      >This study took place over 15 months via a combination of observation and life history interviews with about 30 regulars at a Honky Tonk Night Club in a large mid-western US
+                        city.</div> <!-- LAYER NR. 4 -->
+                      <div class="tp-caption black tp-fade tp-resizeme" data-x="100" data-y="100" data-speed="300" data-start="500" data-easing="Power3.easeInOut" data-splitin="none"
+                        data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300" style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;"
+                      ></div>
+                    </li>
+                    <!-- SLIDE  -->
+                    <li data-transition="slidehorizontal" data-slotamount="7" data-masterspeed="300"
+                      data-link="/research/2017/08/the-positive-impacts-of-active-music-participation-for-infants/" data-saveperformance="off"
+                    >
+                      <!-- MAIN IMAGE --> <img src="{% static 'www.culturecase.org/wp-content/plugins/revslider/images/transparent.png' %}" style='background-color: #ffffff' alt=""
+                      data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat"
+                    > <!-- LAYERS --> <!-- LAYER NR. 1 -->
+                      <div class="tp-caption tp-fade" data-x="1" data-y="center" data-voffset="0" data-speed="300" data-start="500" data-easing="Power3.easeInOut" data-elementdelay="0.1"
+                        data-endelementdelay="0.1" data-endspeed="300" style="z-index: 5;"
+                      >
+                        <img src="{% static 'www.culturecase.org/wp-content/uploads/2017/08/infant-music.jpg' %}" alt="" data-ww="45%" data-hh="438">
+                      </div> <!-- LAYER NR. 2 -->
+                      <div class="tp-caption large-black_text tp-fade tp-resizeme" data-x="right" data-hoffset="-17" data-y="58" data-speed="300" data-start="500" data-easing="Power3.easeInOut"
+                        data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300"
+                        style="z-index: 6; max-width: 439px; max-height: 80px; white-space: normal;"
+                      >The positive impacts of active music participation for infants</div> <!-- LAYER NR. 3 -->
+                      <div class="tp-caption small_thin_grey tp-fade tp-resizeme" data-x="right" data-hoffset="-49" data-y="center" data-voffset="99" data-speed="300" data-start="500"
+                        data-easing="Power3.easeInOut" data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300"
+                        style="z-index: 7; max-width: 400px; max-height: auto; white-space: normal;"
+                      ></div> <!-- LAYER NR. 4 -->
+                      <div class="tp-caption black tp-fade tp-resizeme" data-x="770" data-y="243" data-speed="300" data-start="500" data-easing="Power3.easeInOut" data-splitin="none"
+                        data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300" style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;"
+                      ></div> <!-- LAYER NR. 5 -->
+                      <div class="tp-caption blackbigger tp-fade tp-resizeme" data-x="546" data-y="270" data-speed="300" data-start="500" data-easing="Power3.easeInOut" data-splitin="none"
+                        data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300" style="z-index: 9; max-width: 416px; max-height: 80px; white-space: pre-wrap;"
+                      >To understand the developmental impact of active participation in music, this study worked with two groups of six-month old infants who attended music-based sessions with
+                        teachers and their parents.</div>
+                    </li>
+                    <!-- SLIDE  -->
+                    <li data-transition="slidehorizontal" data-slotamount="7" data-masterspeed="300"
+                      data-link="/research/2017/07/how-learning-visual-art-improves-creativity-and-changes-the-brain/" data-saveperformance="off"
+                    >
+                      <!-- MAIN IMAGE --> <img src="{% static 'www.culturecase.org/wp-content/plugins/revslider/images/transparent.png' %}" style='background-color: #ffffff' alt=""
+                      data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat"
+                    > <!-- LAYERS --> <!-- LAYER NR. 1 -->
+                      <div class="tp-caption tp-fade" data-x="1" data-y="center" data-voffset="0" data-speed="300" data-start="500" data-easing="Power3.easeInOut" data-elementdelay="0.1"
+                        data-endelementdelay="0.1" data-endspeed="300" style="z-index: 5;"
+                      >
+                        <img src="{% static 'www.culturecase.org/wp-content/uploads/2017/07/brain.jpg' %}" alt="" data-ww="45%" data-hh="438">
+                      </div> <!-- LAYER NR. 2 -->
+                      <div class="tp-caption large-black_text tp-fade tp-resizeme" data-x="right" data-hoffset="-17" data-y="58" data-speed="300" data-start="500" data-easing="Power3.easeInOut"
+                        data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300"
+                        style="z-index: 6; max-width: 439px; max-height: 80px; white-space: normal;"
+                      >How learning visual art improves creativity and changes the brain</div> <!-- LAYER NR. 3 -->
+                      <div class="tp-caption small_thin_grey tp-fade tp-resizeme" data-x="right" data-hoffset="-49" data-y="center" data-voffset="99" data-speed="300" data-start="500"
+                        data-easing="Power3.easeInOut" data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300"
+                        style="z-index: 7; max-width: 400px; max-height: auto; white-space: normal;"
+                      ></div> <!-- LAYER NR. 4 -->
+                      <div class="tp-caption black tp-fade tp-resizeme" data-x="770" data-y="243" data-speed="300" data-start="500" data-easing="Power3.easeInOut" data-splitin="none"
+                        data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300" style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;"
+                      ></div> <!-- LAYER NR. 5 -->
+                      <div class="tp-caption blackbigger tp-fade tp-resizeme" data-x="546" data-y="270" data-speed="300" data-start="500" data-easing="Power3.easeInOut" data-splitin="none"
+                        data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300" style="z-index: 9; max-width: 416px; max-height: 80px; white-space: pre-wrap;"
+                      >This study investigated the impact of visual art training on young adults’ behaviour and changes in brain activity.</div>
+                    </li>
+                    <!-- SLIDE  -->
+                    <li data-transition="slidehorizontal" data-slotamount="7" data-masterspeed="300"
+                      data-link="/research/2017/07/managing-dementia-through-object-handing-in-museums/" data-saveperformance="off"
+                    >
+                      <!-- MAIN IMAGE --> <img src="{% static 'www.culturecase.org/wp-content/plugins/revslider/images/transparent.png' %}" style='background-color: #000000' alt=""
+                      data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat"
+                    > <!-- LAYERS --> <!-- LAYER NR. 1 -->
+                      <div class="tp-caption tp-fade" data-x="0" data-y="center" data-voffset="0" data-speed="300" data-start="500" data-easing="Power3.easeInOut" data-elementdelay="0.1"
+                        data-endelementdelay="0.1" data-endspeed="300" style="z-index: 5;"
+                      >
+                        <img src="{% static 'www.culturecase.org/wp-content/uploads/2017/07/dementia.jpg' %}" alt="" data-ww="45%" data-hh="438">
+                      </div> <!-- LAYER NR. 2 -->
+                      <div class="tp-caption large_text tp-fade tp-resizeme" data-x="right" data-hoffset="-50" data-y="30" data-speed="300" data-start="500" data-easing="Power3.easeInOut"
+                        data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300"
+                        style="z-index: 6; max-width: 400px; max-height: auto; white-space: normal;"
+                      >Managing dementia through object handing in museums</div> <!-- LAYER NR. 3 -->
+                      <div class="tp-caption medium_text tp-fade tp-resizeme" data-x="right" data-hoffset="-51" data-y="center" data-voffset="73" data-speed="300" data-start="500"
+                        data-easing="Power3.easeInOut" data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300"
+                        style="z-index: 7; max-width: 400px; max-height: auto; white-space: normal;"
+                      >The authors of this study propose that the heritage sector could have a role to play in subjective health and wellbeing for individuals with dementia.</div> <!-- LAYER NR. 4 -->
+                      <div class="tp-caption black tp-fade tp-resizeme" data-x="100" data-y="100" data-speed="300" data-start="500" data-easing="Power3.easeInOut" data-splitin="none"
+                        data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300" style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;"
+                      ></div>
+                    </li>
+                    <!-- SLIDE  -->
+                    <li data-transition="slidehorizontal" data-slotamount="7" data-masterspeed="300"
+                      data-link="/research/2017/07/frequent-attendance-at-cultural-events-associated-with-reduced-cancer-mortality/" data-saveperformance="off"
+                    >
+                      <!-- MAIN IMAGE --> <img src="{% static 'www.culturecase.org/wp-content/plugins/revslider/images/transparent.png' %}" style='background-color: #ffffff' alt=""
+                      data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat"
+                    > <!-- LAYERS --> <!-- LAYER NR. 1 -->
+                      <div class="tp-caption tp-fade" data-x="1" data-y="center" data-voffset="0" data-speed="300" data-start="500" data-easing="Power3.easeInOut" data-elementdelay="0.1"
+                        data-endelementdelay="0.1" data-endspeed="300" style="z-index: 5;"
+                      >
+                        <img src="{% static 'www.culturecase.org/wp-content/uploads/2017/07/cancer.jpg' %}" alt="" data-ww="45%" data-hh="438">
+                      </div> <!-- LAYER NR. 2 -->
+                      <div class="tp-caption large-black_text tp-fade tp-resizeme" data-x="right" data-hoffset="-17" data-y="58" data-speed="300" data-start="500" data-easing="Power3.easeInOut"
+                        data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300"
+                        style="z-index: 6; max-width: 439px; max-height: 80px; white-space: normal;"
+                      >Frequent attendance at cultural events associated with reduced cancer mortality</div> <!-- LAYER NR. 3 -->
+                      <div class="tp-caption small_thin_grey tp-fade tp-resizeme" data-x="right" data-hoffset="-49" data-y="center" data-voffset="99" data-speed="300" data-start="500"
+                        data-easing="Power3.easeInOut" data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300"
+                        style="z-index: 7; max-width: 400px; max-height: auto; white-space: normal;"
+                      ></div> <!-- LAYER NR. 4 -->
+                      <div class="tp-caption black tp-fade tp-resizeme" data-x="770" data-y="243" data-speed="300" data-start="500" data-easing="Power3.easeInOut" data-splitin="none"
+                        data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300" style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;"
+                      ></div> <!-- LAYER NR. 5 -->
+                      <div class="tp-caption blackbigger tp-fade tp-resizeme" data-x="546" data-y="270" data-speed="300" data-start="500" data-easing="Power3.easeInOut" data-splitin="none"
+                        data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300" style="z-index: 9; max-width: 416px; max-height: 80px; white-space: pre-wrap;"
+                      >This paper describes a long-term study looking at correlations between taking part in certain cultural activities and cancer mortality.</div>
+                    </li>
+                    <!-- SLIDE  -->
+                    <li data-transition="slidehorizontal" data-slotamount="7" data-masterspeed="300" data-link="/research/2017/07/musicians-react-faster-than-non-musicians/"
+                      data-saveperformance="off"
+                    >
+                      <!-- MAIN IMAGE --> <img src="{% static 'www.culturecase.org/wp-content/plugins/revslider/images/transparent.png' %}" style='background-color: #000000' alt=""
+                      data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat"
+                    > <!-- LAYERS --> <!-- LAYER NR. 1 -->
+                      <div class="tp-caption tp-fade" data-x="0" data-y="center" data-voffset="0" data-speed="300" data-start="500" data-easing="Power3.easeInOut" data-elementdelay="0.1"
+                        data-endelementdelay="0.1" data-endspeed="300" style="z-index: 5;"
+                      >
+                        <img src="{% static 'www.culturecase.org/wp-content/uploads/2017/07/musician-reflexes.jpg' %}" alt="" data-ww="45%" data-hh="438">
+                      </div> <!-- LAYER NR. 2 -->
+                      <div class="tp-caption large_text tp-fade tp-resizeme" data-x="right" data-hoffset="-50" data-y="30" data-speed="300" data-start="500" data-easing="Power3.easeInOut"
+                        data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300"
+                        style="z-index: 6; max-width: 400px; max-height: auto; white-space: normal;"
+                      >Musicians react faster than non-musicians</div> <!-- LAYER NR. 3 -->
+                      <div class="tp-caption medium_text tp-fade tp-resizeme" data-x="right" data-hoffset="-51" data-y="center" data-voffset="73" data-speed="300" data-start="500"
+                        data-easing="Power3.easeInOut" data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300"
+                        style="z-index: 7; max-width: 400px; max-height: auto; white-space: normal;"
+                      >This study aimed to investigate whether long-term musical training improves unisensory (audio or tactile) and multisensory (audio and tactile) processing capacities.</div> <!-- LAYER NR. 4 -->
+                      <div class="tp-caption black tp-fade tp-resizeme" data-x="100" data-y="100" data-speed="300" data-start="500" data-easing="Power3.easeInOut" data-splitin="none"
+                        data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300" style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;"
+                      ></div>
+                    </li>
+                  </ul>
+                  <div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>
+                </div>
+              </div>
+              <!-- END REVOLUTION SLIDER -->
+              <h2>Welcome to CultureCase</h2>
+              <h3>
+                <em>A resource for the cultural sector<br />
+                </em>
+              </h3>
+              <p>CultureCase comprises a vast array of carefully selected academic research from universities and scholars around the world that can add value to the work of the cultural sector.</p>
+              <p>
+                The research on the site has been edited into easily accessible summaries of key findings and insights to help inform the sector and provide the empirical evidence to support
+                activities across arts and culture. We&#8217;ve created short accessible summaries of academic research that demonstrate the <a href="/impacts/">impacts</a>
+                of arts and culture, as well as highlighting a range of <a href="/insight/">insights</a> to help inform future planning. You can use CultureCase to help:
+              </p>
+              <ul>
+                <li>advocate for the value of culture</li>
+                <li>apply for funding</li>
+                <li>inform programming, marketing and strategic decision-making</li>
+              </ul>
+              <p style="text-align: left;">In collating research for this resource we have selected studies from peer reviewed academic journals that respond to the challenges set by a network of
+                cultural sector partners. You don’t need to be an expert in research to use this site: simply use the search bar, research categories or contents page to explore what&#8217;s here.</p>
+              <p>
+                CultureCase is an experiment in communicating academic research. We want the site to evolve with your participation so please <a href="mailto:culture@kcl.ac.uk">get in touch</a> if you
+                have a suggestion for how it might be improved or any additional academic studies you think should be included.
+              </p>
+              <p>CultureCase will soon also include an additional data portal to provide the sector with access to high-quality data to support decision-making, planning, advocacy and artistic
+                practice. This &#8216;sister site&#8217; is being developed in collaboration with the Department of Informatics at King&#8217;s College London and will be launched later in 2018.</p>
             </div>
-        </footer>
+          </div>
+        </div>
+        <div id="sidebar" style="float: right;">
+          <div id="dpe_fp_widget-2" class="widget widget_dpe_fp_widget">
+            <div class="heading">
+              <h3>Latest additions</h3>
+            </div>
+            <ul class="dpe-flexible-posts">
+              <li id="post-1449"
+                class="post-1449 research type-research status-publish hentry research-category-education research-tags-critical-thinking research-tags-education-2 research-tags-museums research-tags-students"
+              ><a href="/research/2018/02/an-art-museum-visit-can-enhance-students-critical-thinking-skills/">
+                  <h4 class="title">An art museum visit can enhance students’ critical thinking skills</h4>
+              </a></li>
+              <li id="post-1431"
+                class="post-1431 research type-research status-publish hentry research-category-health-wellbeing research-tags-arts research-tags-mental-health research-tags-social-inclusion research-tags-welllbeing"
+              ><a href="/research/2018/02/long-term-improvements-in-wellbeing-and-social-inclusion-through-art-for-people-with-mental-health-difficulties/">
+                  <h4 class="title">Long-term improvements in wellbeing and social inclusion through art for people with mental health difficulties</h4>
+              </a></li>
+              <li id="post-1439"
+                class="post-1439 research type-research status-publish hentry research-category-audiences research-tags-audiences research-tags-classical-music research-tags-experience research-tags-study"
+              ><a href="/research/2018/02/the-experience-of-new-audiences-at-classical-music-performances/">
+                  <h4 class="title">The experience of new audiences at classical music performances</h4>
+              </a></li>
+              <li id="post-1456"
+                class="post-1456 research type-research status-publish hentry research-category-intrinsic-impacts research-tags-emotions research-tags-experiment research-tags-germany research-tags-poetry"
+              ><a href="/research/2018/02/the-emotional-power-of-poetry-and-its-impact-on-our-brains/">
+                  <h4 class="title">The emotional power of poetry and its impact on our brains</h4>
+              </a></li>
+              <li id="post-1400" class="post-1400 research type-research status-publish hentry research-tags-audience research-tags-observation research-tags-talk research-tags-uk"><a
+                href="/research/2017/08/using-the-audience-exchange-approach-to-help-first-time-audiences/"
+              >
+                  <h4 class="title">Using the ‘audience exchange’ approach to help first-time audiences</h4>
+              </a></li>
+            </ul>
+            <!-- .dpe-flexible-posts -->
+          </div>
+        </div>
+        <a href="http://www.kcl.ac.uk/" id="footer-logo" target="_blank"><img src="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/images/logo-kcl.png' %}"
+          alt="King's College London"
+        ></a>
+      </div>
     </div>
-    <!-- wrapper -->
-    <script type="text/javascript"
-        src="http://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false&amp;language=en"></script>
-    <!-- W3TC-include-js-head -->
-    <div class="revsliderstyles">
-    </div>
-    <script type='text/javascript'
-        src="{% static 'www.culturecase.org/wp-content/themes/Avada/framework/plugins/tf-flexslider/assets/js/jquery.mousewheel.min.js' %}"></script>
-    <script type='text/javascript'
-        src="{% static 'www.culturecase.org/wp-content/themes/Avada/framework/plugins/tf-flexslider/assets/js/jquery.flexslider.min.js' %}"></script>
-    <script type='text/javascript'
-        src="{% static 'www.culturecase.org/wp-includes/js/comment-reply.min.js' %}"></script>
-    <script type='text/javascript'
-        src="{% static 'www.culturecase.org/wp-content/themes/Avada/js/modernizr-min.js' %}"></script>
-    <script type='text/javascript'
-        src="{% static 'www.culturecase.org/wp-content/themes/Avada/js/jquery.carouFredSel-6.2.1-min.js' %}"></script>
-    <script type='text/javascript'
-        src="{% static 'www.culturecase.org/wp-content/themes/Avada/js/jquery.prettyPhoto-min.js' %}"></script>
-    <script type='text/javascript'
-        src="{% static 'www.culturecase.org/wp-content/themes/Avada/js/jquery.flexslider-min.js' %}"></script>
-    <script type='text/javascript'
-        src="{% static 'www.culturecase.org/wp-content/themes/Avada/js/jquery.fitvids-min.js' %}"></script>
-    <script type='text/javascript'
-        src="{% static 'www.culturecase.org/wp-content/themes/Avada/js/gmap-min.js' %}"></script>
-    <script type='text/javascript'
-        src="{% static 'www.culturecase.org/wp-content/themes/Avada/js/main-min.js' %}"></script>
-    <script type='text/javascript'
-        src="{% static 'www.culturecase.org/wp-content/plugins/mailchimp-for-wp/assets/js/forms-api.min.js' %}"></script>
+    <footer class="footer-area">
+      <div class="avada-row">
+        <section class="columns columns-1">
+          <article class="col">
+            <div id="text-2" class="footer-widget-col widget_text">
+              <h3>Sign up to our newsletter</h3>
+              <div class="textwidget">
+                <!-- MailChimp for WordPress v3.0.2 - https://wordpress.org/plugins/mailchimp-for-wp/ -->
+                <form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-974 mc4wp-form-theme mc4wp-form-theme-dark" method="post" data-id="974" data-name="Newsletter sign up form">
+                  <div class="mc4wp-form-fields">
+                    <p class="mc4wp-form-ccinput">
+                      <label>First Name</label> <input type="text" name="FNAME" required>
+                    </p>
+                    <p class="mc4wp-form-ccinput">
+                      <label>Last Name</label> <input type="text" name="LNAME" required>
+                    </p>
+                    <p class="mc4wp-form-ccinput">
+                      <label>Organisation</label> <input type="text" name="ORG">
+                    </p>
+                    <p class="mc4wp-form-ccinput">
+                      <label>Email address</label> <input type="email" id="mc4wp_email" name="EMAIL" required />
+                    </p>
+                    <p class="mc4wp-form-ccsubmit">
+                      <input type="submit" value="Sign up" />
+                    </p>
+                    <div style="display: none;">
+                      <input type="text" name="_mc4wp_honeypot" value="" tabindex="-1" autocomplete="off" />
+                    </div>
+                    <input type="hidden" name="_mc4wp_timestamp" value="1518659561" /><input type="hidden" name="_mc4wp_form_id" value="974" /><input type="hidden" name="_mc4wp_form_element_id"
+                      value="mc4wp-form-1"
+                    /><input type="hidden" name="_mc4wp_form_nonce" value="4184becd68" />
+                  </div>
+                  <div class="mc4wp-response"></div>
+                </form>
+                <!-- / MailChimp for WordPress Plugin -->
+              </div>
+              <div style="clear: both;"></div>
+            </div>
+          </article>
+          <article class="col"></article>
+          <article class="col"></article>
+          <article class="col last"></article>
+        </section>
+      </div>
+    </footer>
+    <footer id="footer">
+      <div class="avada-row">
+        <ul class="social-networks social-networks-dark">
+        </ul>
+        <ul class="copyright">
+          <li>©Copyright 2014. An initiative of the <a href='http://www.kcl.ac.uk/culturalinstitute' target='_blank'>Cultural Institute at King's College London</a>. All Rights Reserved. Built by
+            <a href='http://www.weheartdigital.co.uk' target='_blank'>weheartdigital Ltd</a>.
+          </li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+  <!-- wrapper -->
+  <div class="revsliderstyles"></div>
+  <!-- JAVASCRIPT -->
+  <!-- W3TC-include-js-head -->
+  <script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/themes/Avada/framework/plugins/tf-flexslider/assets/js/jquery.mousewheel.min.js' %}"></script>
+  <script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/themes/Avada/framework/plugins/tf-flexslider/assets/js/jquery.flexslider.min.js' %}"></script>
+  <script type='text/javascript' src="{% static 'www.culturecase.org/wp-includes/js/comment-reply.min.js' %}"></script>
+  <script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/themes/Avada/js/modernizr-min.js' %}"></script>
+  <script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/themes/Avada/js/jquery.carouFredSel-6.2.1-min.js' %}"></script>
+  <script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/themes/Avada/js/jquery.prettyPhoto-min.js' %}"></script>
+  <script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/themes/Avada/js/jquery.flexslider-min.js' %}"></script>
+  <script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/themes/Avada/js/jquery.fitvids-min.js' %}"></script>
+  {% comment %} {# TODO: GN remove completely if not used at all#}
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false&amp;language=en"></script>
+  <script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/themes/Avada/js/gmap-min.js' %}"></script>
+  {% endcomment %}
+  <script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/themes/Avada/js/main-min.js' %}"></script>
+  <script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/plugins/mailchimp-for-wp/assets/js/forms-api.min.js' %}"></script>
 </body>
-
 </html>
