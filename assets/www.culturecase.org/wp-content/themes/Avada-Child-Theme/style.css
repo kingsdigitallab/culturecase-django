@@ -1,0 +1,263 @@
+/*
+Theme Name:		Avada Child
+Description:	Avada child theme for Kings Cultural Institute
+Author:			Tim Poole
+Author URI:		http://www.weheartdigital.co.uk
+Template:		Avada
+*/
+
+@import url("../Avada/style.css");
+
+body {
+	background:#E5E2DD;
+}
+
+/* --------------- search --------------- */
+
+.search-bar {
+	color: #FFF;
+	background: #FF9E01;
+	padding: 9px 0;
+	width: 100%;
+	float: left;
+}
+.search-bar form {
+	padding: 0 10px;
+}
+.search-bar #s {
+	color: #333 !important;
+	font-size: 16px;
+    width: 88%;
+	border: none;
+    height: 30px;
+	padding: 0 1%;
+	float: left;
+}
+.search-bar input[type="submit"] {
+    color: #FFF !important;
+    font-family: FontAwesome !important;
+    font-size: 14px;
+    text-indent: 0 !important;
+    line-height: 30px;
+    width: 10%;
+    height: 30px;
+    margin: 0;
+    padding: 0;
+    background: #FE0A00;
+    border: none;
+    cursor: pointer;
+	float: left;
+}
+.search-bar input[type="submit"]:hover {
+	background: #FE5900;
+}
+
+.relevanssi-query-term {
+	background: #FFDB00;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	padding: 0 2px;
+}
+
+/* --------------- page title --------------- */
+
+.page-title-captions {
+	width: 60%;
+}
+.page-title h1.entry-title {
+	line-height: 1.2 !important;
+}
+
+/* --------------- content --------------- */
+
+.post-content a, .post-content a:visited {
+	text-decoration: underline;
+}
+.post-content a:hover, .post-content a:active, .post-content a:focus {
+	text-decoration: none;
+}
+.meta-info a:hover, .meta-info a:active, .meta-info a:focus {
+	text-decoration: underline;
+}
+
+.single-research .single-navigation {
+	margin-bottom: 25px;
+	text-align: left;
+}
+
+table.research-meta {
+	margin: 0 0 25px;
+}
+table.research-meta th,
+table.research-meta td {
+	color: #333333;
+	font-size: 13px;
+	text-align: left;
+	font-weight: normal;
+	padding: 3px 7px;
+	border: 1px solid #FFFFFF;
+}
+table.research-meta th {
+	white-space: nowrap;
+	background-color: #DDDDDD;
+}
+table.research-meta td {
+	background-color: #F3F3F3;
+}
+
+.keywords {
+	margin: 30px 0 40px;
+}
+.keywords h3 {
+	margin: 0 0 5px;
+}
+.keywords a, .keywords a:visited {
+	color: #333;
+	font-size: 14px;
+	text-decoration: none;
+	background: #FFDB00;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	padding: 0 5px 1px;
+	margin: 0 2px 4px 0;
+	display: inline-block;
+}
+.keywords a:hover, .keywords a:active, .keywords a:focus {
+	color: #333;
+	background: #FFFF00;
+}
+
+.page-template-bibliography-php #content h2 {
+	margin-bottom: 12px;
+}
+.page-template-bibliography-php .accordian {
+	margin-bottom: 40px;
+}
+.page-template-bibliography-php .accordian p {
+	margin-bottom: 12px;
+}
+
+#footer-logo img {
+	margin: -100px 0 -10px 0;
+	float: left;
+	clear: both;
+}
+
+/* --------------- side bar --------------- */
+
+.dpe-flexible-posts .title {
+	margin-bottom: 2px;
+}
+.dpe-flexible-posts h4:hover, .dpe-flexible-posts h4:active, .dpe-flexible-posts h4:focus {
+	text-decoration: underline;
+}
+
+/* --------------- footer --------------- */
+
+#footer {
+	padding: 16px 10px 16px;
+}
+
+/* sliders */
+#layerslider-wrapper .ls-shadow-top, .rev_slider_wrapper .shadow-left {
+display: none !important; }
+#main .post-content .rev_slider_wrapper + h2, #main .post-content .rev_slider_wrapper + p {
+	margin-top:30px;
+}
+
+/* mailchimp form */
+.footer-area {
+	border:none;
+	padding:20px 10px;
+}
+.footer-area .footer-widget-col h3 {
+	margin-bottom:8px;
+	font-size:17px !important;
+	text-transform: none;
+}
+.footer-widget-col p {
+	margin-bottom:8px;
+	float:left;
+}
+.mc4wp-form-ccinput {
+	width:20%;
+	margin-right:2% !important;
+}
+.mc4wp-form-ccsubmit {
+	width:12%;
+}
+.textwidget .mc4wp-form {
+	margin:0;
+	font-family: "PT Sans",Arial,Helvetica,sans-serif !important;
+}
+.textwidget .mc4wp-form label {
+	font-size:12px;
+}
+.textwidget .mc4wp-form input {
+	font-size:12px;
+	padding:2px 6px !important;
+}
+.textwidget .mc4wp-form input[type="submit"] {
+	padding:4px 24px !important;
+	margin:22px 0 0 0 !important;
+}
+.mc4wp-response p {
+	color:#fff;
+}
+
+/* pdf link */
+.print-pdf {
+	text-align: right;
+}
+.print-pdf a {
+	background:#fe5900;
+	color:#fff;
+	padding:2px 10px;
+}
+.print-pdf a:hover {
+	color:#fff;
+}
+.print-header {
+	display:none;
+}
+
+
+@media only screen and (max-width: 700px) {
+.mc4wp-form-ccinput {
+	width:45%;
+	margin-right:5% !important;
+}
+.mc4wp-form-ccsubmit {
+	width:100%;
+}
+.textwidget .mc4wp-form input[type="submit"] {
+	margin:10px 0 0 0 !important;
+}
+}
+@media only screen and (max-width: 400px) {
+.mc4wp-form-ccinput {
+	width:100%;
+	margin-right:0 !important;
+}
+.mc4wp-form-ccsubmit {
+}
+
+/* --------------- media queries --------------- */
+
+@media only screen and (max-width: 1000px){
+}
+
+@media only screen and (max-width: 800px) {
+	.search-bar form {
+		padding: 0 12px;
+	}
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 640px){
+}
+
+@media only screen and (max-width: 640px){
+}
+
+@media only screen and (max-width: 480px) {
+}

@@ -81,7 +81,8 @@ INSTALLED_APPS = [
 ]
 
 INSTALLED_APPS += [    # your project apps here
-
+    'kdl_webscripts',
+    'kdl_page',
     'kdl_ldap',
     'rest_framework',
     'wagtail.wagtailcore',
@@ -291,7 +292,7 @@ FABRIC_USER = getpass.getuser()
 # -----------------------------------------------------------------------------
 
 # Google Analytics ID
-GA_ID = ''
+GA_ID = 'UA-46082041-1'
 
 # -----------------------------------------------------------------------------
 # Automatically generated settings
