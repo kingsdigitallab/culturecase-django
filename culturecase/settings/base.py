@@ -81,8 +81,7 @@ INSTALLED_APPS = [
 ]
 
 INSTALLED_APPS += [    # your project apps here
-    'kdl_webscripts',
-    'kdl_page',
+    'culturecase_wagtail',
     'kdl_ldap',
     'rest_framework',
     'wagtail.wagtailcore',

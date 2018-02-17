@@ -4,34 +4,17 @@ Created on 15 Feb 2018
 @author: jeff
 '''
 
-from django.core.management.base import BaseCommand
+from kdl_wordpress2wagtail.management.commands._kdlcommand import KDLCommand
 import re
 import os
 
 
-class Command(BaseCommand):
-    help = 'Closes the specified poll for voting'
+class Command(KDLCommand):
+    help = 'Asset management'
 
     def add_arguments(self, parser):
         parser.add_argument('action', nargs=1, type=str)
         parser.add_argument('aargs', nargs='*', type=str)
-
-    def handle(self, *args, **options):
-        self.action = options['action'][0]
-        self.aargs = options['aargs']
-
-        show_help = True
-
-        if self.action == 'download':
-            show_help = False
-            self.action_download()
-
-        if show_help:
-            self.print_help(
-                'manage.py',
-                re.sub(r'^.*?([^/]+)\.py$', r'\1', __file__)
-            )
-            self.show_help()
 
     def action_download(self):
         try:
@@ -132,9 +115,6 @@ class Command(BaseCommand):
             ret = ext
 
         return ret
-
-    def print_error(self, message):
-        self.stdout.write('ERROR: {}'.format(message))
 
     def show_help(self):
         ret = '''

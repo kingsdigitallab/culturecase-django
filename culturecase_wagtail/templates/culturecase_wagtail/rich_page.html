@@ -1,9 +1,15 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags  staticfiles compress %}
 
 {% block body_class %}template-homepage{% endblock %}
+
+{% block title %}
+    {{ page.title }}
+{% endblock %}
+
 
 {% block main %}
     {{ page.body|richtext }}
 {% endblock %}
+
