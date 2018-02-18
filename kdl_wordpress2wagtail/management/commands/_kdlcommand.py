@@ -1,12 +1,17 @@
 '''
 Created on 15 Feb 2018
 
-@author: jeff
+@author: Geoffroy Noel
 '''
 
 from django.core.management.base import BaseCommand
 import os
 import re
+from django.db import transaction
+
+
+class DryRunRollBackException(Exception):
+    pass
 
 
 class KDLCommand(BaseCommand):
@@ -15,8 +20,13 @@ class KDLCommand(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('action', nargs=1, type=str)
         parser.add_argument('aargs', nargs='*', type=str)
+        parser.add_argument(
+            '-n', '--dry-run', action='store_true', dest='dry_run',
+            help="Do everything except modify the database.",
+        )
 
     def handle(self, *args, **options):
+        self.options = options
         self.action = options['action'][0]
         self.aargs = options['aargs']
 
@@ -26,7 +36,22 @@ class KDLCommand(BaseCommand):
 
         if action_method:
             show_help = False
-            action_method()
+            import time
+            try:
+                with transaction.atomic():
+                    t0 = time.time()
+                    action_method()
+                    d = time.time() - t0
+                    print(
+                        'END of command "{}" ({:.2} s.)'.format(
+                            self.action, d)
+                    )
+                    if self.is_dry_run():
+                        raise DryRunRollBackException
+            except DryRunRollBackException:
+                print('-' * 50)
+                print('INFO: DRY RUN, nothing written to the database')
+                print('-' * 50)
 
         if show_help:
             self.print_help(
@@ -34,6 +59,9 @@ class KDLCommand(BaseCommand):
                 re.sub(r'^.*?([^/]+)\.py$', r'\1', __file__)
             )
             self.show_help()
+
+    def is_dry_run(self):
+        return self.options.get('dry_run', False)
 
     def _fetch_url(self, url):
         ret = None

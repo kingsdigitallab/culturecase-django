@@ -8,10 +8,30 @@ from ._kdlcommand import KDLCommand
 from kdl_wordpress2wagtail.utils.kdl_node import KDLNode
 import re
 from wagtail.wagtailcore.models import Page
-from culturecase_wagtail.models import RichPage, HomePage
+from kdl_wordpress2wagtail.models import KDLWordpressReference
 
 
 class Command(KDLCommand):
+    '''
+    This is an abstract command.
+    Please subclass it in your own app and define methods such as:
+
+    def convert_TYPE(info):
+
+    See convert_item_page_EXAMPLE() below for an example.
+
+    where TYPE is a wordpress type, such as 'item_page', 'wp_term', ...
+
+    The convert methods take data from an object described in your Wordpress
+    XML dump and must return data that would allow to create a Django or
+    Wagtail model from it.
+
+    The full list of tag names can be found by running this script on
+    your Wordpress XML dump and looking at the first column in the summary
+    table.
+
+    Content of info can be found in get_info_from_kdlnode()
+    '''
     help = 'Import wordpress xml dump into wagtail'
 
     def action_info(self):
@@ -32,133 +52,167 @@ class Command(KDLCommand):
         except Exception:
             return self.print_error('missing argument: XML_PATH')
 
-        self.items = {}
-        self.roots = {}
+        # self.objcts is a cache of all imported object
+        # {'WP_TYPE:WP_ID': DJANGO_OBJECT}
+        self.objects = {
+            # Wordpress page root has id = 0 but not part of XML
+            # and it corresponds to pre-existing wagtail sitemap root
+            'item_page:0': Page.objects.get(id=1),
+        }
+        self.home_pageid = None
 
         from xml.dom import minidom
 
         dom = minidom.parse(xml_path)
         channel = dom.getElementsByTagName('channel')[0]
 
-        self.items['page:0'] = Page.objects.get(id=1)
-
-        info = {
-            'nodes': {}
+        summary = {
+            'types': {}
         }
 
-        for child in channel.childNodes:
-            child = KDLNode(child)
+        for node in channel.childNodes:
+            kdlnode = KDLNode(node)
 
-            res = None
+            res = '/'
 
-            node_key = child.tag.replace(':', '_')
+            info = self.get_info_from_kdlnode(kdlnode)
 
-            handler = getattr(
-                self,
-                'import_' + node_key,
-                None
-            )
-            if handler:
-                res = handler(child)
-                if res and hasattr(res, 'extend'):
-                    node_key, res = res[0], res[1]
+            if info['converter']:
+                # pre-imported django object corresponding to that wordpress
+                # object
+                info['obj'] = KDLWordpressReference.get_django_object(
+                    info['wordpressid']
+                )
+
+                if self.action == 'delete':
+                    if info['obj']:
+                        info['obj'].delete()
+                        res = 'D'
+                    else:
+                        res = '0'
+                else:
+                    res = 'A'
+                    if info['obj']:
+                        res = 'U'
+
+                    self.import_object(info)
+
+                    if res == 'A':
+                        if info['obj']:
+                            # new object, save link between with wordpress id
+                            # for the next imports
+                            KDLWordpressReference(
+                                wordpressid=info['wordpressid'],
+                                django_object=info['obj']
+                            ).save()
+                        else:
+                            # could not add...
+                            res = 'E'
+
+                print(
+                    '{:20.20} -> {:20.20} {} "{:.15}"'.
+                    format(
+                        info['wordpressid'],
+                        info['obj'].__class__.__name__ + ':' +
+                        str(getattr(info['obj'], 'pk', '')),
+                        res,
+                        info['slug'],
+                    )
+                )
+
+                # add page to cache
+                if info['obj']:
+                    self.objects[info['wordpressid']] = info['obj']
+
+                    # First item_page becomes our home page.
+                    # Wagtail's different from wordpress:
+                    # Home page is parent of all other pages.
+                    if info['wordpress_parentid'] == 'item_page:0':
+                        self.home_pageid = info['id']
 
             # collect summary info
-            if not info['nodes'].get(node_key):
-                info['nodes'][node_key] = {}
-            if not info['nodes'][node_key].get(repr(res)):
-                info['nodes'][node_key][repr(res)] = 0
-            info['nodes'][node_key][repr(res)] += 1
+            if not summary['types'].get(info['type']):
+                summary['types'][info['type']] = {}
+            if not summary['types'][info['type']].get(res):
+                summary['types'][info['type']][res] = 0
+            summary['types'][info['type']][res] += 1
 
-        self.show_import_summary(info)
+        self.show_import_summary(summary)
 
-        print('done')
+    def get_info_from_kdlnode(self, kdlnode):
+        ''' e.g.
+        <item>
+            <wp:post_id>2</wp:post_id>
+            <wp:post_type>page</wp:post_type>
+        =>
+        {'id': '2', 'type': 'item_page', 'wordpressid': 'item_page:2'}
+        '''
+        ret = {
+            'id': '-1',
+            'wordpressid': None,
+            'wordpress_parentid': None,
+            'type': kdlnode.tag.replace(':', '_'),
+            'kdlnode': kdlnode,
+            'slug': '?',
+            'converter': None,
+        }
 
-    def import_item(self, item):
-        ret = None
-        node_key = 'item_' + item['wp:post_type']
-        handler = getattr(self, 'import_' + node_key, None)
-        if handler:
-            ret = handler(item)
-        return [node_key, ret]
+        if ret['type'] == 'item':
+            ret['type'] += '_' + kdlnode['wp:post_type']
+            ret['id'] = kdlnode['wp:post_id']
+            ret['slug'] = kdlnode['wp:post_name']
+            ret['parentid'] = kdlnode['wp:post_parent']
 
-    def import_item_page(self, item):
+        if ret.get('parentid'):
+            if ret['type'] == 'item_page':
+                # this is a trick: Wordpress Home page is at same level as
+                # other top level pages, in Wagtail Home page should be above
+                # other pages.
+                if ret['parentid'] == '0':
+                    if self.home_pageid:
+                        ret['parentid'] = self.home_pageid
+
+            ret['wordpress_parentid'] = ret['type'] + ':' + ret['parentid']
+
+            ret['parent'] = self.objects.get(ret['wordpress_parentid'])
+
+        ret['wordpressid'] = ret['type'] + ':' + ret['id']
+
+        converter_name = 'convert_' + ret['type']
+        ret['converter'] = getattr(self, converter_name, None)
+
+        return ret
+
+    def import_object(self, info):
         # search for the page
-        legacyid = item['wp:post_type'] + ':' + item['wp:post_id']
-        page = RichPage.objects.filter(
-            legacyid=legacyid
-        ).first()
+        page = info['obj']
+        # node = info['kdlnode']
 
-        page_key = 'NOT FOUND'
+        model_info = info['converter'](info)
 
-        operation = '0'
+        if not page:
+            # page doesn't exist yet
+            if info['parentid']:
+                # needs a parent
+                if not info['parent']:
+                    print(
+                        'WARNING: could not find parent {}'.format(
+                            info['parentid']))
 
-        if not page and self.action != 'delete':
-            # page not found
-
-            # search for parent
-            parent = None
-
-            # this is a trick: Wordpress Home page is at same level as other
-            # top level pages, in Wagtail Home page should be above other pages
-            if item['wp:post_parent'] == '0':
-                parent = self.roots.get(item['wp:post_type'])
-
-            # search for the parent
-            if not parent:
-                parentid = item['wp:post_type'] + ':' + item['wp:post_parent']
-                parent = self.items.get(parentid)
-
-            if not parent:
-                print('WARNING: could not find parent {}'.format(parentid))
-            else:
-                # create dummy page under parent
-                operation = 'C'
-                page_type = RichPage
-                if parent.pk == 1:
-                    page_type = HomePage
-
-                page = page_type(
-                    legacyid=legacyid,
-                    title=item['title'],
-                    slug=item['wp:post_name']
-                )
-                parent.add_child(instance=page)
-
-        if page:
-            page_key = page.__class__.__name__ + ':' + str(page.pk)
-
-            if self.action == 'delete':
-                operation = 'D'
-                page.delete()
-            else:
-                operation = 'U'
-                if item['wp:post_parent'] == '0' and\
-                        not self.roots.get(item['wp:post_type']):
-                    # we force the Wordpress Home Page to be above all
-                    # other pages in wagtail
-                    self.roots[item['wp:post_type']] = page
-
-                # update the page
-                page.title = item['title']
-                page.slug = item['wp:post_name']
-                page.body = self.convert_body(item['content:encoded'])
-                page.save()
-
-                # add page to dictionary
-                self.items[page.legacyid] = page
-
-        print(
-            '{:20.20} -> {:20.20} {} "{:.15}"'.
-            format(
-                item['wp:post_type'] + ':' + item['wp:post_id'],
-                page_key,
-                operation,
-                item['wp:post_name'],
-            )
-        )
-
-        return (page is not None)
+                else:
+                    # create new page under parent
+                    page_type = model_info['model']
+                    # create new instance
+                    page = page_type(**model_info['data'])
+                    # add it under the pa
+                    info['parent'].add_child(instance=page)
+                    # caller need to know about this new object
+                    info['obj'] = page
+        else:
+            # update the page
+            for k, v in model_info['data'].items():
+                setattr(info['obj'], k, v)
+            page.save()
 
     def convert_body(self, body):
         '''Wordpress <p> on the site is turned into line breaks in XML dump
@@ -197,7 +251,7 @@ actions:
         print('-------\n')
 
         cols = set()
-        for tag, results in info['nodes'].items():
+        for tag, results in info['types'].items():
             cols.update(set(results.keys()))
 
         cols = sorted([str(c) for c in cols])
@@ -207,11 +261,31 @@ actions:
         for col in cols:
             s += '|{:>8.8}'.format(col)
         print(s)
+        print('-' * len(s))
 
         # print each row
-        for tag in sorted(info['nodes'].keys()):
-            results = info['nodes'][tag]
+        for tag in sorted(info['types'].keys()):
+            results = info['types'][tag]
             s = '{:20.20}'.format(tag)
             for col in cols:
                 s += '|{:8}'.format(results.get(col, 0))
             print(s)
+
+#     def convert_item_page_EXAMPLE(self, info):
+#         node = info['kdlnode']
+#
+#         ret = {
+#             'model': RichPage,
+#             # Mapping between django model fields and wordpress node content
+#             'data': {
+#                 'title': node['title'],
+#                 'slug': node['wp:post_name'],
+#                 'body': self.convert_body(node['content:encoded']),
+#             }
+#         }
+#
+#         # use home page
+#         if info['wordpress_parentid'] == 'item_page:0':
+#             ret['model'] = HomePage
+#
+#         return ret
