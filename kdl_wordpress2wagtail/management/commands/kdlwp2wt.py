@@ -17,6 +17,9 @@ class Command(KDLCommand):
     This is an abstract command to import Wordpress objects into
     Wagtail/Django.
 
+    It contains the core logic and engine. The actual mapping between WP
+    objects and django objects must be defined in a subclass.
+
     Please subclass it in your own app and define methods such as:
 
     def convert_TYPE(info):
@@ -88,16 +91,17 @@ class Command(KDLCommand):
                 'slug': getattr(reference.django_object, 'slug', '?'),
             }
 
-            if action == 'delete':
-                if reference.django_object:
-                    operation = '/'
-                    if not reference.protected:
-                        reference.django_object.delete()
-                        operation = 'D'
-                else:
-                    operation = '0'
+            if self.is_filtered_in(reference.wordpressid):
+                if action == 'delete':
+                    if reference.django_object:
+                        operation = '/'
+                        if not reference.protected:
+                            reference.django_object.delete()
+                            operation = 'D'
+                    else:
+                        operation = '0'
 
-                reference.delete()
+                    reference.delete()
 
             self.show_operation(info, operation)
 

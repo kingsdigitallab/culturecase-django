@@ -9,9 +9,6 @@ from kdl_wordpress2wagtail.management.commands.kdlwp2wt import (
 )
 from culturecase_wagtail.models import RichPage, HomePage, ResearchPage
 from django.utils.text import slugify
-# from kdl_page.models import HomePage
-# from wagtail.wagtailcore.models import Page
-
 
 ALIAS_HOME_PAGE = 'alias:home_page'
 ALIAS_RESEARCH_PARENT = 'alias:research_parent'
