@@ -1,11 +1,15 @@
-{% load staticfiles compress %}
+{% load staticfiles compress kdl_culturecase %}
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="shortcut icon" href="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/favicon.ico' %}" />
-<title>CultureCase</title>
+
+<title>CultureCase
+{% if page.url != '/' %} - {{page.title}}{% endif %}
+</title>
+
 <link rel="stylesheet" type="text/css" media="print" href="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/print.css' %}" />
 <!--[if lte IE 8]>
     <link rel="stylesheet" href="{% static 'www.culturecase.org/wp-content/themes/Avada/css/ie8.css' %}" />
@@ -42,7 +46,7 @@
 <script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/themes/Avada/framework/plugins/LayerSlider/js/layerslider.transitions.js' %}"></script>
 <link rel="EditURI" type="application/rsd+xml" title="RSD" href="{% static 'www.culturecase.org/xmlrpc.php' %}" />
 <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="{% static 'www.culturecase.org/wp-includes/wlwmanifest.xml' %}" />
-<meta name="generator" content="WordPress 4.3" />
+<meta name="generator" content="Wagtail" />
 <link rel='canonical' href='/' />
 <link rel='shortlink' href='/' />
 <!--[if lte IE 8]>
@@ -73,8 +77,10 @@
 <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/main.scss' %}">
 {% endcompress %}
 </head>
+
 <body class="home page page-id-2 page-template-default light ">
   <div id="wrapper">
+  
     <div class="header-wrapper">
       <div class="header-v1">
         <header id="header">
@@ -84,68 +90,23 @@
               </a>
             </div>
             <nav id="nav" class="nav-holder">
-              <ul id="nav" class="menu">
-                <li id="menu-item-31" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-31"><a href="/impacts/">Impacts</a>
-                  <ul class="sub-menu">
-                    <li id="menu-item-153" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-153"><a
-                      href="/research-category/intrinsic-impacts/"
-                    >Intrinsic</a></li>
-                    <li id="menu-item-83" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-83"><a
-                      href="/research-category/education/"
-                    >Educational</a></li>
-                    <li id="menu-item-140" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-140"><a
-                      href="/research-category/economic/"
-                    >Economic</a></li>
-                    <li id="menu-item-141" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-141"><a
-                      href="/research-category/neighbourhood/"
-                    >Neighbourhood</a></li>
-                    <li id="menu-item-152" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-152"><a
-                      href="/research-category/health-wellbeing/"
-                    >Health and wellbeing</a></li>
-                    <li id="menu-item-816" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-816"><a
-                      href="/research-category/creativity-impacts/"
-                    >Creativity</a></li>
-                    <li id="menu-item-142" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-142"><a
-                      href="/research-category/other-social-impacts/"
-                    >Other social impacts</a></li>
-                  </ul></li>
-                <li id="menu-item-30" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-30"><a href="/insights/">Insights</a>
-                  <ul class="sub-menu">
-                    <li id="menu-item-154" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-154"><a
-                      href="/research-category/consumer-behaviour/"
-                    >Consumer behaviour</a></li>
-                    <li id="menu-item-145" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-145"><a
-                      href="/research-category/fundraising/"
-                    >Fundraising</a></li>
-                    <li id="menu-item-85" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-85"><a
-                      href="/research-category/audiences/"
-                    >Developing new audiences</a></li>
-                    <li id="menu-item-155" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-155"><a
-                      href="/research-category/live-and-digital/"
-                    >Live and digital engagement</a></li>
-                    <li id="menu-item-156" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-156"><a
-                      href="/research-category/community-engagement/"
-                    >Models of community engagement</a></li>
-                    <li id="menu-item-157" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-157"><a
-                      href="/research-category/organisational-change/"
-                    >Organisational change</a></li>
-                  </ul></li>
-                <li id="menu-item-615" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-615"><a href="/contents/">Contents</a></li>
-                <li id="menu-item-28" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28"><a href="/how-to-use/">How to use</a></li>
-                <li id="menu-item-27" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href="/faqs/">FAQs</a></li>
-                <li id="menu-item-29" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29"><a href="/about/">About us</a></li>
-                <li id="menu-item-37" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-37"><a href="/links/">Other resources</a></li>
-              </ul>
+              {# % include "culturecase_wagtail/top_menu_static.html" % #}
+              {% block menu %}
+                {% get_site_root as site_root %}
+                {% top_menu parent=site_root calling_page=page %}
+              {% endblock %}
             </nav>
           </div>
         </header>
       </div>
+      
       <div class="search-bar">
         <form role="search" method="get" action="/">
           <input type="text" value="" name="s" id="s" placeholder="Search..."> <input type="submit" id="searchsubmit" value="">
         </form>
       </div>
     </div>
+    
     <header id="header" class="sticky-header">
       <div class="sticky-shadow">
         <div class="avada-row">
@@ -156,43 +117,15 @@
             </a>
           </div>
           <nav id="nav" class="nav-holder">
-            <ul id="nav" class="menu">
-              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-31"><a href="/impacts/">Impacts</a>
-                <ul class="sub-menu">
-                  <li class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-153"><a href="/research-category/intrinsic-impacts/">Intrinsic</a></li>
-                  <li class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-83"><a href="/research-category/education/">Educational</a></li>
-                  <li class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-140"><a href="/research-category/economic/">Economic</a></li>
-                  <li class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-141"><a href="/research-category/neighbourhood/">Neighbourhood</a></li>
-                  <li class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-152"><a href="/research-category/health-wellbeing/">Health
-                      and wellbeing</a></li>
-                  <li class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-816"><a href="/research-category/creativity-impacts/">Creativity</a></li>
-                  <li class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-142"><a href="/research-category/other-social-impacts/">Other
-                      social impacts</a></li>
-                </ul></li>
-              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-30"><a href="/insights/">Insights</a>
-                <ul class="sub-menu">
-                  <li class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-154"><a href="/research-category/consumer-behaviour/">Consumer
-                      behaviour</a></li>
-                  <li class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-145"><a href="/research-category/fundraising/">Fundraising</a></li>
-                  <li class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-85"><a href="/research-category/audiences/">Developing
-                      new audiences</a></li>
-                  <li class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-155"><a href="/research-category/live-and-digital/">Live
-                      and digital engagement</a></li>
-                  <li class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-156"><a href="/research-category/community-engagement/">Models
-                      of community engagement</a></li>
-                  <li class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-157"><a href="/research-category/organisational-change/">Organisational
-                      change</a></li>
-                </ul></li>
-              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-615"><a href="/contents/">Contents</a></li>
-              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28"><a href="/how-to-use/">How to use</a></li>
-              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href="/faqs/">FAQs</a></li>
-              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29"><a href="/about/">About us</a></li>
-              <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-37"><a href="/links/">Other resources</a></li>
-            </ul>
+            {% block menu_sticky %}
+              {% get_site_root as site_root %}
+              {% top_menu parent=site_root calling_page=page %}
+            {% endblock %}
           </nav>
         </div>
       </div>
     </header>
+    
     <div id="sliders-container"></div>
     <p class="print-header">
       <img src="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/images/logo-culturecase.png' %}" alt="Culture Case" />
@@ -224,49 +157,24 @@
               
                 BLOCK MAIN
               {% endblock %}
+
+              {% if page.show_kcl_logo %}
+                <p>
+                  <a href="http://www.kcl.ac.uk/" id="footer-logo" target="_blank">
+                    <img src="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/images/logo-kcl.png' %}" alt="King's College London">
+                  </a>
+                </p>
+              {% endif %}
             </div>
           </div>
         </div>
-        <div id="sidebar" style="float: right;">
-          <div id="dpe_fp_widget-2" class="widget widget_dpe_fp_widget">
-            <div class="heading">
-              <h3>Latest additions</h3>
-            </div>
-            <ul class="dpe-flexible-posts">
-              <li id="post-1449"
-                class="post-1449 research type-research status-publish hentry research-category-education research-tags-critical-thinking research-tags-education-2 research-tags-museums research-tags-students"
-              ><a href="/research/2018/02/an-art-museum-visit-can-enhance-students-critical-thinking-skills/">
-                  <h4 class="title">An art museum visit can enhance students’ critical thinking skills</h4>
-              </a></li>
-              <li id="post-1431"
-                class="post-1431 research type-research status-publish hentry research-category-health-wellbeing research-tags-arts research-tags-mental-health research-tags-social-inclusion research-tags-welllbeing"
-              ><a href="/research/2018/02/long-term-improvements-in-wellbeing-and-social-inclusion-through-art-for-people-with-mental-health-difficulties/">
-                  <h4 class="title">Long-term improvements in wellbeing and social inclusion through art for people with mental health difficulties</h4>
-              </a></li>
-              <li id="post-1439"
-                class="post-1439 research type-research status-publish hentry research-category-audiences research-tags-audiences research-tags-classical-music research-tags-experience research-tags-study"
-              ><a href="/research/2018/02/the-experience-of-new-audiences-at-classical-music-performances/">
-                  <h4 class="title">The experience of new audiences at classical music performances</h4>
-              </a></li>
-              <li id="post-1456"
-                class="post-1456 research type-research status-publish hentry research-category-intrinsic-impacts research-tags-emotions research-tags-experiment research-tags-germany research-tags-poetry"
-              ><a href="/research/2018/02/the-emotional-power-of-poetry-and-its-impact-on-our-brains/">
-                  <h4 class="title">The emotional power of poetry and its impact on our brains</h4>
-              </a></li>
-              <li id="post-1400" class="post-1400 research type-research status-publish hentry research-tags-audience research-tags-observation research-tags-talk research-tags-uk"><a
-                href="/research/2017/08/using-the-audience-exchange-approach-to-help-first-time-audiences/"
-              >
-                  <h4 class="title">Using the ‘audience exchange’ approach to help first-time audiences</h4>
-              </a></li>
-            </ul>
-            <!-- .dpe-flexible-posts -->
-          </div>
-        </div>
-        <a href="http://www.kcl.ac.uk/" id="footer-logo" target="_blank"><img src="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/images/logo-kcl.png' %}"
-          alt="King's College London"
-        ></a>
+        
+        {% include "includes/sidebar.html" %}
+
       </div>
     </div>
+    
+    
     <footer class="footer-area">
       <div class="avada-row">
         <section class="columns columns-1">
@@ -312,6 +220,7 @@
         </section>
       </div>
     </footer>
+    
     <footer id="footer">
       <div class="avada-row">
         <ul class="social-networks social-networks-dark">
@@ -323,6 +232,7 @@
         </ul>
       </div>
     </footer>
+    
   </div>
   <!-- wrapper -->
   <div class="revsliderstyles"></div>

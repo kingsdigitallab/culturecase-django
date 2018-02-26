@@ -8,6 +8,8 @@ from ._kdlcommand import KDLCommand
 from kdl_wordpress2wagtail.utils.kdl_node import KDLNode
 import re
 from wagtail.wagtailcore.models import Page
+from time import strptime
+import pytz
 
 
 class Command(KDLCommand):
@@ -46,6 +48,22 @@ class Command(KDLCommand):
         }
         from kdl_wordpress2wagtail.models import KDLWordpressReference
         self.registry = KDLWordpressReference
+
+    def add_arguments(self, parser):
+        super(Command, self).add_arguments(parser)
+        parser.add_argument('--filter', help='Filter the object types, e.g.'
+                            'item_page*;wp_term:145')
+
+    def is_filtered_in(self, objectid):
+        ret = True
+
+        if self.options['filter']:
+            afilter = self.options['filter'].replace(
+                '*', '.*').replace(';', '|')
+            if afilter:
+                ret = re.match(r'^({})$'.format(afilter), objectid)
+
+        return ret
 
     def action_add(self):
         raise Exception('Not implemented yet')
@@ -120,6 +138,8 @@ class Command(KDLCommand):
         dom = minidom.parse(xml_path)
         channel = dom.getElementsByTagName('channel')[0]
 
+        self._pre_import()
+
         for node in channel.childNodes:
             kdlnode = KDLNode(node)
 
@@ -127,14 +147,22 @@ class Command(KDLCommand):
 
             info = self.get_info_from_kdlnode(kdlnode)
 
-            if info['converter']:
+            if info['converter'] and self.is_filtered_in(info['wordpressid']):
                 res = self.import_object(info)
 
                 self.show_operation(info, res)
 
             self.add_to_summary(info, res)
 
+        self._post_import()
+
         self.show_import_summary()
+
+    def _pre_import(self):
+        pass
+
+    def _post_import(self):
+        pass
 
     def get_info_from_kdlnode(self, kdlnode):
         ''' e.g.
@@ -221,10 +249,13 @@ class Command(KDLCommand):
 
         ret = '?'
 
-        django_object = self.registry.get(info['wordpressid'])
         # node = info['kdlnode']
 
         model_info = info['converter'](info)
+        if model_info is None:
+            return '0'
+
+        django_object = self.registry.get(info['wordpressid'])
 
         if not django_object:
             ret = 'C'
@@ -276,12 +307,16 @@ class Command(KDLCommand):
 
     def show_operation(self, info, operation):
         # print the info
+        obj_desc = 'None'
+        if info.get('obj'):
+            obj_desc = info['obj'].__class__.__name__ + \
+                ':' + str(getattr(info['obj'], 'pk', ''))
+
         print(
-            '{:20.20} -> {:20.20} {} "{:.15}"'.
+            '{:25.25} -> {:20.20} {} "{:.15}"'.
             format(
                 info['wordpressid'],
-                info['obj'].__class__.__name__ + ':' +
-                str(getattr(info['obj'], 'pk', '')),
+                obj_desc,
                 operation,
                 info['slug'],
             )
@@ -298,9 +333,45 @@ class Command(KDLCommand):
     def convert_body(self, body):
         '''Wordpress <p> on the site is turned into line breaks in XML dump
         which, in turn, should be converted to <p> in wagtail.'''
-        ret = re.sub(r'(?m)^[^<](.*)[^>]$', r'<p>\1</p>', body)
+        ret = re.sub(r'(?m)^([^<].*[^>])$', r'<p>\1</p>', body)
 
         return ret
+
+    def _move_page(self, page, index=0):
+        # GN: copied from wagtail Page.move(), shame their method is not
+        # reusable without passing a request.
+        page_to_move = page
+        parent_page = page_to_move.get_parent()
+
+        # Get position parameter
+        position = index
+
+        # Find page thats already in this position
+        position_page = None
+        if position is not None:
+            try:
+                position_page = parent_page.get_children()[int(position)]
+            except IndexError:
+                pass  # No page in this position
+
+        # Move page
+
+        # any invalid moves *should* be caught by the permission check above,
+        # so don't bother to catch InvalidMoveToDescendant
+
+        if position_page:
+            # If the page has been moved to the right, insert it to the
+            # right. If left, then left.
+            old_position = [
+                p.pk for p in parent_page.get_children()].index(
+                page_to_move.pk)
+            if int(position) < old_position:
+                page_to_move.move(position_page, pos='left')
+            elif int(position) > old_position:
+                page_to_move.move(position_page, pos='right')
+        else:
+            # Move page to end
+            page_to_move.move(parent_page, pos='last-child')
 
     def show_import_summary(self):
         '''Summarise import in a table,
@@ -359,6 +430,42 @@ class Command(KDLCommand):
 #             ret['model'] = HomePage
 #
 #         return ret
+
+    def get_datetime_from_wp(self, datestr):
+        '''Return a datetime object from a Wordpress date string
+        Return None if not valid or 0000-00-00
+
+        Two possible formats:
+
+        a)
+        <pubDate>Tue, 03 Dec 2013 08:50:50 +0000</pubDate>
+
+        b)
+        <wp:post_date>2018-01-05 16:22:58</wp:post_date>
+        <wp:post_date_gmt>0000-00-00 00:00:00</wp:post_date_gmt>
+
+        * pubDate / post_date_gmt is isually '0' if post has never been
+           published
+        * otherwise post_date and post_date_gmt should be the same
+        * pubDate = post_date?
+
+        '''
+        ret = None
+
+        from datetime import datetime
+        try:
+            ret = datetime(
+                *(strptime(datestr, '%Y-%m-%d %H:%M:%S')[0:6]),
+                tzinfo=pytz.utc
+            )
+        except ValueError:
+            pass
+
+        return ret
+
+    def is_object_live(self, kdlnode):
+        ret = kdlnode['wp:status'] == 'publish'
+        return ret
 
     def show_help(self):
         ret = '''

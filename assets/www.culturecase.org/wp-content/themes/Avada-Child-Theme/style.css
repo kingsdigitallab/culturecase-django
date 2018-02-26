@@ -138,7 +138,8 @@ table.research-meta td {
 }
 
 #footer-logo img {
-	margin: -100px 0 -10px 0;
+	/* margin: -100px 0 -10px 0; */
+	margin-top: 1em;
 	float: left;
 	clear: both;
 }

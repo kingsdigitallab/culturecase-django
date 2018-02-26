@@ -84,6 +84,22 @@ class KDLNode(object):
             nodes = self.childNodes
         return nodes
 
+    def get_wp_metas(self):
+        '''
+        Returns a dictionary from the following children structure
+
+        <wp:postmeta>
+            <wp:meta_key>_menu_item_type</wp:meta_key>
+            <wp:meta_value><![CDATA[post_type]]></wp:meta_value>
+        </wp:postmeta>
+
+        {
+            '_menu_item_type': 'post_type',
+        }
+        '''
+        return {n['wp:meta_key']: n['wp:meta_value']
+                for n in self.kids('wp:postmeta')}
+
 
 def get_element_text(element):
     '''Returns the text within a minidom element node'''

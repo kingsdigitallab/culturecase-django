@@ -7,8 +7,7 @@ Created on 15 Feb 2018
 from kdl_wordpress2wagtail.management.commands.kdlwp2wt import (
     Command as KdlWp2Wt
 )
-from culturecase_wagtail.models import RichPage, HomePage
-from kdl_wordpress2wagtail.models import KDLWordpressReference
+from culturecase_wagtail.models import RichPage, HomePage, ResearchPage
 from django.utils.text import slugify
 # from kdl_page.models import HomePage
 # from wagtail.wagtailcore.models import Page
@@ -21,33 +20,25 @@ ALIAS_RESEARCH_PARENT = 'alias:research_parent'
 class Command(KdlWp2Wt):
     help = 'Import wordpress xml dump into wagtail'
 
-    def set_predefined_objects2(self):
-        super(Command, self).set_predefined_objects()
+    def _pre_import(self):
+        self._sort_orders = {}
 
-        # All item_research will be created as wagtail Page under a new
-        # top level Page called 'research'.
-        wordpressid = 'item_research:0'
+    def _post_import(self):
+        self._reorder_objects()
 
-        research_parent = KDLWordpressReference.get_django_object(
-            wordpressid
-        )
-
-        if not research_parent:
-            # create the page
-            research_parent = RichPage(slug='research', title='Research')
-            # add it under wagtail home page
-            home_page = KDLWordpressReference.get_django_object(
-                'home_page:home_page'
-            )
-            home_page.add_child(instance=research_parent)
-            # add it to the registry, so it can be removed automatically
-            # if needed
-            KDLWordpressReference(
-                wordpressid=wordpressid,
-                django_object=research_parent
-            ).save()
-
-        self.objects['item_research:0'] = research_parent
+    def _reorder_objects(self):
+        print('\nReorder objects\n')
+        for parentid, children in self._sort_orders.items():
+            sort_order = 0
+            for wp_order in sorted(children.keys(), key=lambda c: int(c)):
+                print(
+                    wp_order,
+                    children[wp_order].pk,
+                    sort_order,
+                    children[wp_order]
+                )
+                self._move_page(children[wp_order], sort_order)
+                sort_order += 1
 
     def convert_item_page(self, info):
         node = info['kdlnode']
@@ -60,6 +51,7 @@ class Command(KdlWp2Wt):
 
         # Prepare the structure that allows teh import to update/create
         # a django object.
+
         ret = {
             'model': RichPage,
             # Mapping between django model fields and wordpress node content
@@ -67,8 +59,17 @@ class Command(KdlWp2Wt):
                 'title': node['title'],
                 'slug': slug,
                 'body': self.convert_body(node['content:encoded']),
+                'show_kcl_logo': (slug in ['about']),
+                # Note that in WP, post_date_gmt is '0' if never been live
+                # get_datetime_from_wp should return None for it
+                'go_live_at': self.get_datetime_from_wp(
+                    node['wp:post_date_gmt']
+                ),
+                'live': self.is_object_live(node)
             }
         }
+
+        # <wp:status>publish|draft</wp:status>
 
         # First item_page becomes our home page.
         # Wagtail's different from wordpress:
@@ -83,11 +84,53 @@ class Command(KdlWp2Wt):
             else:
                 info['wordpressid_alias'] = ALIAS_HOME_PAGE
                 ret['model'] = HomePage
+                ret['data']['show_kcl_logo'] = True
+
+        return ret
+
+    def convert_item_nav_menu_item(self, info):
+        ''' a wordpress object for a menu entry that references another object
+        e.g. item_page
+        We don't create a wagtail object for it, we just mark
+        the referenced object as show_in_menus and reset it's sort order
+        '''
+        ret = None
+
+        node = info['kdlnode']
+
+        # get the wordpress object it refers to
+        metas = node.get_wp_metas()
+        targetid = 'item_' + metas['_menu_item_object'] + \
+            ':' + metas['_menu_item_object_id']
+
+        info['slug'] = node['title']
+
+        # retrieve the corresponding wagtail object
+        target = self.registry.get(targetid)
+        if target:
+            self.registry.set(info['wordpressid'], target, protected=True)
+
+            ret = {
+                'model': type(target),
+                'data': {
+                    'show_in_menus': True,
+                    'short_title': node['title'],
+                }
+            }
+
+            parentpk = target.get_parent().pk
+            if parentpk not in self._sort_orders:
+                self._sort_orders[parentpk] = {}
+            self._sort_orders[parentpk][node['wp:menu_order']] = target
+
+            # self._move_page(target, node['wp:menu_order'])
 
         return ret
 
     def convert_item_research(self, info):
         ret = self.convert_item_page(info)
+
+        ret['model'] = ResearchPage
 
         # get the research parent Page
         research_parent = self.registry.get(ALIAS_RESEARCH_PARENT)
@@ -102,4 +145,10 @@ class Command(KdlWp2Wt):
         # all item_research should go directly under research parent
         info['wordpress_parentid'] = ALIAS_RESEARCH_PARENT
 
+        return ret
+
+    def convert_body(self, body):
+        ret = super(Command, self).convert_body(body)
+        import re
+        ret = re.sub(r'\[rev_slider home-slider-1\]', '', ret)
         return ret
