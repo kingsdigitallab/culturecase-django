@@ -78,7 +78,7 @@
 {% endcompress %}
 </head>
 
-<body class="home page page-id-2 page-template-default light ">
+<body class="{% block body_class %}light{% endblock %}">
   <div id="wrapper">
   
     <div class="header-wrapper">
@@ -101,8 +101,9 @@
       </div>
       
       <div class="search-bar">
-        <form role="search" method="get" action="/">
-          <input type="text" value="" name="s" id="s" placeholder="Search..."> <input type="submit" id="searchsubmit" value="">
+        <form role="search" method="get" action="{% url 'search' %}">
+          <input type="text" id="s" name="s" {% if search_query %} value="{{ search_query }}"{% endif %} placeholder="Search..." > 
+          <input type="submit" id="searchsubmit" value="">
         </form>
       </div>
     </div>
@@ -136,7 +137,7 @@
           <div class="page-title-captions">
             <h1 class="entry-title">
                 {% block title %}
-                    PAGE TITLE
+                    {{ page.title }}
                 {% endblock %}
             </h1>
           </div>
@@ -147,28 +148,47 @@
     <div id="main" class="" style="overflow: hidden !important;">
       <div class="avada-row" style="">
         <div id="content" style="float: left;">
-          <div id="post-2" class="post-2 page type-page status-publish hentry">
-            <span class="entry-title" style="display: none;">CultureCase | putting research to work</span> <span class="updated" style="display: none;">3 December 2013</span> <span class="vcard"
-              style="display: none;"
-            ><span class="fn"><a href="/author/timpoole/" title="Posts by Tim Poole" rel="author">Tim Poole</a></span></span>
-            <div class="post-content">
-            
-              {% block main %}
-              
-                BLOCK MAIN
-              {% endblock %}
-
-              {% if page.show_kcl_logo %}
-                <p>
-                  <a href="http://www.kcl.ac.uk/" id="footer-logo" target="_blank">
-                    <img src="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/images/logo-kcl.png' %}" alt="King's College London">
-                  </a>
-                </p>
-              {% endif %}
-            </div>
-          </div>
-        </div>
+          {% block content %}
         
+            {% block breadcrumb %}
+            {% endblock %}
+            
+            <div id="post-2" class="{% block content_class %}post-2 page type-page status-publish hentry{% endblock %}">
+  
+              {% block print_button %}
+              {% endblock %}
+  
+              <span class="entry-title" style="display: none;">CultureCase | putting research to work</span> 
+              <span class="updated" style="display: none;">3 December 2013</span> 
+              <span class="vcard" style="display: none;">
+                <span class="fn"><a href="/author/timpoole/" title="Posts by Tim Poole" rel="author">Tim Poole</a></span>
+              </span>
+              
+              <div class="post-content">
+              
+                {% block main %}
+                  BLOCK MAIN
+                {% endblock %}
+  
+                {% if page.show_kcl_logo %}
+                  <p>
+                    <a href="http://www.kcl.ac.uk/" id="footer-logo" target="_blank">
+                      <img src="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/images/logo-kcl.png' %}" alt="King's College London">
+                    </a>
+                  </p>
+                {% endif %}
+              </div>
+              
+              {% block below_body %}
+              
+              {% endblock %}
+              
+            </div>
+            
+          {% endblock %}
+
+        </div>
+
         {% include "includes/sidebar.html" %}
 
       </div>

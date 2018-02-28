@@ -15,7 +15,7 @@ class KDLWordpressReference(models.Model):
     Records a connection between a Wordpress object and a Django object.
     '''
     wordpressid = models.CharField(
-        max_length=32, blank=False, null=False, unique=True
+        max_length=128, blank=False, null=False, unique=True
     )
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()

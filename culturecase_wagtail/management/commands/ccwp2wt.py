@@ -4,10 +4,12 @@ Created on 15 Feb 2018
 @author: Geoffroy Noel
 '''
 
+import re
 from kdl_wordpress2wagtail.management.commands.kdlwp2wt import (
     Command as KdlWp2Wt
 )
-from culturecase_wagtail.models import RichPage, HomePage, ResearchPage
+from culturecase_wagtail.models import RichPage, HomePage, ResearchPage,\
+    ArticleSummaryPage, ResearchTag
 from django.utils.text import slugify
 
 ALIAS_HOME_PAGE = 'alias:home_page'
@@ -56,7 +58,8 @@ class Command(KdlWp2Wt):
                 'title': node['title'],
                 'slug': slug,
                 'body': self.convert_body(node['content:encoded']),
-                'show_kcl_logo': (slug in ['about']),
+                # 'sample-page' = HomePage in CC Wordpress XML, we cheat
+                'show_kcl_logo': (slug in ['about', 'sample-page']),
                 # Note that in WP, post_date_gmt is '0' if never been live
                 # get_datetime_from_wp should return None for it
                 'go_live_at': self.get_datetime_from_wp(
@@ -127,14 +130,27 @@ class Command(KdlWp2Wt):
     def convert_item_research(self, info):
         ret = self.convert_item_page(info)
 
-        ret['model'] = ResearchPage
+        node = info['kdlnode']
+        metas = node.get_wp_metas()
+
+        ret['model'] = ArticleSummaryPage
+
+        ret['data'].update({
+            'article_title': metas['title'],
+            'article_authors': metas['authors'],
+            'article_year': self._clean_entry(metas, 'date', 'year'),
+            'article_source': metas['source'],
+            'article_url': self._clean_entry(metas, 'url', 'url'),
+            'article_oaurl': self._clean_entry(metas, 'oaurl', 'url'),
+            'article_email': self._clean_entry(metas, 'author-email', 'email')
+        })
 
         # get the research parent Page
         research_parent = self.registry.get(ALIAS_RESEARCH_PARENT)
         if not research_parent:
             # create it, under the Home Page
             home_page = self.registry.get(ALIAS_HOME_PAGE)
-            research_parent = RichPage(slug='research', title='Research')
+            research_parent = ResearchPage(slug='research', title='Research')
             home_page.add_child(instance=research_parent)
             # register research parent
             self.registry.set(ALIAS_RESEARCH_PARENT, research_parent)
@@ -144,8 +160,52 @@ class Command(KdlWp2Wt):
 
         return ret
 
+    def post_convert_item_research(self, info):
+        summary = info.get('obj', None)
+        if not summary:
+            return
+
+        node = info['kdlnode']
+
+        tags = node.get_wp_categories('research-tags')
+        if tags:
+            # TODO: remove all other tags
+            # TODO: only save made a change
+            for tag_slug in tags:
+                tag = self.registry.get(
+                    'wp_term_research_tags:{}'.format(tag_slug)
+                )
+                summary.tags.add(tag)
+            # that call is necessary
+            summary.save()
+
+    def convert_wp_term_research_tags(self, info):
+        '''
+            <wp:term>
+                <wp:term_id>44</wp:term_id>
+                <wp:term_taxonomy>research-tags</wp:term_taxonomy>
+                <wp:term_slug>education-2</wp:term_slug>
+                <wp:term_parent></wp:term_parent>
+                <wp:term_name><![CDATA[education]]></wp:term_name>
+            </wp:term>
+        '''
+        node = info['kdlnode']
+
+        ret = {
+            'model': ResearchTag,
+            'data': {
+                'slug': info['slug'],
+                'name': node['wp:term_name'],
+            }
+        }
+
+        # let's use the slug as wordpressid, because that's what's used
+        # in items to refer to tags
+        info['wordpressid'] = info['type'] + ':' + info['slug']
+
+        return ret
+
     def convert_body(self, body):
         ret = super(Command, self).convert_body(body)
-        import re
         ret = re.sub(r'\[rev_slider home-slider-1\]', '', ret)
         return ret

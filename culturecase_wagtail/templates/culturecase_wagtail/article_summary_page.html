@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags  staticfiles compress %}
+
+{% block body_class %}single single-research postid-1421 {{block.super}}{% endblock %}
+
+{% block title %}
+    {{ page.title }}
+{% endblock %}
+
+{% block content_class %}post post-2 research type-research status-publish hentry{% endblock %}
+
+{% block breadcrumb %}
+  <div class="single-navigation clearfix">
+    <a href="/">Home</a> &gt; 
+    <a href="/research-category/impacts/">Impacts</a> &gt; 
+    <a href="/research-category/health-wellbeing/">Health and wellbeing impacts of arts and culture</a>
+  </div>
+{% endblock %}
+
+{% block print_button %}
+  <p class="print-pdf"><a href="/pdf/?url=http://www.culturecase.org/research/2018/02/the-health-benefits-of-an-arts-project-for-older-offenders/" target="_blank">Print this article</a></p>
+{% endblock %}
+
+{% block main %}
+
+  {{ page.body|richtext }}
+
+
+  <div class="keywords">
+    <p></p>
+    <h3>Keywords</h3>
+    {% for tag in page.tags.all %}
+        <a href="/research-tags/{{ tag.slug }}/" rel="tag">{{tag.name}}</a> 
+    {% endfor %}
+  </div>
+  
+  <table width="100%" border="0" cellspacing="1" cellpadding="0" class="research-meta">
+    <tbody>
+      {% if page.article_title %}
+        <tr>
+          <th>Title</th>
+          <td>{{ page.article_title }}</td>
+        </tr>
+      {% endif %}
+      {% if page.article_authors %}
+        <tr>
+          <th>Author(s)</th>
+          <td>{{ page.article_authors }}</td>
+        </tr>
+      {% endif %}
+      {% if page.article_year %}
+        <tr>
+          <th>Publication date</th>
+          <td>{{ page.article_year }}</td>
+        </tr>
+      {% endif %}
+      {% if page.article_source %}
+        <tr>
+          <th>Source</th>
+          <td>{{ page.article_source }}</td>
+        </tr>
+      {% endif %}
+      {% if page.article_url %}
+        <tr>
+          <th>Link</th>
+          <td><a href="{{ page.article_url }}" target="_blank">{{ page.article_url }}</a></td>
+        </tr>
+      {% endif %}
+      {% if page.article_oaurl %}
+        <tr>
+          <th>Open Access Link</th>
+          <td><a href="{{ page.article_oaurl }}" target="_blank">{{ page.article_oaurl }}</a></td>
+        </tr>
+      {% endif %}
+      {% if page.article_email %}
+        <tr>
+          <th>Author email</th>
+          <td><a href="{{ page.article_email }}" target="_blank">{{ page.article_email }}</a></td>
+        </tr>
+      {% endif %}
+    </tbody>
+  </table>
+                        
+{% endblock %}
+
+{% block below_body %}
+
+  <div class="meta-info">
+    <div class="alignleft vcard">
+        <span class="fn">By <a href="/author/Culture.Case/" title="Posts by Culture.Case" rel="author">Culture.Case</a></span>
+        <span class="sep">|</span>
+        <span class="updated">{{ page.go_live_at|date:"j F Y" }}</span>
+        <span class="sep">|</span>
+        <a href="/research-category/health-wellbeing/" rel="tag">Health and wellbeing impacts of arts and culture</a>
+        <span class="sep">|</span>
+        <!-- <span>Comments Off<span class="screen-reader-text"> on The health benefits of an arts project for older offenders</span></span> -->
+    </div>
+  </div>
+
+  <div class="share-box">
+    <h4>Share this story – choose your platform!</h4>
+    <ul class="social-networks social-networks-dark">
+      <li class="facebook"><a
+        href="http://www.facebook.com/sharer.php?u={{ page.full_url }}&amp;t={{ page.title }}"
+        target="_blank"
+      > Facebook </a>
+        <div class="popup" style="display: none;">
+          <div class="holder">
+            <p>Facebook</p>
+          </div>
+        </div></li>
+      <li class="twitter"><a
+        href="http://twitter.com/home?status={{ page.title }} {{ page.full_url }}"
+        target="_blank"
+      > Twitter </a>
+        <div class="popup">
+          <div class="holder">
+            <p>Twitter</p>
+          </div>
+        </div></li>
+      <li class="linkedin"><a
+        href="http://linkedin.com/shareArticle?mini=true&amp;url={{ page.full_url }}&amp;title={{ page.title }}"
+        target="_blank"
+      > LinkedIn </a>
+        <div class="popup">
+          <div class="holder">
+            <p>LinkedIn</p>
+          </div>
+        </div></li>
+      <li class="reddit"><a
+        href="http://reddit.com/submit?url={{ page.full_url }}&amp;title={{ page.title }}"
+        target="_blank"
+      > Reddit </a>
+        <div class="popup">
+          <div class="holder">
+            <p>Reddit</p>
+          </div>
+        </div></li>
+      <li class="tumblr"><a
+        href="http://www.tumblr.com/share/link?url={{ page.full_url }}&amp;name={{ page.slug }}&amp;description={{ page.title }}"
+        target="_blank"
+      > Tumblr </a>
+        <div class="popup">
+          <div class="holder">
+            <p>Tumblr</p>
+          </div>
+        </div></li>
+      <li class="google"><a href="https://plus.google.com/share?url={{ page.full_url }}"
+        onclick="javascript:window.open(this.href,
+    '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" target="_blank"
+      > Google +1 </a>
+        <div class="popup">
+          <div class="holder">
+            <p>Google +1</p>
+          </div>
+        </div></li>
+      <li class="pinterest"><a
+        href="http://pinterest.com/pin/create/button/?url={{ page.full_url }}&amp;description={{ page.slug }}&amp;media="
+        target="_blank"
+      > Pinterest </a>
+        <div class="popup">
+          <div class="holder">
+            <p>Pinterest</p>
+          </div>
+        </div></li>
+      <li class="email"><a
+        href="mailto:?subject={{ page.title }}&amp;body={{ page.full_url }}"
+      > Email </a>
+        <div class="popup">
+          <div class="holder">
+            <p>Email</p>
+          </div>
+        </div></li>
+    </ul>
+  </div>
+  
+{% endblock %}

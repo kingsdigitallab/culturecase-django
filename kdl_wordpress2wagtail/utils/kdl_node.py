@@ -3,8 +3,6 @@ Created on 17 Feb 2018
 
 @author: Geoffroy Noel
 '''
-
-
 KDL_NODE_ERROR_TAG_NOT_FOUND = 'KDL_NODE_ERROR_TAG_NOT_FOUND'
 
 
@@ -59,6 +57,10 @@ class KDLNode(object):
             ))
         return ret
 
+    @property
+    def attributes(self):
+        return dict(self.node.attributes.items())
+
     def kid(self, tag=None):
         ret = self.child(tag)
         if ret:
@@ -83,6 +85,27 @@ class KDLNode(object):
         else:
             nodes = self.childNodes
         return nodes
+
+    def get_wp_categories(self, domain=None):
+        '''
+        Returns a dictionary with all the categories <slug>:<label> for a given
+        domain name.
+
+        <category domain="research-tags" nicename="education-2">
+            <![CDATA[education]]>
+        </category>
+
+        >> get_wp_categories('research-tags')
+        {
+            'education-2': 'education',
+        }
+
+        '''
+        return {
+            n.attributes['nicename']: n.text()
+            for n in self.kids('category')
+            if not domain or n.attributes['domain'] == domain
+        }
 
     def get_wp_metas(self):
         '''

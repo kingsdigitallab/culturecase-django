@@ -1,0 +1,13 @@
+{% extends "culturecase_wagtail/search_results.html" %}
+
+{% load wagtailcore_tags  staticfiles compress %}
+
+{% block body_class %}search search-results {{ block.super }}{% endblock %}
+
+{% block title %}
+    Keyword: {{ search_tag.name }}
+{% endblock %}
+
+{% block no_results %}
+  <p>Nothing is tagged with the keyword {{ search_tag.name}}.</p>
+{% endblock %}

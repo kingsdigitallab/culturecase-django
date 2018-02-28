@@ -4,6 +4,8 @@ Created on 15 Feb 2018
 @author: Geoffroy Noel
 '''
 
+from django.core.validators import EmailValidator, URLValidator
+from django.core.exceptions import ValidationError
 from ._kdlcommand import KDLCommand
 from kdl_wordpress2wagtail.utils.kdl_node import KDLNode
 import re
@@ -32,11 +34,11 @@ class Command(KDLCommand):
     XML dump and must return data that would allow to create a Django or
     Wagtail model from it.
 
-    The full list of tag names can be found by running this script on
+    The full list of types/tag names can be found by running this script on
     your Wordpress XML dump and looking at the first column in the summary
     table.
 
-    Content of info can be found in get_info_from_kdlnode()
+    Structure and content of info can be found in get_info_from_kdlnode()
 
     You can also override set_predefined_objects() to declare pre-existing
     or hard-coded django/wagtail objects that will serve as parents for the
@@ -56,17 +58,6 @@ class Command(KDLCommand):
         super(Command, self).add_arguments(parser)
         parser.add_argument('--filter', help='Filter the object types, e.g.'
                             'item_page*;wp_term:145')
-
-    def is_filtered_in(self, objectid):
-        ret = True
-
-        if self.options['filter']:
-            afilter = self.options['filter'].replace(
-                '*', '.*').replace(';', '|')
-            if afilter:
-                ret = re.match(r'^({})$'.format(afilter), objectid)
-
-        return ret
 
     def action_add(self):
         raise Exception('Not implemented yet')
@@ -103,31 +94,11 @@ class Command(KDLCommand):
 
                     reference.delete()
 
-            self.show_operation(info, operation)
+                self.show_operation(info, operation)
 
             self.add_to_summary(info, operation)
 
         self.show_import_summary()
-
-    def initialise_registry(self):
-        '''
-        Declare a pre-existing mapping between worpdress objects and
-        django objects.
-
-        You can OVERRIDE this method to declare your own django objects.
-        For instance if all item_X should be imported under the same wagtail
-        Page, then you can create that Page in this method (if it doesn't
-        exist yet) and give it its wordpressid: {'item_X:0': wagtail_page}.
-
-        self.objects is a cache/registry of all imported object
-        {'WP_TYPE:WP_ID': DJANGO_OBJECT}
-
-        It is mostly used to quickly find parent pages by their wordpress id.
-        '''
-
-        # Wordpress page root has id = 0 but not part of XML
-        # and it corresponds to pre-existing wagtail sitemap root.
-        self.registry.set('item_page:0', Page.objects.get(id=1), True)
 
     def action_import(self):
         try:
@@ -162,6 +133,26 @@ class Command(KDLCommand):
 
         self.show_import_summary()
 
+    def initialise_registry(self):
+        '''
+        Declare a pre-existing mapping between worpdress objects and
+        django objects.
+
+        You can OVERRIDE this method to declare your own django objects.
+        For instance if all item_X should be imported under the same wagtail
+        Page, then you can create that Page in this method (if it doesn't
+        exist yet) and give it its wordpressid: {'item_X:0': wagtail_page}.
+
+        self.objects is a cache/registry of all imported object
+        {'WP_TYPE:WP_ID': DJANGO_OBJECT}
+
+        It is mostly used to quickly find parent pages by their wordpress id.
+        '''
+
+        # Wordpress page root has id = 0 but not part of XML
+        # and it corresponds to pre-existing wagtail sitemap root.
+        self.registry.set('item_page:0', Page.objects.get(id=1), True)
+
     def _pre_import(self):
         pass
 
@@ -190,7 +181,7 @@ class Command(KDLCommand):
             # a type expanded from Wordpress node type,
             # e.g. <wp:item><wp:post_type>page</wp:post_type>[...]
             # => 'item_page'
-            'type': kdlnode.tag.replace(':', '_'),
+            'type': kdlnode.tag.replace(':', '_').replace('-', '_'),
             # the XML node
             'kdlnode': kdlnode,
             # slug, if any
@@ -229,6 +220,8 @@ class Command(KDLCommand):
             parentid = kdlnode['wp:post_parent']
             ret['type'] += '_' + kdlnode['wp:post_type']
 
+        ret['type'] = ret['type'].replace('-', '_')
+
         # resolve the parent
         if parentid:
             ret['wordpress_parentid'] = ret['type'] + ':' + parentid
@@ -237,6 +230,7 @@ class Command(KDLCommand):
 
         converter_name = 'convert_' + ret['type']
         ret['converter'] = getattr(self, converter_name, None)
+        ret['post_converter'] = getattr(self, 'post_' + converter_name, None)
 
         return ret
 
@@ -307,6 +301,35 @@ class Command(KDLCommand):
         # caller need to know about this object
         info['obj'] = django_object
 
+        if info['post_converter']:
+            info['post_converter'](info)
+
+        return ret
+
+    def convert_body(self, body):
+        '''<p>X</p> in Wordpress
+        is serialised as X on a single line of its own in the XML export file.
+        So we need to convert them back to <p> in the django/wagtail.'''
+
+        # TODO: not totally correct, e.g. some lines may end with </strong>
+
+        def convert_line(match):
+            ret = match.group(0)
+
+            # remove common inline elements from line
+            line_without_inlines = re.sub(
+                r'(?i)</?(strong|a|span|em|b|style|i|sup|sub|q)\b', '', ret)
+
+            if not re.search('<', line_without_inlines):
+                # the lines doesn't contains any block element
+                # => turn that into a <p>
+                ret = '<p>{}</p>'.format(ret)
+
+            return ret
+
+        # only lines without tags can be turned into <p>
+        ret = re.sub(r'(?m)^.*?$', convert_line, body)
+
         return ret
 
     def show_operation(self, info, operation):
@@ -334,15 +357,11 @@ class Command(KDLCommand):
             self.summary['types'][info['type']][operation] = 0
         self.summary['types'][info['type']][operation] += 1
 
-    def convert_body(self, body):
-        '''Wordpress <p> on the site is turned into line breaks in XML dump
-        which, in turn, should be converted to <p> in wagtail.'''
-        ret = re.sub(r'(?m)^([^<].*[^>])$', r'<p>\1</p>', body)
-
-        return ret
-
     def _move_page(self, page, index=0):
-        # GN: copied from wagtail Page.move(), shame their method is not
+        '''
+        Change the sort order of a child page under its parent.
+        '''
+        # GN: copied from wagtail Page.move(); shame their method is not
         # reusable without passing a request.
         page_to_move = page
         parent_page = page_to_move.get_parent()
@@ -441,12 +460,14 @@ class Command(KDLCommand):
 
         Two possible formats:
 
-        a)
+        a) NOT SUPPORTED
         <pubDate>Tue, 03 Dec 2013 08:50:50 +0000</pubDate>
 
-        b)
+        b) SUPPORTED
         <wp:post_date>2018-01-05 16:22:58</wp:post_date>
+        => returns corresponding datetime() object
         <wp:post_date_gmt>0000-00-00 00:00:00</wp:post_date_gmt>
+        => returns None
 
         * pubDate / post_date_gmt is isually '0' if post has never been
            published
@@ -494,3 +515,78 @@ actions:
         self.stdout.write(ret)
 
         return ret
+
+    def is_filtered_in(self, objectid):
+        '''
+        Returns True if wordpress object with id <objectid> can be processed
+        by the script, according to the --filter option on the command line.
+        '''
+        ret = True
+
+        if self.options['filter']:
+            afilter = self.options['filter'].replace(
+                '*', '.*').replace(';', '|')
+            if afilter:
+                ret = re.match(r'^({})$'.format(afilter), objectid)
+
+        return ret
+
+    def _clean_entry(self, dic, key, atype):
+        '''
+        Check if dic[key] is a valid atype.
+        Correct it if possible.
+        Return corrected value or None if could not correct it.
+
+        Example:
+
+        ret = self._clean_entry({'k1': 'abc'}, 'k1', 'year')
+
+        =>
+        ret = None
+        &
+        print a warning message
+        '''
+        ret = None
+
+        cleaner = getattr(self, '_clean_{}'.format(atype))
+
+        value = dic.get(key, None)
+
+        if value is not None:
+            value = value.strip()
+            try:
+                ret = cleaner(value)
+            except ValidationError:
+                pass
+
+        if ret != value:
+            resolution = ''
+            if ret:
+                resolution = 'Corrected to "{}"'.format(ret)
+            self.warning(
+                'Invalid {} format. {} = "{}" {}'.format(
+                    atype, key, value, resolution))
+
+        return ret
+
+    def _clean_year(self, value=None):
+        ret = None
+        years = re.findall(r'\d{4}\b', value)
+        if years:
+            ret = years[0]
+        return ret
+
+    def _clean_email(self, value):
+        EmailValidator()(value)
+        return value
+
+    def _clean_url(self, value):
+        try:
+            URLValidator()(value)
+        except ValidationError:
+            # try adding missing http://
+            value = self._clean_url('http://{}'.format(value))
+        return value
+
+    def warning(self, message):
+        print('WARNING: {}'.format(message))
