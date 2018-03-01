@@ -51,6 +51,7 @@ class Command(KDLCommand):
         self.summary = {
             'types': {}
         }
+        self._sort_orders = {}
         from kdl_wordpress2wagtail.models import KDLWordpressReference
         self.registry = KDLWordpressReference
 
@@ -113,6 +114,9 @@ class Command(KDLCommand):
         dom = minidom.parse(xml_path)
         channel = dom.getElementsByTagName('channel')[0]
 
+        # e.g. http://www.my-wordpress-site.com
+        self.channel_link = KDLNode(channel)['link']
+
         self._pre_import()
 
         for node in channel.childNodes:
@@ -130,6 +134,8 @@ class Command(KDLCommand):
             self.add_to_summary(info, res)
 
         self._post_import()
+
+        self._reorder_objects()
 
         self.show_import_summary()
 
@@ -330,6 +336,9 @@ class Command(KDLCommand):
         # only lines without tags can be turned into <p>
         ret = re.sub(r'(?m)^.*?$', convert_line, body)
 
+        # absolute urls to relative urls
+        ret = re.sub(self.channel_link + '/', '/', ret)
+
         return ret
 
     def show_operation(self, info, operation):
@@ -340,7 +349,7 @@ class Command(KDLCommand):
                 ':' + str(getattr(info['obj'], 'pk', ''))
 
         print(
-            '{:25.25} -> {:20.20} {} "{:.15}"'.
+            '{:30.30} -> {:30.30} {} "{:.15}"'.
             format(
                 info['wordpressid'],
                 obj_desc,
@@ -356,45 +365,6 @@ class Command(KDLCommand):
         if not self.summary['types'][info['type']].get(operation):
             self.summary['types'][info['type']][operation] = 0
         self.summary['types'][info['type']][operation] += 1
-
-    def _move_page(self, page, index=0):
-        '''
-        Change the sort order of a child page under its parent.
-        '''
-        # GN: copied from wagtail Page.move(); shame their method is not
-        # reusable without passing a request.
-        page_to_move = page
-        parent_page = page_to_move.get_parent()
-
-        # Get position parameter
-        position = index
-
-        # Find page thats already in this position
-        position_page = None
-        if position is not None:
-            try:
-                position_page = parent_page.get_children()[int(position)]
-            except IndexError:
-                pass  # No page in this position
-
-        # Move page
-
-        # any invalid moves *should* be caught by the permission check above,
-        # so don't bother to catch InvalidMoveToDescendant
-
-        if position_page:
-            # If the page has been moved to the right, insert it to the
-            # right. If left, then left.
-            old_position = [
-                p.pk for p in parent_page.get_children()].index(
-                page_to_move.pk)
-            if int(position) < old_position:
-                page_to_move.move(position_page, pos='left')
-            elif int(position) > old_position:
-                page_to_move.move(position_page, pos='right')
-        else:
-            # Move page to end
-            page_to_move.move(parent_page, pos='last-child')
 
     def show_import_summary(self):
         '''Summarise import in a table,
@@ -590,3 +560,94 @@ actions:
 
     def warning(self, message):
         print('WARNING: {}'.format(message))
+
+    # helpers to move pages around
+    def _set_page_location(self, page, sort_order=None, parentid=None):
+        '''
+        Declare the new location of a page.
+        The page will be moved at the end of the import.
+        see _reorder_objects().
+        Page will be the child number <sort_order> under parent <parentid>.
+        If sort_order is None, move to the end.
+        If parentid is None, keep same parent.
+        '''
+        if page is None:
+            return
+
+        if parentid is None:
+            parentid = page.get_parent().pk
+
+        if sort_order is None:
+            sort_order = 10000
+
+        if parentid not in self._sort_orders:
+            self._sort_orders[parentid] = {}
+
+        self._sort_orders[parentid][sort_order] = page
+
+    def _reorder_objects(self):
+        '''
+        Reorder pages according to the order and parents assigned
+        with _set_page_location() during the import.
+        '''
+        print('\nReorder objects\n')
+
+        for parentid, children in self._sort_orders.items():
+            sort_order = 0
+            parent = Page.objects.get(id=parentid)
+            for wp_order in sorted(children.keys(), key=lambda c: int(c)):
+                print(
+                    wp_order,
+                    children[wp_order].pk,
+                    sort_order,
+                    children[wp_order]
+                )
+                self._move_page(children[wp_order].pk, sort_order, parent)
+                sort_order += 1
+
+    def _move_page(self, pageid, index=0, parent=None):
+        '''
+        Change the sort order of a child page under its parent.
+        '''
+        # GN: copied from wagtail Page.move(); shame their method is not
+        # reusable without passing a request.
+
+        # IMPORTANT: need to refetch the page each time, otherwise reordering
+        # multiple children under same parent won't work well.
+        page_to_move = Page.objects.get(id=pageid)
+        parent_page = parent or page_to_move.get_parent()
+        position = index
+
+        # Find page thats already in this position
+        position_page = None
+        if position is not None:
+            try:
+                position_page = parent_page.get_children()[int(position)]
+            except IndexError:
+                pass  # No page in this position
+
+        # Move page
+
+        # any invalid moves *should* be caught by the permission check above,
+        # so don't bother to catch InvalidMoveToDescendant
+
+        if position_page:
+            # If the page has been moved to the right, insert it to the
+            # right. If left, then left.
+            try:
+                old_position = [
+                    p.pk for p in parent_page.get_children()
+                ].index(page_to_move.pk)
+            except ValueError:
+                # we changed the parent
+                old_position = 10001
+
+            if int(position) < old_position:
+                page_to_move.move(position_page, pos='left')
+            elif int(position) > old_position:
+                page_to_move.move(position_page, pos='right')
+        else:
+            # Move page to end
+            page_to_move.move(parent_page, pos='last-child')
+
+        # print(['%s' % c.title for c in parent_page.get_children()])

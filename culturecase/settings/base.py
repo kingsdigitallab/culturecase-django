@@ -307,6 +307,7 @@ if 'django.contrib.gis' in INSTALLED_APPS:
 AUTH_LDAP_REQUIRE_GROUP = 'cn=culturecase,' + LDAP_BASE_OU
 WAGTAIL_SITE_NAME = PROJECT_TITLE
 ITEMS_PER_PAGE = 10
+ITEMS_PER_RESULT = 50
 WAGTAILSEARCH_BACKENDS = {
     'default': {
         'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch5',

@@ -95,6 +95,51 @@ class ResearchPage(RoutablePageMixin, RichPage):
         return Page.serve(summary, request, *args, **kwargs)
 
 
+class ResearchCategoryHomePage(RoutablePageMixin, RichPage):
+
+    def get_summaries(self):
+        return ArticleSummaryPage.objects.live()
+
+    @route(r'^(?P<slug>[-\w]+)/$')
+    def get_summary_from_category(
+            self, request, slug, *args, **kwargs):
+
+        category = ResearchCategoryPage.objects.filter(slug=slug).first()
+        if not category:
+            raise Http404
+
+        summaries = self.get_summaries().filter(
+            # tags__slug=slug
+        ).order_by('-go_live_at')
+        from .views import render_page_list
+        return render_page_list(
+            request,
+            summaries,
+            'culturecase_wagtail/category_results.html',
+            {'search_category': category}
+        )
+
+
+class ResearchCategoryPage(RichPage):
+
+    def get_url_parts(self, *args, **kwargs):
+        '''Flatten the path, ignore the parent categories.
+        to match legacy wordpress site.
+        '''
+        ret = list(super(RichPage, self).get_url_parts(*args, **kwargs))
+
+        # e.g. /research-category/this-category-slug/
+        category_home = ResearchCategoryHomePage.objects.first()
+        category_home_parts = category_home.get_url_parts()
+
+        ret[2] = '{}{}'.format(
+            category_home_parts[2],
+            self.slug
+        )
+
+        return ret
+
+
 class ArticleSummaryPage(RichPage):
 
     article_title = CharField(

@@ -10,7 +10,9 @@ def view_search(request):
     # Search
     search_query = request.GET.get('s', None)
     if search_query:
-        search_results = Page.objects.live().search(search_query)[:50]
+        search_results = Page.objects.live().search(
+            search_query
+        )
         # Log the query so Wagtail can suggest promoted results
         Query.get(search_query).add_hit()
     else:
@@ -26,6 +28,9 @@ def view_search(request):
 
 def render_page_list(request, page_query_set, template_name, context=None):
     page_number = request.GET.get('p', 1)
+
+    # replicate legacy site trimming to 50 result items
+    page_query_set = page_query_set[:settings.ITEMS_PER_RESULT]
 
     # paginate
     paginator = Paginator(page_query_set, settings.ITEMS_PER_PAGE)
