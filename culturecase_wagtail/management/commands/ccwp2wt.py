@@ -6,16 +6,18 @@ Created on 15 Feb 2018
 
 import re
 from kdl_wordpress2wagtail.management.commands.kdlwp2wt import (
-    Command as KdlWp2Wt
+    Command as KdlWp2Wt, SITE_ROOT)
+from culturecase_wagtail.models import (
+    StaticPage, HomePage, ResearchSummary, ResearchTag, ResearchCategoriesTree,
+    ResearchCategory, ResearchSummariesTree, CategorisedSummariesPage,
+    FAQsPage, QuestionAndAnswer
 )
-from culturecase_wagtail.models import RichPage, HomePage, ResearchPage,\
-    ArticleSummaryPage, ResearchTag, ResearchCategoryHomePage,\
-    ResearchCategoryPage
 from django.utils.text import slugify
 
 ALIAS_HOME_PAGE = 'alias:home_page'
-ALIAS_RESEARCH_PARENT = 'alias:research_parent'
-ALIAS_RESEARCH_CATEGORY_HOME = 'alias:research_category_home'
+ALIAS_RESEARCH_SUMMARIES_ROOT = 'alias:research_summaries_root'
+ALIAS_RESEARCH_CATEGORIES_ROOT = 'alias:research_categories_root'
+ALIAS_FAQS = 'item_avada_faq:0'
 
 
 class Command(KdlWp2Wt):
@@ -25,10 +27,10 @@ class Command(KdlWp2Wt):
         super(Command, self).initialise_registry()
 
         # create the parent page for the research_category taxonomy
-        category_home = self.registry.get(ALIAS_RESEARCH_CATEGORY_HOME)
+        category_home = self.registry.get(ALIAS_RESEARCH_CATEGORIES_ROOT)
         if category_home is None:
-            root = self.registry.get('item_page:0')
-            category_home = ResearchCategoryHomePage(
+            root = self.registry.get(SITE_ROOT)
+            category_home = ResearchCategoriesTree(
                 title='Reseach Categories',
                 # DONT change this slug, it matches legacy site
                 slug='research-category'
@@ -37,7 +39,7 @@ class Command(KdlWp2Wt):
             root.add_child(instance=category_home)
 
             self.registry.set(
-                ALIAS_RESEARCH_CATEGORY_HOME,
+                ALIAS_RESEARCH_CATEGORIES_ROOT,
                 category_home,
             )
 
@@ -47,7 +49,7 @@ class Command(KdlWp2Wt):
         # only do it here, when we are processing the HomePage.
         if isinstance(info['obj'], HomePage):
             self._set_page_location(
-                self.registry.get(ALIAS_RESEARCH_CATEGORY_HOME),
+                self.registry.get(ALIAS_RESEARCH_CATEGORIES_ROOT),
                 parentid=info['obj'].pk
             )
 
@@ -64,7 +66,7 @@ class Command(KdlWp2Wt):
         # a django object.
 
         ret = {
-            'model': RichPage,
+            'model': StaticPage,
             # Mapping between django model fields and wordpress node content
             'data': {
                 'title': node['title'],
@@ -81,12 +83,19 @@ class Command(KdlWp2Wt):
             }
         }
 
+        if slug == 'contents':
+            ret['model'] = CategorisedSummariesPage
+
+        if slug == 'faqs':
+            ret['model'] = FAQsPage
+            info['wordpressid_alias'] = ALIAS_FAQS
+
         # <wp:status>publish|draft</wp:status>
 
         # First item_page becomes our home page.
         # Wagtail's different from wordpress:
         # Home page is parent of all other pages.
-        if info['wordpress_parentid'] == 'item_page:0':
+        if info['wordpress_parentid'] == SITE_ROOT:
             home_page = self.registry.get(ALIAS_HOME_PAGE)
             if home_page:
                 # Note on second import, the Home page will come here as well
@@ -153,7 +162,7 @@ class Command(KdlWp2Wt):
         node = info['kdlnode']
         metas = node.get_wp_metas()
 
-        ret['model'] = ArticleSummaryPage
+        ret['model'] = ResearchSummary
 
         ret['data'].update({
             'article_title': metas['title'],
@@ -166,38 +175,94 @@ class Command(KdlWp2Wt):
         })
 
         # get the research parent Page
-        research_parent = self.registry.get(ALIAS_RESEARCH_PARENT)
+        research_parent = self.registry.get(ALIAS_RESEARCH_SUMMARIES_ROOT)
         if not research_parent:
             # create it, under the Home Page
             home_page = self.registry.get(ALIAS_HOME_PAGE)
-            research_parent = ResearchPage(slug='research', title='Research')
+            research_parent = ResearchSummariesTree(
+                slug='research', title='Research'
+            )
             home_page.add_child(instance=research_parent)
             # register research parent
-            self.registry.set(ALIAS_RESEARCH_PARENT, research_parent)
+            self.registry.set(ALIAS_RESEARCH_SUMMARIES_ROOT, research_parent)
 
         # all item_research should go directly under research parent
-        info['wordpress_parentid'] = ALIAS_RESEARCH_PARENT
+        info['wordpress_parentid'] = ALIAS_RESEARCH_SUMMARIES_ROOT
 
         return ret
 
+    def convert_item_avada_faq(self, info):
+        ret = self.convert_item_page(info)
+
+        # turn this into a Q&A
+        ret['model'] = QuestionAndAnswer
+
+        return ret
+
+    def post_convert_item_avada_faq(self, info):
+        # retain the sort order
+        node = info['kdlnode']
+        self._set_page_location(
+            info['obj'],
+            node['wp:menu_order'],
+        )
+
     def post_convert_item_research(self, info):
-        summary = info.get('obj', None)
-        if not summary:
+        page = info.get('obj', None)
+        if not page:
             return
 
+        self.assign_terms_to_page(
+            info,
+            'research-tags',
+            'wp_term_research_tags',
+            page,
+            'tags',
+        )
+
+        self.assign_terms_to_page(
+            info,
+            'research-category',
+            'wp_term_research_category',
+            page,
+            'categories',
+        )
+
+    def assign_terms_to_page(
+            self, info, wp_category_domain, wordpress_type, page,
+            term_field_name):
+        '''
+        Assign all the wordpress terms found in info to the given page.
+        Only process terms from wp_category_domain (e.g. research-tags).
+        wordpress_type is the type in the regsitry that matches that domain
+        (e.g. wp_term_research_tags).
+
+        (a term can be a tag or a category)
+
+        <category domain="research-tags" nicename="children">
+            <![CDATA[children]]>
+        </category>
+
+        <category domain="research-category" nicename="education">
+            <![CDATA[Educational impacts of arts and culture]]>
+        </category>
+
+        <term_field_name> is the name of the model field in <page> where
+        the terms will be assigned.
+        '''
         node = info['kdlnode']
 
-        tags = node.get_wp_categories('research-tags')
+        tags = node.get_wp_categories(wp_category_domain)
         if tags:
             # TODO: remove all other tags
-            # TODO: only save made a change
+            # TODO: only save if made a change
             for tag_slug in tags:
                 tag = self.registry.get(
-                    'wp_term_research_tags:{}'.format(tag_slug)
+                    '{}:{}'.format(wordpress_type, tag_slug)
                 )
-                summary.tags.add(tag)
+                getattr(page, term_field_name).add(tag)
             # that call is necessary
-            summary.save()
+            page.save()
 
     def convert_wp_term_research_tags(self, info):
         '''
@@ -240,7 +305,7 @@ class Command(KdlWp2Wt):
         node = info['kdlnode']
 
         ret = {
-            'model': ResearchCategoryPage,
+            'model': ResearchCategory,
             'data': {
                 'slug': info['slug'],
                 'title': node['wp:term_name'],
@@ -252,7 +317,7 @@ class Command(KdlWp2Wt):
             info['wordpress_parentid'] = info['type'] + \
                 ':' + node['wp:term_parent']
         else:
-            info['wordpress_parentid'] = ALIAS_RESEARCH_CATEGORY_HOME
+            info['wordpress_parentid'] = ALIAS_RESEARCH_CATEGORIES_ROOT
 
         # let's use the slug as wordpressid, because that's what's used
         # in items to refer to tags

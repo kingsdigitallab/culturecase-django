@@ -1,5 +1,5 @@
 from django import template
-from culturecase_wagtail.models import ArticleSummaryPage
+from culturecase_wagtail.models import ResearchSummary
 from wagtail.wagtailcore.models import Site
 from django.utils.safestring import mark_safe
 
@@ -8,7 +8,7 @@ register = template.Library()
 
 @register.assignment_tag()
 def get_latest_research_articles():
-    ret = ArticleSummaryPage.objects.live().order_by('-go_live_at')[:5]
+    ret = ResearchSummary.objects.live().order_by('-go_live_at')[:5]
     return ret
 
 
@@ -38,7 +38,7 @@ def has_menu_children(page):
 # a dropdown class to be applied to a parent
 @register.inclusion_tag(
     'culturecase_wagtail/top_menu.html', takes_context=True)
-def top_menu(context, parent, calling_page=None):
+def top_menu(context, parent, calling_page=None, menu_slug=None):
     menuitems = parent.get_children().live().in_menu()
     for menuitem in menuitems:
         menuitem.show_dropdown = has_menu_children(menuitem)
@@ -52,6 +52,7 @@ def top_menu(context, parent, calling_page=None):
         'menuitems': menuitems,
         # required by the pageurl tag that we want to use within this template
         'request': context['request'],
+        'menu_slug': menu_slug,
     }
 
 

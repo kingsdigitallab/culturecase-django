@@ -3,9 +3,24 @@
 
 <ul id="nav" class="menu">
   {% for menuitem in menuitems %}
-    <li class="menu-item menu-item-type-post_type menu-item-object-page 
-        {% if menuitem.active %}current_page_item{% endif %}">
-        <a href="{% pageurl menuitem %}">{{ menuitem.specific.get_shortest_title }}</a>
-    </li>
+    {% with menuitem.specific as specific_item %}
+      <li class="menu-item menu-item-type-post_type menu-item-object-page 
+          {% if menuitem.active or menuitem.slug == menu_slug %}current_page_item{% endif %}">
+          <a href="{% pageurl menuitem %}">{{ specific_item.get_shortest_title }}</a>
+          {% with specific_item.get_related_categories as submenuitems %}
+            {% if submenuitems %}
+              <ul class="sub-menu">
+                {% for category in specific_item.get_related_categories %}
+                  <li id="menu-item-153" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-153">
+                    <a href="{{ category.url }}">
+                      {{ category.specific.get_shortest_title }}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          {% endwith %}
+      </li>
+    {% endwith %}
   {% endfor %}
 </ul>

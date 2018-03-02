@@ -8,6 +8,15 @@
     {{ search_category.title }}
 {% endblock %}
 
+{% block result_intro %}
+<div id="post-1419" class="post-1419 research type-research status-publish hentry research-category-education ">
+    <div class="post-content">
+        {{ search_category.body|richtext }}
+    </div>
+</div>
+{% endblock %}
+
 {% block no_results %}
-  <p>Nothing is tagged with the keyword {{ search_category.title }}.</p>
+    {# There's already a empty blurb in the desc of the cat #}
+    {#<p></p>#}
 {% endblock %}

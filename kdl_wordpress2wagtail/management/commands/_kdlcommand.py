@@ -43,7 +43,7 @@ class KDLCommand(BaseCommand):
                     action_method()
                     d = time.time() - t0
                     print(
-                        'END of command "{}" ({:.2} s.)'.format(
+                        'END of command "{}" ({:.2f} s.)'.format(
                             self.action, d)
                     )
                     if self.is_dry_run():

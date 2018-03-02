@@ -93,7 +93,7 @@
               {# % include "culturecase_wagtail/top_menu_static.html" % #}
               {% block menu %}
                 {% get_site_root as site_root %}
-                {% top_menu parent=site_root calling_page=page %}
+                {% top_menu parent=site_root calling_page=page menu_slug=menu_slug %}
               {% endblock %}
             </nav>
           </div>
@@ -147,39 +147,43 @@
     
     <div id="main" class="" style="overflow: hidden !important;">
       <div class="avada-row" style="">
-        <div id="content" style="float: left;">
+        <div id="content" style="float: left;" 
+            class="{% block content_class %} {% endblock %}">
           {% block content %}
         
             {% block breadcrumb %}
             {% endblock %}
             
-            <div id="post-2" class="{% block content_class %}post-2 page type-page status-publish hentry{% endblock %}">
+            <div id="post-2" class="{% block post_class %}post-2 page type-page status-publish hentry{% endblock %}">
   
               {% block print_button %}
               {% endblock %}
   
+              
               <span class="entry-title" style="display: none;">CultureCase | putting research to work</span> 
               <span class="updated" style="display: none;">3 December 2013</span> 
               <span class="vcard" style="display: none;">
                 <span class="fn"><a href="/author/timpoole/" title="Posts by Tim Poole" rel="author">Tim Poole</a></span>
               </span>
               
-              <div class="post-content">
+              {% block post_content %}
+                <div class="post-content">
+                
+                  {% block main %}
+                    BLOCK MAIN
+                  {% endblock %}
+    
+                  {% if page.show_kcl_logo %}
+                    <p>
+                      <a href="http://www.kcl.ac.uk/" id="footer-logo" target="_blank">
+                        <img src="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/images/logo-kcl.png' %}" alt="King's College London">
+                      </a>
+                    </p>
+                  {% endif %}
+                </div>
+              {% endblock %}
               
-                {% block main %}
-                  BLOCK MAIN
-                {% endblock %}
-  
-                {% if page.show_kcl_logo %}
-                  <p>
-                    <a href="http://www.kcl.ac.uk/" id="footer-logo" target="_blank">
-                      <img src="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/images/logo-kcl.png' %}" alt="King's College London">
-                    </a>
-                  </p>
-                {% endif %}
-              </div>
-              
-              {% block below_body %}
+              {% block below_post_content %}
               
               {% endblock %}
               

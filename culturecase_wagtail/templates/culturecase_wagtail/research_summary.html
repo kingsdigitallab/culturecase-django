@@ -8,18 +8,20 @@
     {{ page.title }}
 {% endblock %}
 
-{% block content_class %}post post-2 research type-research status-publish hentry{% endblock %}
+{% block post_class %}post post-2 research type-research status-publish hentry{% endblock %}
 
 {% block breadcrumb %}
   <div class="single-navigation clearfix">
-    <a href="/">Home</a> &gt; 
-    <a href="/research-category/impacts/">Impacts</a> &gt; 
-    <a href="/research-category/health-wellbeing/">Health and wellbeing impacts of arts and culture</a>
+    <a href="/">Home</a> 
+    {% for category in page.get_breadcrumb %}
+        &gt;
+        <a href="{{ category.url }}">{{ category.title }}</a> 
+    {% endfor %}
   </div>
 {% endblock %}
 
 {% block print_button %}
-  <p class="print-pdf"><a href="/pdf/?url=http://www.culturecase.org/research/2018/02/the-health-benefits-of-an-arts-project-for-older-offenders/" target="_blank">Print this article</a></p>
+  <p class="print-pdf"><a href="/pdf/?url={{ page.url }}" target="_blank">Print this article</a></p>
 {% endblock %}
 
 {% block main %}
@@ -84,7 +86,7 @@
                         
 {% endblock %}
 
-{% block below_body %}
+{% block below_post_content %}
 
   <div class="meta-info">
     <div class="alignleft vcard">
@@ -92,7 +94,9 @@
         <span class="sep">|</span>
         <span class="updated">{{ page.go_live_at|date:"j F Y" }}</span>
         <span class="sep">|</span>
-        <a href="/research-category/health-wellbeing/" rel="tag">Health and wellbeing impacts of arts and culture</a>
+        {% for category in page.categories.all %}
+            <a href="{{ category.url }}" rel="tag">{{ category.title }}</a>{% if not forloop.last %}, {% endif%}
+        {% endfor %}
         <span class="sep">|</span>
         <!-- <span>Comments Off<span class="screen-reader-text"> on The health benefits of an arts project for older offenders</span></span> -->
     </div>

@@ -32,6 +32,16 @@ class KDLWordpressReference(models.Model):
             self.object_id
         )
 
+    @property
+    def django_object_or_none(self):
+        ''' same as self.django_object but if content_type is None, it
+        will return None instead of AttributeError while trying to
+        fetch related object.
+        '''
+        if self.content_type is None:
+            return None
+        return self.django_object
+
     @classmethod
     def get_django_object(cls, wordpressid):
         ret = None

@@ -9,6 +9,8 @@
 {% endblock %}
 
 {% block content %}
+    {% block result_intro %}
+    {% endblock %}
 
   {% if result_page.paginator.count %}
      {% for result in result_page %}

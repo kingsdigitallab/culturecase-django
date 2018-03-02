@@ -13,6 +13,8 @@ from wagtail.wagtailcore.models import Page
 from time import strptime
 import pytz
 
+SITE_ROOT = 'item_page:0'
+
 
 class Command(KDLCommand):
     '''
@@ -70,22 +72,24 @@ class Command(KDLCommand):
     def action_delete(self):
         self.parse_registry(action='delete')
 
-    def parse_registry(self, action='delete'):
+    def parse_registry(self, action=None):
 
         for reference in self.registry.objects.all():
             operation = '/'
+
+            django_object = reference.django_object_or_none
 
             info = {
                 'type': reference.wordpressid.split(':')[0],
                 'wordpressid': reference.wordpressid,
                 'wordpress_parentid': None,
-                'obj': reference.django_object,
-                'slug': getattr(reference.django_object, 'slug', '?'),
+                'obj': django_object,
+                'slug': getattr(django_object, 'slug', '?'),
             }
 
             if self.is_filtered_in(reference.wordpressid):
                 if action == 'delete':
-                    if reference.django_object:
+                    if django_object:
                         operation = '/'
                         if not reference.protected:
                             reference.django_object.delete()
@@ -157,7 +161,7 @@ class Command(KDLCommand):
 
         # Wordpress page root has id = 0 but not part of XML
         # and it corresponds to pre-existing wagtail sitemap root.
-        self.registry.set('item_page:0', Page.objects.get(id=1), True)
+        self.registry.set(SITE_ROOT, Page.objects.get(id=1), True)
 
     def _pre_import(self):
         pass
@@ -409,7 +413,7 @@ class Command(KDLCommand):
 #         node = info['kdlnode']
 #
 #         ret = {
-#             'model': RichPage,
+#             'model': StaticPage,
 #             # Mapping between django model fields and wordpress node content
 #             'data': {
 #                 'title': node['title'],
@@ -419,7 +423,7 @@ class Command(KDLCommand):
 #         }
 #
 #         # use home page
-#         if info['wordpress_parentid'] == 'item_page:0':
+#         if info['wordpress_parentid'] == SITE_ROOT:
 #             ret['model'] = HomePage
 #
 #         return ret
