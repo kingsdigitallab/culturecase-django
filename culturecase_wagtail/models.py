@@ -22,7 +22,7 @@ from modelcluster.contrib.taggit import ClusterTaggableManager
 from django import forms
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from django.shortcuts import render
-from django.http.response import HttpResponseRedirect
+from django.http.response import HttpResponseRedirect, HttpResponse
 
 '''
 Page and Snippet classes:
@@ -370,6 +370,35 @@ class ResearchSummary(RichPage):
     class Meta:
         ordering = ['-go_live_at']
 
+    def get_template(self, request, *args, **kwargs):
+        ret = super(ResearchSummary, self).get_template(
+            request, *args, **kwargs
+        )
+        if request.GET.get('format') == 'print':
+            ret = ret.replace('.html', '_print.html')
+
+        return ret
+
+    def serve(self, request, *args, **kwargs):
+
+        if request.GET.get('format') == 'pdf':
+            # get the print format HTML
+            print_url = request.build_absolute_uri(self.url + '?format=print')
+            import weasyprint
+            # process it with weasyprint
+            doc = weasyprint.HTML(print_url)
+            # convert to PDF and get it as a string
+            pdf_string = doc.write_pdf()
+            # prepare http response
+            ret = HttpResponse(pdf_string, content_type='application/pdf')
+
+            ret['Content-Disposition'] = 'attachment; filename="' + \
+                self.slug + '.pdf"'
+        else:
+            ret = RichPage.serve(self, request, *args, **kwargs)
+
+        return ret
+
     def get_url_parts(self, *args, **kwargs):
         '''We insert the year and month into the webpath
         /research/2018/02/SLUG'''
@@ -435,7 +464,7 @@ class ResearchSummariesTree(RoutablePageMixin, RichPage):
         if not summary:
             raise Http404
 
-        return Page.serve(summary, request, *args, **kwargs)
+        return ResearchSummary.serve(summary, request, *args, **kwargs)
 
 # ===================================================================
 #                              TAGS

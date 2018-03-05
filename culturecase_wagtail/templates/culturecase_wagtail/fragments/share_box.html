@@ -1,0 +1,56 @@
+<div class="share-box">
+  <h4>Share this story – choose your platform!</h4>
+  <ul class="social-networks social-networks-dark">
+    <li class="facebook"><a href="http://www.facebook.com/sharer.php?u={{ page.full_url }}&amp;t={{ page.title }}" target="_blank"> Facebook </a>
+      <div class="popup" style="display: none;">
+        <div class="holder">
+          <p>Facebook</p>
+        </div>
+      </div></li>
+    <li class="twitter"><a href="http://twitter.com/home?status={{ page.title }} {{ page.full_url }}" target="_blank"> Twitter </a>
+      <div class="popup">
+        <div class="holder">
+          <p>Twitter</p>
+        </div>
+      </div></li>
+    <li class="linkedin"><a href="http://linkedin.com/shareArticle?mini=true&amp;url={{ page.full_url }}&amp;title={{ page.title }}" target="_blank"> LinkedIn </a>
+      <div class="popup">
+        <div class="holder">
+          <p>LinkedIn</p>
+        </div>
+      </div></li>
+    <li class="reddit"><a href="http://reddit.com/submit?url={{ page.full_url }}&amp;title={{ page.title }}" target="_blank"> Reddit </a>
+      <div class="popup">
+        <div class="holder">
+          <p>Reddit</p>
+        </div>
+      </div></li>
+    <li class="tumblr"><a href="http://www.tumblr.com/share/link?url={{ page.full_url }}&amp;name={{ page.slug }}&amp;description={{ page.title }}" target="_blank"> Tumblr </a>
+      <div class="popup">
+        <div class="holder">
+          <p>Tumblr</p>
+        </div>
+      </div></li>
+    <li class="google"><a href="https://plus.google.com/share?url={{ page.full_url }}"
+      onclick="javascript:window.open(this.href,
+  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" target="_blank"
+    > Google +1 </a>
+      <div class="popup">
+        <div class="holder">
+          <p>Google +1</p>
+        </div>
+      </div></li>
+    <li class="pinterest"><a href="http://pinterest.com/pin/create/button/?url={{ page.full_url }}&amp;description={{ page.slug }}&amp;media=" target="_blank"> Pinterest </a>
+      <div class="popup">
+        <div class="holder">
+          <p>Pinterest</p>
+        </div>
+      </div></li>
+    <li class="email"><a href="mailto:?subject={{ page.title }}&amp;body={{ page.full_url }}"> Email </a>
+      <div class="popup">
+        <div class="holder">
+          <p>Email</p>
+        </div>
+      </div></li>
+  </ul>
+</div>

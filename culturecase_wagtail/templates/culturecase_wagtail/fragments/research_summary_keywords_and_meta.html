@@ -1,0 +1,54 @@
+  <div class="keywords">
+    <p></p>
+    <h3>Keywords</h3>
+    {% for tag in page.tags.all %}
+        <a href="/research-tags/{{ tag.slug }}/" rel="tag">{{tag.name}}</a> 
+    {% endfor %}
+  </div>
+  
+  <table width="100%" border="0" cellspacing="1" cellpadding="0" class="research-meta">
+    <tbody>
+      {% if page.article_title %}
+        <tr>
+          <th>Title</th>
+          <td>{{ page.article_title }}</td>
+        </tr>
+      {% endif %}
+      {% if page.article_authors %}
+        <tr>
+          <th>Author(s)</th>
+          <td>{{ page.article_authors }}</td>
+        </tr>
+      {% endif %}
+      {% if page.article_year %}
+        <tr>
+          <th>Publication date</th>
+          <td>{{ page.article_year }}</td>
+        </tr>
+      {% endif %}
+      {% if page.article_source %}
+        <tr>
+          <th>Source</th>
+          <td>{{ page.article_source }}</td>
+        </tr>
+      {% endif %}
+      {% if page.article_url %}
+        <tr>
+          <th>Link</th>
+          <td><a href="{{ page.article_url }}" target="_blank">{{ page.article_url }}</a></td>
+        </tr>
+      {% endif %}
+      {% if page.article_oaurl %}
+        <tr>
+          <th>Open Access Link</th>
+          <td><a href="{{ page.article_oaurl }}" target="_blank">{{ page.article_oaurl }}</a></td>
+        </tr>
+      {% endif %}
+      {% if page.article_email %}
+        <tr>
+          <th>Author email</th>
+          <td><a href="{{ page.article_email }}" target="_blank">{{ page.article_email }}</a></td>
+        </tr>
+      {% endif %}
+    </tbody>
+  </table>
