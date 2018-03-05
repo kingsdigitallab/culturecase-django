@@ -39,9 +39,22 @@ class KDLNode(object):
         return self.node.nodeName
 
     def __getitem__(self, tag):
+        '''See .text(), but raises Exception is tag was not found.
+        Please leave exception, it's useful for spotting bugs.
+        [X] is used when a child element X should be there.
+        Otherwise use text() with a default value.
+        '''
         return self.text(tag)
 
     def text(self, tag=None, default=KDL_NODE_ERROR_TAG_NOT_FOUND):
+        '''
+        Returns the text of the first child element with tag <tag>.
+        Returns <default> if no such element found.
+        Raise exception if default == KDL_NODE_ERROR_TAG_NOT_FOUND and
+        child not found.
+
+        If tag == None, returns the texts under this element/node.
+        '''
         if tag:
             node = self.child(tag)
         else:

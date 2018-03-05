@@ -1,4 +1,4 @@
-{% load staticfiles compress kdl_culturecase %}
+{% load staticfiles compress kdl_culturecase wagtailroutablepage_tags %}
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
 <head>
@@ -207,19 +207,20 @@
               <h3>Sign up to our newsletter</h3>
               <div class="textwidget">
                 <!-- MailChimp for WordPress v3.0.2 - https://wordpress.org/plugins/mailchimp-for-wp/ -->
-                <form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-974 mc4wp-form-theme mc4wp-form-theme-dark" method="post" data-id="974" data-name="Newsletter sign up form">
+                <form action="/newsletter/" id="mc4wp-form-1" class="mc4wp-form mc4wp-form-974 mc4wp-form-theme mc4wp-form-theme-dark" method="post" data-id="974" data-name="Newsletter sign up form">
+                  {% csrf_token %}
                   <div class="mc4wp-form-fields">
                     <p class="mc4wp-form-ccinput">
-                      <label>First Name</label> <input type="text" name="FNAME" required>
+                      <label>First Name</label> <input type="text" name="first_name" required>
                     </p>
                     <p class="mc4wp-form-ccinput">
-                      <label>Last Name</label> <input type="text" name="LNAME" required>
+                      <label>Last Name</label> <input type="text" name="last_name" required>
                     </p>
                     <p class="mc4wp-form-ccinput">
-                      <label>Organisation</label> <input type="text" name="ORG">
+                      <label>Organisation</label> <input type="text" name="organisation">
                     </p>
                     <p class="mc4wp-form-ccinput">
-                      <label>Email address</label> <input type="email" id="mc4wp_email" name="EMAIL" required />
+                      <label>Email address</label> <input type="email" id="mc4wp_email" name="email" required />
                     </p>
                     <p class="mc4wp-form-ccsubmit">
                       <input type="submit" value="Sign up" />

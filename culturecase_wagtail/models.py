@@ -4,12 +4,13 @@ Created on 15 Feb 2018
 @author: Geoffroy Noel
 '''
 from __future__ import unicode_literals
-# from django.db import models
+from django.db import models
 
 from wagtail.wagtailsearch import index
-from wagtail.wagtailcore.models import Page
+from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import RichTextField
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel,\
+    PageChooserPanel, InlinePanel
 from django.db.models.fields import BooleanField, CharField, URLField,\
     EmailField, IntegerField
 from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
@@ -19,6 +20,9 @@ from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from wagtail.wagtailsnippets.models import register_snippet
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from django import forms
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from django.shortcuts import render
+from django.http.response import HttpResponseRedirect
 
 '''
 Page and Snippet classes:
@@ -108,14 +112,77 @@ class StaticPage(RichPage):
     pass
 
 
+# ===================================================================
+#                            Home Page
+# ===================================================================
+
+
+class AbstractSlide(models.Model):
+    title = models.CharField(max_length=128)
+    caption = models.TextField()
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    related_page = models.ForeignKey(
+        'RichPage',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
+    background_color = models.CharField(
+        max_length=32, null=True, blank=True,
+        help_text='leave blank for transparent/white background. Or use '
+        'a css color code, e.g. black or #101010 .',
+        default=None
+    )
+    text_color = models.CharField(
+        max_length=32, null=True, blank=True,
+        help_text='leave blank for black color. Or use '
+        'a css color code, e.g. white or #ffffff .',
+        default=None
+    )
+
+    panels = [
+        FieldPanel('title'),
+        FieldPanel('caption'),
+        ImageChooserPanel('image'),
+        PageChooserPanel('related_page'),
+        FieldPanel('background_color'),
+        FieldPanel('text_color'),
+    ]
+
+    class Meta:
+        abstract = True
+
+
+class HomePageSlide(Orderable, AbstractSlide):
+    page = ParentalKey('HomePage', related_name='slides')
+
+
+class NewsLetterForm(forms.Form):
+    first_name = forms.CharField(max_length=64)
+    last_name = forms.CharField(max_length=64)
+    organisation = forms.CharField(max_length=64, required=False)
+    email = forms.EmailField()
+
+
 class HomePage(RoutablePageMixin, RichPage):
     parent_page_types = []
+
+    content_panels = RichPage.content_panels + [
+        InlinePanel('slides', label="Slides"),
+    ]
 
     def get_summaries(self):
         return ResearchSummary.objects.live()
 
     @route(r'^research-tags/(?P<slug>[-\w]+)/$')
-    def get_summaries_from_tag(self, request, slug, *args, **kwargs):
+    def serve_summaries_from_tag(self, request, slug, *args, **kwargs):
 
         tag = ResearchTag.objects.filter(slug=slug).first()
         if not tag:
@@ -130,6 +197,51 @@ class HomePage(RoutablePageMixin, RichPage):
             summaries,
             'culturecase_wagtail/tag_results.html',
             {'search_tag': tag}
+        )
+
+    @route(r'^newsletter/$', name='newsletter')
+    def serve_newsletter(self, request, *args, **kwargs):
+
+        if request.method == 'POST':
+            form = NewsLetterForm(request.POST)
+            if form.is_valid():
+                # TODO: error management!
+
+                # we sign them up with mailchimp API
+                from .utils import signup_to_newsletter
+
+                signup_to_newsletter({
+                    'EMAIL': form.cleaned_data['email'],
+                    'FNAME': form.cleaned_data['first_name'],
+                    'LNAME': form.cleaned_data['last_name'],
+                    'ORG': form.cleaned_data['organisation'],
+                })
+
+                # then redirect to thank you page
+                return HttpResponseRedirect(
+                    '/' + self.reverse_subpage('newsletter_signed')
+                )
+        else:
+            form = NewsLetterForm()
+
+        return render(
+            request,
+            'culturecase_wagtail/newsletter.html',
+            {
+                'page': StaticPage(title='Sign up to our newsletter'),
+                'newsletter_form': form,
+            }
+        )
+
+    @route(r'^newsletter-signed/$', name='newsletter_signed')
+    def serve_newsletter_signed(self, request, *args, **kwargs):
+
+        return render(
+            request,
+            'culturecase_wagtail/newsletter_signed.html',
+            {
+                'page': StaticPage(title='Signed up to newsletter'),
+            }
         )
 
 # ===================================================================

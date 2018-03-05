@@ -10,9 +10,12 @@ from kdl_wordpress2wagtail.management.commands.kdlwp2wt import (
 from culturecase_wagtail.models import (
     StaticPage, HomePage, ResearchSummary, ResearchTag, ResearchCategoriesTree,
     ResearchCategory, ResearchSummariesTree, CategorisedSummariesPage,
-    FAQsPage, QuestionAndAnswer
-)
+    FAQsPage, QuestionAndAnswer, HomePageSlide, RichPage)
 from django.utils.text import slugify
+from wagtail.wagtailimages.models import Image
+from willow import Image as WillowImage
+from django.conf import settings
+import os
 
 ALIAS_HOME_PAGE = 'alias:home_page'
 ALIAS_RESEARCH_SUMMARIES_ROOT = 'alias:research_summaries_root'
@@ -322,6 +325,80 @@ class Command(KdlWp2Wt):
         # let's use the slug as wordpressid, because that's what's used
         # in items to refer to tags
         info['wordpressid_alias'] = info['type'] + ':' + info['slug']
+
+        return ret
+
+    def convert_item_slide(self, info):
+        node = info['kdlnode']
+
+        # Prepare the structure that allows teh import to update/create
+        # a django object.
+        bg_color = node.text('background_color', '')
+
+        ret = {
+            'model': HomePageSlide,
+            # Mapping between django model fields and wordpress node content
+            'data': {
+                'title': node['title'],
+                'caption': node['caption'],
+                'page': self.registry.get(ALIAS_HOME_PAGE),
+                'sort_order': node['order'],
+                'related_page': RichPage.objects.filter(
+                    slug=node['wp:post_name']
+                ).first(),
+                'image': Image.objects.filter(
+                    file__endswith='/' + node['image']
+                ).first(),
+                'background_color': bg_color,
+                'text_color': 'white' if bg_color else '',
+            }
+        }
+
+        # we don't need a parent page; slides are out of the page tree
+        info['wordpress_parentid'] = None
+
+        return ret
+
+    def convert_item_attachment(self, info):
+        '''Download wordpress image attachment and import them into Wagtail'''
+        node = info['kdlnode']
+
+        # we don't need a parent page; images are out of the page tree
+        info['wordpress_parentid'] = None
+
+        url = node['wp:attachment_url']
+        filename = re.sub(r'^.*/', '', url.rstrip('/'))
+
+        # /home/project/static/media/original_images/XXX.jpg
+        relative_path = Image().get_upload_to(filename)
+
+        # Prepare the structure that allows teh import to update/create
+        # a django object.
+        ret = {
+            'model': Image,
+            # Mapping between django model fields and wordpress node content
+            'data': {
+                'title': node['title'],
+                'file': relative_path,
+            }
+        }
+
+        download_path = os.path.join(
+            settings.MEDIA_ROOT, relative_path)
+        if not os.path.exists(download_path):
+            # download the file
+            import requests
+            res = requests.get(url)
+            with open(download_path, 'wb') as f:
+                f.write(res.content)
+
+        import willow
+        try:
+            with open(download_path, 'rb') as f:
+                image = WillowImage.open(f)
+                ret['data']['width'], ret['data']['height'] = image.get_size()
+        except willow.image.UnrecognisedImageFormatError:
+            ret = None
 
         return ret
 

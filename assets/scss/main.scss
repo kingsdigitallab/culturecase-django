@@ -1,7 +1,49 @@
 /** Your custom scss here **/
 /** GN, copied from inline styles on CultureCase Wordpress Home Page */
 
-// --------
+// ----------------------------------------------------------------------
+// GN: customisations for toning down the styles of the summaries in the 
+// search results. 
+ 
+.search.search-results #main .post-content {
+    h2 {
+        // GN: hate to use !important, but had to to override the 
+        // other place that uses it!
+        // TODO: remove !imporant in the other Avada styles.
+        font-size: 20px!important;
+    }
+    strong {
+        // GN: hate to use !important, but had to to override the 
+        // other place that uses it!
+        // TODO: remove !imporant in the other Avada styles.
+        font-weight: normal;
+    }
+    p, h2 {
+        margin-bottom: 10px;
+    }
+}
+
+form.django-form-ul {
+    ul {
+        list-style: none;
+        padding-left: 0;
+        
+        li {
+            line-height: 3em;
+            display: block;
+            
+            label {
+                min-width: 6em;
+            }
+            label, input {
+                display: inline-block;
+            }
+        }
+    }
+}
+
+// ----------------------------------------------------------------------
+
 Avada Child_ {
     color: green;
 }

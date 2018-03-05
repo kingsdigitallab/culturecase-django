@@ -2,14 +2,17 @@
 
 <div id="post-1449"
   class="post post-1449 research type-research status-publish hentry research-category-education research-tags-critical-thinking research-tags-education-2 research-tags-museums research-tags-students"
->
-  <style type="text/css">
-</style>
+  >
   <h2 class="entry-title">
-    <a href="{{ result.url }}">{{ result.title }}</a>
+    <a href="{{ result.url }}">
+        {{ result.title }}
+    </a>
+    {% if result.get_verbose_name != "Research summary" %}
+        ({{ result.get_verbose_name }})
+    {% endif %}
   </h2>
   <div class="post-content">
-    SEARCH SNIPPET
+    {{ result.body|truncatewords_html:51|safe }}
   </div>
   <div class="meta-info">
     <div class="alignleft vcard">

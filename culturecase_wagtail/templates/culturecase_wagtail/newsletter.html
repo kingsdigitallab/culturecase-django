@@ -1,0 +1,19 @@
+{% extends "culturecase_wagtail/rich_page.html" %}
+
+{% load wagtailcore_tags  staticfiles compress %}
+
+{% block main %}
+
+    <form action="" method="post" class="django-form-ul mc4wp-form-theme mc4wp-form-theme-dark">
+      {% csrf_token %}
+
+      <ul>
+        {{ newsletter_form.as_ul }}
+      </ul>
+      
+      <p>
+        <input type="submit" value="Sign up" />
+      </p>
+    </form>
+
+{% endblock %}

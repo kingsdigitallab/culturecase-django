@@ -8,7 +8,7 @@ django-redis
 psycopg2
 redis
 elasticsearch>=5.0.0,<6.0.0
-
+mailchimp
 
 django-kdl-ldap
 wagtail
