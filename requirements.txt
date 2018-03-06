@@ -9,6 +9,7 @@ psycopg2-binary
 redis
 elasticsearch>=5.0.0,<6.0.0
 mailchimp
+weasyprint
 
 django-kdl-ldap
 wagtail<2
