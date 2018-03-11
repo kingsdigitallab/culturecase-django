@@ -334,9 +334,15 @@
     tags:
       - django
 
-  - name: django | add default (vagrant/vagrant) superuser
-    command: "{{ user_home }}/venv/bin/python {{ project_root }}/manage.py shell -c \"from django.contrib.auth.models import User; User.objects.create_superuser('vagrant', 'vagrant@localhost', 'vagrant')\""
-    ignore_errors: yes # The user may already exist
+#  - name: django | add default (vagrant/vagrant) superuser
+#    command: "{{ user_home }}/venv/bin/python {{ project_root }}/manage.py shell -c \"from django.contrib.auth.models import User; User.objects.create_superuser('vagrant', 'vagrant@localhost', 'vagrant')\""
+#    ignore_errors: yes # The user may already exist
+#    tags:
+#      - django
+#
+
+  - name: django | build search index
+    command: "{{ user_home }}/venv/bin/python {{ project_root }}/manage.py update_index"
     tags:
       - django
 
