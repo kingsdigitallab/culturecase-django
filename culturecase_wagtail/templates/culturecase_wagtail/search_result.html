@@ -12,7 +12,13 @@
     {% endif %}
   </h2>
   <div class="post-content">
-    {{ result.body|truncatewords_html:51|safe }}
+    {% if highlights %}
+        {% for highlight in highlights %}
+            ...{{ highlight|safe }}...
+        {% endfor %}
+    {% else %}
+        {{ result.body|truncatewords_html:51|safe }}
+    {% endif %}
   </div>
   <div class="meta-info">
     <div class="alignleft vcard">

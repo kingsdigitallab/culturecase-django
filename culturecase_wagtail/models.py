@@ -85,8 +85,15 @@ class RichPage(Page):
         ),
     ]
 
+    def body_highlightable(self):
+        from django.utils.html import strip_tags
+        return strip_tags((self.body or ''))
+
     search_fields = Page.search_fields + [
-        index.SearchField('body'),
+        # we don't index body directly, Elasticsearch isn't XML aware
+        # e.g. search 'strong' returns pages with <strong> and highlighting
+        # tags generate invalid XML e.g. <<hl>strong</hl>>
+        index.SearchField('body_highlightable'),
         # index.FilterField('date'),
     ]
 

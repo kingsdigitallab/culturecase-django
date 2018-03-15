@@ -17,7 +17,7 @@ def load_initial_wordpress_content(apps, schema_editor):
 
         management.call_command(
             'loaddata',
-            'culturecase.wordpress.2018-03-06.json',
+            'culturecase.wordpress.2018-03-06b.json',
             verbosity=0
         )
 

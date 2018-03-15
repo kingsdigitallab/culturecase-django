@@ -14,7 +14,7 @@
 
   {% if result_page.paginator.count %}
      {% for result in result_page %}
-       {% include "culturecase_wagtail/search_result.html" with result=result.specific %}
+       {% include "culturecase_wagtail/search_result.html" with result=result.specific highlights=result.highlights %}
      {% endfor %}
      
      {% include "culturecase_wagtail/pagination.html" with result_page=result_page %}

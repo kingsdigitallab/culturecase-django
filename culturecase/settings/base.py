@@ -310,7 +310,8 @@ ITEMS_PER_PAGE = 10
 ITEMS_PER_RESULT = 50
 WAGTAILSEARCH_BACKENDS = {
     'default': {
-        'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch5',
+        # 'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch5',
+        'BACKEND': 'culturecase_wagtail.search_backend',
         'AUTO_UPDATE': False,
         'URLS': ['http://127.0.0.1:9200'],
         'INDEX': 'culturecase_wagtail',
