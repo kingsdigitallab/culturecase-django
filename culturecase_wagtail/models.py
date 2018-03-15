@@ -23,6 +23,7 @@ from django import forms
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from django.shortcuts import render
 from django.http.response import HttpResponseRedirect, HttpResponse
+from weasyprint import CSS
 
 '''
 Page and Snippet classes:
@@ -395,7 +396,16 @@ class ResearchSummary(RichPage):
             # process it with weasyprint
             doc = weasyprint.HTML(print_url)
             # convert to PDF and get it as a string
-            pdf_string = doc.write_pdf()
+            print_styles = '''
+            @page {
+                @top-center {
+                    content: '%s';
+                    font-size: 0.65em;
+                    color: #808080;
+                }
+            }
+            ''' % request.build_absolute_uri(self.url)
+            pdf_string = doc.write_pdf(stylesheets=[CSS(string=print_styles)])
             # prepare http response
             ret = HttpResponse(pdf_string, content_type='application/pdf')
 
