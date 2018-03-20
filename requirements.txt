@@ -13,3 +13,4 @@ weasyprint
 
 django-kdl-ldap
 wagtail<2
+pyldap<3

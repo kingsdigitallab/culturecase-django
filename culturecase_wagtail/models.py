@@ -424,10 +424,13 @@ class ResearchSummary(RichPage):
         parent = self.get_parent()
         parent_parts = parent.get_url_parts()
 
+        import datetime
+        now = datetime.datetime.now()
+
         ret[2] = '{}{:02d}/{:02d}/{}'.format(
             parent_parts[2],
-            self.go_live_at.year,
-            self.go_live_at.month,
+            getattr(self.go_live_at, 'year', now.year),
+            getattr(self.go_live_at, 'month', now.month),
             self.slug
         )
         return ret
