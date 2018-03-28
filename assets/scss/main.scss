@@ -42,8 +42,22 @@ form.django-form-ul {
     }
 }
 
-.search-term {
-    font-weight: bold;
+@media print {
+    h1.entry-title {
+        line-height: 1em;
+    }
+
+    #footer {
+        margin-top: 2em;
+    }
+
+    @page {
+        @bottom-center {
+            content: counter(page);
+            font-size: 0.9em;
+            color: grey;
+        }
+    }
 }
  
 // ** Table of contents **
