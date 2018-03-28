@@ -8,49 +8,11 @@ Template:		Avada
 
 @import url("../Avada/style.css");
 
-body {
-	background:#E5E2DD;
-}
+
 
 /* --------------- search --------------- */
 
-.search-bar {
-	color: #FFF;
-	background: #FF9E01;
-	padding: 9px 0;
-	width: 100%;
-	float: left;
-}
-.search-bar form {
-	padding: 0 10px;
-}
-.search-bar #s {
-	color: #333 !important;
-	font-size: 16px;
-    width: 88%;
-	border: none;
-    height: 30px;
-	padding: 0 1%;
-	float: left;
-}
-.search-bar input[type="submit"] {
-    color: #FFF !important;
-    font-family: FontAwesome !important;
-    font-size: 14px;
-    text-indent: 0 !important;
-    line-height: 30px;
-    width: 10%;
-    height: 30px;
-    margin: 0;
-    padding: 0;
-    background: #FE0A00;
-    border: none;
-    cursor: pointer;
-	float: left;
-}
-.search-bar input[type="submit"]:hover {
-	background: #FE5900;
-}
+
 
 .relevanssi-query-term {
 	background: #FFDB00;
@@ -61,9 +23,6 @@ body {
 
 /* --------------- page title --------------- */
 
-.page-title-captions {
-	width: 60%;
-}
 .page-title h1.entry-title {
 	line-height: 1.2 !important;
 }
@@ -137,12 +96,7 @@ table.research-meta td {
 	margin-bottom: 12px;
 }
 
-#footer-logo img {
-	/* margin: -100px 0 -10px 0; */
-	margin-top: 1em;
-	float: left;
-	clear: both;
-}
+
 
 /* --------------- side bar --------------- */
 
@@ -155,9 +109,6 @@ table.research-meta td {
 
 /* --------------- footer --------------- */
 
-#footer {
-	padding: 16px 10px 16px;
-}
 
 /* sliders */
 #layerslider-wrapper .ls-shadow-top, .rev_slider_wrapper .shadow-left {
@@ -166,45 +117,7 @@ display: none !important; }
 	margin-top:30px;
 }
 
-/* mailchimp form */
-.footer-area {
-	border:none;
-	padding:20px 10px;
-}
-.footer-area .footer-widget-col h3 {
-	margin-bottom:8px;
-	font-size:17px !important;
-	text-transform: none;
-}
-.footer-widget-col p {
-	margin-bottom:8px;
-	float:left;
-}
-.mc4wp-form-ccinput {
-	width:20%;
-	margin-right:2% !important;
-}
-.mc4wp-form-ccsubmit {
-	width:12%;
-}
-.textwidget .mc4wp-form {
-	margin:0;
-	font-family: "PT Sans",Arial,Helvetica,sans-serif !important;
-}
-.textwidget .mc4wp-form label {
-	font-size:12px;
-}
-.textwidget .mc4wp-form input {
-	font-size:12px;
-	padding:2px 6px !important;
-}
-.textwidget .mc4wp-form input[type="submit"] {
-	padding:4px 24px !important;
-	margin:22px 0 0 0 !important;
-}
-.mc4wp-response p {
-	color:#fff;
-}
+
 
 /* pdf link */
 .print-pdf {

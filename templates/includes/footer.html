@@ -1,5 +1,63 @@
+{% load staticfiles %}
+    <div class="footer-area">
+      <div class="avada-row">
+        <section class="columns columns-1">
+          <article class="col">
+            <div id="text-2" class="footer-widget-col widget_text">
+              <h3>Sign up to our newsletter</h3>
+              <div class="textwidget">
+                <!-- MailChimp for WordPress v3.0.2 - https://wordpress.org/plugins/mailchimp-for-wp/ -->
+                <form action="/newsletter/" id="mc4wp-form-1" class="mc4wp-form mc4wp-form-974 mc4wp-form-theme mc4wp-form-theme-dark" method="post" data-id="974" data-name="Newsletter sign up form">
+                  {% csrf_token %}
+                  <div class="mc4wp-form-fields">
+                    <p class="mc4wp-form-ccinput">
+                      <label>First Name</label> <input type="text" name="first_name" required>
+                    </p>
+                    <p class="mc4wp-form-ccinput">
+                      <label>Last Name</label> <input type="text" name="last_name" required>
+                    </p>
+                    <p class="mc4wp-form-ccinput">
+                      <label>Organisation</label> <input type="text" name="organisation">
+                    </p>
+                    <p class="mc4wp-form-ccinput">
+                      <label>Email address</label> <input type="email" id="mc4wp_email" name="email" required />
+                    </p>
+                    <p class="mc4wp-form-ccsubmit">
+                      <input type="submit" value="Sign up" />
+                    </p>
+                    <div style="display: none;">
+                      <input type="text" name="_mc4wp_honeypot" value="" tabindex="-1" autocomplete="off" />
+                    </div>
+                    <input type="hidden" name="_mc4wp_timestamp" value="1518659561" /><input type="hidden" name="_mc4wp_form_id" value="974" /><input type="hidden" name="_mc4wp_form_element_id"
+                      value="mc4wp-form-1"
+                    /><input type="hidden" name="_mc4wp_form_nonce" value="4184becd68" />
+                  </div>
+                  <div class="mc4wp-response"></div>
+                </form>
+                <!-- / MailChimp for WordPress Plugin -->
+              </div>
+              <div style="clear: both;"></div>
+            </div>
+          </article>
+        </section>
+      </div>
+    </div>
 <div>
-    <p>
-        Designed and developed by <a href="//kdl.kcl.ac.uk" title="King's Digital Lab">King's Digital Lab</a>.
-    </p>
+	<a href="//www.kcl.ac.uk/" title="King's College London">
+        <img src="{% static 'images/KCL-logo-red.svg' %}" alt="King's College London">
+    </a>
+    <ul>
+    	<li class="styled">
+    		<a href='http://www.kcl.ac.uk/culturalinstitute' target='_blank'>Culture</a>
+    	</li>
+		<li>
+			©Copyright 2018
+		</li>
+		<li>
+			Designed, developed and maintained by <a href='http://www..kdl.kcl.ac.uk' target='_blank' title="King's Digital Lab">King's Digital Lab</a>
+		</li>
+		<li>
+			Originally built by <a href='http://www.weheartdigital.co.uk' target='_blank'>weheartdigital Ltd</a>
+		</li>
+	</ul>
 </div>
