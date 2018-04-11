@@ -200,10 +200,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.template.context_processors.static',
                 'django.contrib.messages.context_processors.messages',
-
-
-
-
+                'culturecase_wagtail.context_processors.settings',
             ],
         },
     },
