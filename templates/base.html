@@ -81,10 +81,6 @@
 <body class="{% block body_class %}light{% endblock %}">
   <div id="wrapper">
 
-
-
-
-
     <div class="header-wrapper">
         <header id="header">
           <div class="avada-row" style="margin-top: 0; margin-bottom: 0;">
@@ -122,14 +118,8 @@
           </ul>
       </div>
       
-      
-
     </div>
     
-
-
-
-
     <header id="header" class="sticky-header">
       <div class="sticky-shadow">
         <div class="avada-row">
@@ -168,6 +158,7 @@
         </div>
       </div>
     {% endblock %}
+    
     {% block main %}
       <div id="main" class="" style="overflow: hidden !important;">
         <div class="avada-row" style="">
@@ -194,7 +185,7 @@
                   <div class="post-content">
                   
                     {% block post_body %}
-                      POST BODY
+
                     {% endblock %}
       
                     <!-- Remove
@@ -226,7 +217,7 @@
         
     <footer>
         {% block footer %}
-        {% include 'includes/footer.html' %}
+            {% include 'includes/footer.html' %}
         {% endblock %}
     </footer>
     
@@ -243,10 +234,6 @@
   <script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/themes/Avada/js/jquery.prettyPhoto-min.js' %}"></script>
   <script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/themes/Avada/js/jquery.flexslider-min.js' %}"></script>
   <script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/themes/Avada/js/jquery.fitvids-min.js' %}"></script>
-  {% comment %} {# TODO: GN remove completely if not used at all#}
-  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false&amp;language=en"></script>
-  <script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/themes/Avada/js/gmap-min.js' %}"></script>
-  {% endcomment %}
   <script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/themes/Avada/js/main-min.js' %}"></script>
   <script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/plugins/mailchimp-for-wp/assets/js/forms-api.min.js' %}"></script>
 </body>

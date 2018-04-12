@@ -24,6 +24,7 @@ from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from django.shortcuts import render
 from django.http.response import HttpResponseRedirect, HttpResponse
 from weasyprint import CSS
+from modelcluster.models import ClusterableModel
 
 '''
 Page and Snippet classes:
@@ -41,6 +42,7 @@ HomePage                       /
 
 SNIPPETS
     ResearchTag
+    Menu
 '''
 
 # ===================================================================
@@ -177,6 +179,7 @@ class NewsLetterForm(forms.Form):
     last_name = forms.CharField(max_length=64)
     organisation = forms.CharField(max_length=64, required=False)
     email = forms.EmailField()
+    agree = forms.BooleanField(required=True)
 
 
 class HomePage(RoutablePageMixin, RichPage):
@@ -215,15 +218,16 @@ class HomePage(RoutablePageMixin, RichPage):
             if form.is_valid():
                 # TODO: error management!
 
-                # we sign them up with mailchimp API
-                from .utils import signup_to_newsletter
+                if 1:
+                    # we sign them up with mailchimp API
+                    from .utils import signup_to_newsletter
 
-                signup_to_newsletter({
-                    'EMAIL': form.cleaned_data['email'],
-                    'FNAME': form.cleaned_data['first_name'],
-                    'LNAME': form.cleaned_data['last_name'],
-                    'ORG': form.cleaned_data['organisation'],
-                })
+                    signup_to_newsletter({
+                        'EMAIL': form.cleaned_data['email'],
+                        'FNAME': form.cleaned_data['first_name'],
+                        'LNAME': form.cleaned_data['last_name'],
+                        'ORG': form.cleaned_data['organisation'],
+                    })
 
                 # then redirect to thank you page
                 return HttpResponseRedirect(
@@ -251,6 +255,14 @@ class HomePage(RoutablePageMixin, RichPage):
                 'page': StaticPage(title='Signed up to newsletter'),
             }
         )
+
+# ===================================================================
+#                     Data Portal / Section
+# ===================================================================
+
+
+class DataSectionPage(RichPage):
+    pass
 
 # ===================================================================
 #                            FAQs
@@ -485,6 +497,44 @@ class ResearchSummariesTree(RoutablePageMixin, RichPage):
             raise Http404
 
         return ResearchSummary.serve(summary, request, *args, **kwargs)
+
+
+# ===================================================================
+#                              MENUS
+# ===================================================================
+
+class MenuItem(Orderable, models.Model):
+    menu = ParentalKey(
+        'Menu',
+        on_delete=models.CASCADE,
+        related_name='menu_items')
+    page = ParentalKey(
+        'wagtailcore.Page',
+        on_delete=models.CASCADE,
+        related_name='menu_items')
+
+    class Meta:
+        verbose_name = 'Menu item'
+        verbose_name_plural = 'Menu items'
+
+    panels = [
+        PageChooserPanel('page'),
+    ]
+
+
+@register_snippet
+class Menu(ClusterableModel):
+    # https://stackoverflow.com/a/36342864/3748764
+
+    slug = models.SlugField(unique=True)
+
+    panels = [
+        FieldPanel('slug'),
+        InlinePanel('menu_items', label="Menu Item"),
+    ]
+
+    def __str__(self):
+        return self.slug
 
 # ===================================================================
 #                              TAGS

@@ -5,15 +5,15 @@
 {% block post_body %}
 
     <form action="" method="post" class="django-form-ul mc4wp-form-theme mc4wp-form-theme-dark">
-      {% csrf_token %}
+        {% csrf_token %}
 
-      <ul>
-        {{ newsletter_form.as_ul }}
-      </ul>
+        <ul>
+            {{ newsletter_form.as_ul }}
+        </ul>
       
-      <p>
-        <input type="submit" value="Sign up" />
-      </p>
+        <p>
+            <input type="submit" value="Sign up" />
+        </p>
     </form>
 
 {% endblock %}

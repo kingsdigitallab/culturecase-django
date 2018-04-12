@@ -4,6 +4,60 @@
 // ----------------------------------------------------------------------
 // GN: customisations for toning down the styles of the summaries in the 
 // search results. 
+
+body div.flex-row {
+    display: flex;
+    max-width: 636px;
+    
+    p {
+        width: auto;
+        padding-right: 5px;
+        margin-right: 0 !important;
+    }
+}
+
+
+.consent-text {
+    font-size: 13px;
+    width: 64%;
+    
+    label {
+        font-weight: normal;
+    }
+}
+
+// body .mc4wp-form-ccinput {
+//     width: 22%;
+// }
+
+body .footer-widget-col p.mc4wp-form-ccsubmit {
+    float: right;
+    
+    input[type="submit"] {
+        margin: 10px 0 0 0 !important;
+    }
+}
+
+// Double-sized Checkboxes
+body div input[type=checkbox].big-checkbox {
+    -ms-transform: scale(2); /* IE */
+    -moz-transform: scale(2); /* FF */
+    -webkit-transform: scale(2); /* Safari and Chrome */
+    -o-transform: scale(2); /* Opera */
+    margin-left: 10px;
+}
+
+// this is to override crazy text-shadow by the legacy css
+body .footer-area a {
+    text-shadow: none;
+    color: #FE5900;
+    
+    &:hover {
+        text-decoration: underline;
+    }
+}
+ 
+ 
  
 .search.search-results #main .post-content {
     h2 {
