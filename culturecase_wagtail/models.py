@@ -629,7 +629,7 @@ class ResearchCategoriesTree(RoutablePageMixin, RichPage):
             {
                 'search_category': category,
                 # Make sure parent category is highlighted in the menu.
-                'menu_slug': category.get_parent().slug
+                'active_page_slug': category.get_parent().slug
             }
         )
 

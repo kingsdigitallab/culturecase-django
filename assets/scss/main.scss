@@ -5,6 +5,10 @@
 // GN: customisations for toning down the styles of the summaries in the 
 // search results. 
 
+#main {
+    min-height: 240px;
+}
+
 body div.flex-row {
     display: flex;
     max-width: 636px;
@@ -392,6 +396,34 @@ ul#nav > li:last-child{padding-right:0;}
                 font-size: 14px;
                 margin-right:25px;
                 color:$white;
+                &:hover{
+                    color: $lightorange;
+                }
+            }
+            
+            // GN: temporary pop-down menu
+            &.active > a{
+                color: $lightorange;
+            }
+
+            ul{
+                position: absolute;
+                margin: -4px;
+                z-index: 10;
+                padding: 4px;
+                background: $darkgray;
+                display: none;
+                position: absolute;
+                li{
+                    padding-top: 3px;
+                    display: block;
+                    float: none;
+                }
+            }
+            &:hover{
+                ul {
+                    display: block;
+                }
             }
         }
     }

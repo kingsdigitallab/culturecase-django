@@ -86,36 +86,32 @@
           <div class="avada-row" style="margin-top: 0; margin-bottom: 0;">
             <div class="logo">
               {% block header%}
-              {% include 'includes/header.html' %}
+                {% include 'includes/header.html' %}
               {% endblock %}
             </div>
             <nav id="nav" class="nav-holder">
               {# % include "culturecase_wagtail/top_menu_static.html" % #}
               {% block menu %}
-                {% get_site_root as site_root %}
-                {% top_menu parent=site_root calling_page=page menu_slug=menu_slug %}
+                {# % get_site_root as site_root % #}
+                {# % top_menu menu_root=site_root calling_page=page active_page_slug=active_page_slug % #}
+                {% kdl_menu_top menu_slug='primary' active_page_slug=active_page_slug %}
               {% endblock %}
             </nav>
           </div>
         </header>
       <div class="subnav">
-      <div class="search-bar">
-        <form role="search" method="get" action="{% url 'search' %}">
-          <input type="text" id="s" name="s" {% if search_query %} value="{{ search_query }}"{% endif %} placeholder="Search..." > 
-          <input type="submit" id="searchsubmit" value="">
-        </form>
-      </div>
-          <ul>
-            <li>
-              <a href="/">Index</a>
-            </li> 
-            <li>
-              <a href="/">Insights</a>
-            </li> 
-            <li>
-              <a href="/">Impacts</a>
-            </li>
-          </ul>
+        <div class="search-bar">
+          <form role="search" method="get" action="{% url 'search' %}">
+            <input type="text" id="s" name="s" {% if search_query %} value="{{ search_query }}"{% endif %} placeholder="Search..." > 
+            <input type="submit" id="searchsubmit" value="">
+          </form>
+        </div>
+        
+        {% if in_data_portal %}
+            {% kdl_menu_sub menu_slug='data' active_page_slug=active_page_slug %}
+        {% else %}
+            {% kdl_menu_sub menu_slug='research' active_page_slug=active_page_slug %}
+        {% endif %}
       </div>
       
     </div>
@@ -124,14 +120,13 @@
       <div class="sticky-shadow">
         <div class="avada-row">
           <div class="logo">
-            <h1>
-              <a href="/">CultureCase </a>
-            </h1>
+            {% include 'includes/header.html' %}
           </div>
           <nav id="nav" class="nav-holder">
             {% block menu_sticky %}
-              {% get_site_root as site_root %}
-              {% top_menu parent=site_root calling_page=page %}
+              {# % get_site_root as site_root % #}
+              {# % top_menu menu_root=site_root active_page_slug=active_page_slug % #}
+              {% kdl_menu_top menu_slug='primary' active_page_slug=active_page_slug %}
             {% endblock %}
           </nav>
         </div>
@@ -209,7 +204,11 @@
   
           </div>
   
-          {% include "includes/sidebar.html" %}
+          {% block sidebar %}
+            {% if not in_data_portal %}
+                {% include "includes/sidebar.html" %}
+            {% endif %}
+          {% endblock %}
   
         </div>
       </div>

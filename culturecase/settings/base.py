@@ -315,3 +315,5 @@ WAGTAILSEARCH_BACKENDS = {
         'TIMEOUT': 5,
     }
 }
+
+DATA_PORTAL_ENABLED = True
