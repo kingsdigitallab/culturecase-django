@@ -17,7 +17,10 @@ def load_initial_wordpress_content(apps, schema_editor):
             'culturecase_wagtail/fixtures/culturecase.wordpress.2018-03-28.xml',
         )
 
-    if 1:
+    if 0:
+        # Not a good idea to do it here.
+        # Because at this stage the model can be more complete or different
+        # than in the database and the indexing will crash..
         management.call_command(
             'update_index',
         )
@@ -32,4 +35,3 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RunPython(load_initial_wordpress_content),
     ]
-
