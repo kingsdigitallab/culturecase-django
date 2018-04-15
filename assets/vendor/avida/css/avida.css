@@ -81,14 +81,14 @@ So we moved all of the here and we include this CSS OUTSIDE of {%compress%} bloc
     background-position: 19px 19px  !important;
     left: 0 !important;
     margin-left:0 !important;
-    z-index:10;
+    z-index:20;
 }
 .ls-avada .ls-nav-next,.rev_slider_wrapper .tp-rightarrow,.products-slider .es-nav span.es-nav-next {
     background-image: url(../images/social/ls_next.png)  !important;
     background-position: 29px 19px  !important;
     right: 0  !important;
     margin-left:0 !important;
-    z-index:10;
+    z-index:20;
 }
 .ls-avada .ls-playvideo{
     background-image: url(../images/skin.png); 

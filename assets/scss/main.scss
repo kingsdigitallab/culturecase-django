@@ -1954,6 +1954,11 @@ body #sidebar .tab-hold .tabs li.active a {
 
 .share-box {
     background-color: #f6f6f6;
+    h4 {
+        // GN: reduced padding otherwise h4 pushed the icon bar down,
+        // under certain viewport scaling/width conditions.
+        padding: 0 10px 0 10px;
+    }
 }
 
 .grid-layout .post, .timeline-layout .post {
