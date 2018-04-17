@@ -11,7 +11,7 @@ from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel,\
     PageChooserPanel, InlinePanel
-from django.db.models.fields import BooleanField, CharField, URLField,\
+from django.db.models.fields import CharField, URLField,\
     EmailField, IntegerField
 from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
 from django.http import Http404
@@ -58,20 +58,13 @@ class RichPage(Page):
 
     body = RichTextField(blank=True)
 
-    show_kcl_logo = BooleanField(
-        'Show KCL Logo',
-        blank=False,
-        null=False,
-        default=False
-    )
-
     short_title = CharField(
-        'Short title',
+        'Menu label',
         max_length=32,
         blank=True,
         null=True,
         default=None,
-        help_text='A word or two that can be included in the main menu'
+        help_text='A very short label used to represent this page in a menu'
     )
 
     content_panels = Page.content_panels + [
@@ -80,7 +73,6 @@ class RichPage(Page):
 
     promote_panels = Page.promote_panels + [
         MultiFieldPanel([
-            FieldPanel('show_kcl_logo'),
             FieldPanel('short_title')
         ],
             heading='Presentation',

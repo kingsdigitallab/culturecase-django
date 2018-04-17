@@ -91,11 +91,8 @@
               {% endblock %}
             </div>
             <nav id="nav" class="nav-holder">
-              {# % include "culturecase_wagtail/top_menu_static.html" % #}
               {% block menu %}
-                {# % get_site_root as site_root % #}
-                {# % top_menu menu_root=site_root calling_page=page active_page_slug=active_page_slug % #}
-                {% kdl_menu_top menu_slug='primary' active_page_slug=active_page_slug %}
+                {% kdl_menu_top menu_slug='primary,Research:research,Data:data' active_page_slug=active_page_slug %}
               {% endblock %}
             </nav>
           </div>
@@ -125,8 +122,6 @@
           </div>
           <nav id="nav" class="nav-holder">
             {% block menu_sticky %}
-              {# % get_site_root as site_root % #}
-              {# % top_menu menu_root=site_root active_page_slug=active_page_slug % #}
               {% kdl_menu_top menu_slug='primary' active_page_slug=active_page_slug %}
             {% endblock %}
           </nav>
@@ -184,14 +179,6 @@
 
                     {% endblock %}
       
-                    <!-- Remove
-                    {% if page.show_kcl_logo %}
-                      <p>
-                        <a href="http://www.kcl.ac.uk/" id="footer-logo" target="_blank">
-                          <img src="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/images/logo-kcl.png' %}" alt="King's College London">
-                        </a>
-                      </p>
-                    {% endif %}-->
                   </div>
                 {% endblock %}
                 

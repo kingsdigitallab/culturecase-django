@@ -11,7 +11,7 @@
         {% with specific_item.get_related_categories as submenuitems %}
           {% if submenuitems %}
             <ul class="sub-menu">
-              {% for category in specific_item.get_related_categories %}
+              {% for category in submenuitems %}
                 <li id="menu-item-153" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-153">
                   <a href="{{ category.url }}">
                     {{ category.specific.get_shortest_title }}
