@@ -42,6 +42,13 @@ def kdl_menu_top(context, menu_slug, active_page_slug=None):
 
 
 @register.inclusion_tag(
+    'culturecase_wagtail/menu_top_second.html', takes_context=True)
+def kdl_menu_top_second(context, menu_slug, active_page_slug=None):
+    return kdl_menu(context, menu_slug=menu_slug,
+                    active_page_slug=active_page_slug)
+
+
+@register.inclusion_tag(
     'culturecase_wagtail/menu_sub.html', takes_context=True)
 def kdl_menu_sub(context, menu_slug, active_page_slug=None):
     return kdl_menu(context, menu_slug=menu_slug,
