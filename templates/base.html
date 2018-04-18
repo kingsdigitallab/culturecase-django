@@ -101,13 +101,6 @@
           </div>
         </header>
       <div class="subnav">
-        <div class="search-bar">
-          <form role="search" method="get" action="{% url 'search' %}">
-            <input type="text" id="s" name="s" {% if search_query %} value="{{ search_query }}"{% endif %} placeholder="Search..." > 
-            <input type="submit" id="searchsubmit" value="">
-          </form>
-        </div>
-        
         {% if in_data_portal %}
             {% kdl_menu_sub menu_slug='data' active_page_slug=active_page_slug %}
         {% else %}
@@ -141,8 +134,10 @@
     
     {% block title_container %}
       <div class="page-title-container">
-        <div class="page-title">
-          <div class="page-title-wrapper">
+         
+         
+        <div class="page-title avada-row">
+  
             <div class="page-title-captions">
               <h1 class="entry-title">
                   {% block title %}
@@ -150,7 +145,7 @@
                   {% endblock %}
               </h1>
             </div>
-          </div>
+         
         </div>
       </div>
     {% endblock %}

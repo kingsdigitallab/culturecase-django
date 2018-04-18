@@ -133,6 +133,7 @@ form.django-form-ul {
 $black: #000;
 $darkgray: #888;
 $darkorange: #FE5900;
+$midgray:#ccc;
 $lightgray: #f1f1f1;
 $lightorange: #FF9E01;
 $white: #fff;
@@ -200,7 +201,6 @@ form, fieldset {
     border-style:none;
 }
 
-
 // ** Header **
 body {
     #header{
@@ -214,8 +214,10 @@ body {
               }
               h1{
                 font-size:26px; 
-                font-weight:normal; 
                 margin:25px 0 0 0;
+                //font-size: 30px; 
+                //margin: 33px 0 0 0;
+                font-weight:normal; 
               }
               ul{
                 margin:0 0 0 -40px;
@@ -264,7 +266,9 @@ body {
             .logo{
                 margin-top:0;max-height:65px;width:auto;
             }
-            #nav>ul>li>a {padding:0;}
+            #nav>ul>li>a {
+                padding:0;
+            }
             #nav ul ul{
                 ul{
                 top:-3px !important;
@@ -290,7 +294,7 @@ nav{
     z-index: 99999;
 }
 #nav {
-    font-size: 14px !important;
+    font-size: 15px !important;
 }
 #nav ul{
     list-style:none;
@@ -300,11 +304,10 @@ nav{
 
 #nav ul li{
     float:left;
-    padding: 0 35px 0 0;
+    padding: 35px 35px 30px 0;
     margin: 0;
     position:relative;
     a{
-        padding:35px 0 30px 0;
         color: $darkgray;
     }
 }
@@ -376,7 +379,6 @@ ul#nav > li:last-child{padding-right:0;}
 #nav ul .current_page_item a, #nav ul .current-menu-item a, #nav ul>.current-menu-parent a,
     #nav ul ul, #nav li.current-menu-ancestor a, #nav ul li a:hover {
     color: #FE5900 !important;
-    border-color: #FE5900 !important;
 }
 
 // ** Subnav **
@@ -388,29 +390,31 @@ ul#nav > li:last-child{padding-right:0;}
     ul{
         list-style: none;
         float: right;
-        margin:0;
         li{
             float: left;
+            padding-right:40px;
+            &:last-child{
+                padding-right:0;
+            }
             a{
                 font-family: 'KingsBureauGrotTS', sans-serif;
                 font-size: 14px;
-                margin-right:25px;
                 color:$white;
                 &:hover{
                     color: $lightorange;
                 }
             }
             
-            // GN: temporary pop-down menu
+            // dropdown menu
             &.active > a{
                 color: $lightorange;
             }
 
             ul{
                 position: absolute;
-                margin: -4px;
+                margin: 0 0 0 -10px;
                 z-index: 30;
-                padding: 4px;
+                padding: 5px 5px 5px 9px;
                 background: $darkgray;
                 display: none;
                 position: absolute;
@@ -418,6 +422,11 @@ ul#nav > li:last-child{padding-right:0;}
                     padding-top: 3px;
                     display: block;
                     float: none;
+                    a{
+                        color: $white;
+                        margin:0;
+                        font-family: "Sorts Mill Goudy", Arial, Helvetica, sans-serif;
+                    }
                 }
             }
             &:hover{
@@ -433,8 +442,6 @@ ul#nav > li:last-child{padding-right:0;}
 
 .search-bar {
     color: #FFF;
-    float: right;
-    padding-right: 15px;
 }
 .search-bar input{
     background: $white;
@@ -443,10 +450,11 @@ ul#nav > li:last-child{padding-right:0;}
     color: #333 !important;
     font-size: 13px;
     width: 65%;
-    border: none;
     height: 25px;
     padding: 0 5%;
     float: left;
+    border: 1px solid $midgray;
+    border-right: none;
 }
 .search-bar input[type="submit"] {
     color: #FFF !important;
@@ -454,7 +462,7 @@ ul#nav > li:last-child{padding-right:0;}
     font-size: 14px;
     text-indent: 0 !important;
     width: 23%;
-    height: 25px;
+    height: 27px;
     margin: 0;
     padding: 0;
     background: $lightorange;
@@ -688,25 +696,23 @@ a.search-link:after {
 
 // ** Front page **
 .page-title-container{
-    height:60px;
     background-position:center center;
     background-repeat:no-repeat;
     background-color:$lightorange;
     display: table;
     width:100%;
+    padding:20px 0;
 }
 .page-title{
     display: table-cell;
     vertical-align: middle;
-    width:940px;
     margin:0 auto;
     overflow:hidden;
 }
 .page-title-wrapper{
     width: 100%;
     margin: 0 auto;
-    max-width: 960px;
-    padding: 0 10px;
+    padding: 0 40px;
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
     box-sizing: border-box;         /* Opera/IE 8+ */
@@ -1291,17 +1297,6 @@ a:hover {
     -webkit-text-shadow: none !important;
 }
 
-#nav ul .current_page_item a, #nav ul .current-menu-item a, #nav ul>.current-menu-parent a,
-    #nav ul ul, #nav li.current-menu-ancestor a, .reading-box,
-    .portfolio-tabs li.active a, .faq-tabs li.active a, .tab-holder .tabs li.active a,
-    .post-content blockquote, .progress-bar-content, .pagination .current,
-    .bbp-topic-pagination .current, .pagination a.inactive:hover, #nav ul a:hover,
-    .woocommerce-pagination .current, .tagcloud a:hover, #header .my-account-link:hover:after,
-    body #header .my-account-link-active:after, #bbpress-forums div.bbp-topic-tags a:hover
-    {
-    border-color: #FE5900 !important;
-}
-
 #nav li.current-menu-ancestor a {
     color: #FE5900 !important;
 }
@@ -1439,8 +1434,7 @@ body {
 }
 
 #wrapper {
-    background: #fff;
-    width: 1000px;
+    width: 1100px;
     margin: 0 auto;
 }
 
@@ -2015,11 +2009,36 @@ body #sidebar .tab-hold .tabs li.active a {
     display: none !important;
 }
 
+
+
+
+
 @media only screen and (max-width: 940px) {
     .breadcrumbs {
         display: none !important;
     }
 }
+
+@media only screen and (max-width: 800px) {
+
+    #header{
+        padding:0 0 20px 0;
+      .logo{
+          h1{
+            margin:0;
+          }
+        }
+    }
+    .subnav{
+        ul{
+            float: left;
+        }
+    }
+    .avada-row{
+        padding: 0 40px;
+    }
+}
+
 
 @media only screen and (min-device-width: 768px) and (max-device-width:
     1024px) and (orientation: portrait) {
@@ -2226,3 +2245,9 @@ body #sidebar .tab-hold .tabs li.active a {
     border-style: none
 }
 
+
+@media only screen and (max-width: 600px) {
+    .avada-row{
+    padding: 0 10px;
+    }
+}

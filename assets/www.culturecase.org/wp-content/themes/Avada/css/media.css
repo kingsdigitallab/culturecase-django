@@ -76,9 +76,6 @@
 		padding-left:10px; padding-right:10px;
 		padding-top:18px;
 	}
-	.page-title-wrapper{
-		width:auto;
-	}
 	.page-title h1{
 		float:none;
 	}
@@ -90,11 +87,10 @@
 	}
 
 	#header{
-		padding:20px;
+		padding:20px 0;
 	}
 	#header .logo{
 		float:none !important;
-		text-align:center !important;
 		margin:0 !important;
 		margin-bottom:20px !important;
 	}
@@ -272,41 +268,6 @@
 	.header-social .social-networks{max-width:100% !important;}
 	.header-social .social-networks li{margin-bottom:0;max-width:auto;}
 
-	.header-v2 .header-social .alignleft{width:100%; margin:0; text-align:center;margin-top:-15px;margin-bottom:10px;}
-	.header-v2 .header-social .alignright{width:100%; margin:0; text-align:center;margin-bottom:10px;}
-	.header-v2 .header-social .social-networks{width:100%; padding-bottom:0;}
-	.header-v2 .header-social .social-networks li{float:none; margin-left:10px; margin-right:10px;}
-	.header-v2 .header-social{padding-bottom:0;}
-
-	.header-v3 .header-social .alignleft{width:100%; margin:0; text-align:center;margin-top:-15px;margin-bottom:10px;}
-	.header-v3 .header-social .alignright{width:100%; margin:0; text-align:center;margin-bottom:10px;}
-	.header-v3 .header-social .social-networks{width:100%; padding-bottom:0;}
-	.header-v3 .header-social .social-networks li{float:none; margin-left:10px; margin-right:10px;}
-	.header-v3 .header-social{padding-bottom:0;}
-
-	.header-v4 .header-social .alignleft{width:100%; margin:0; text-align:center;margin-top:-15px;margin-bottom:10px;}
-	.header-v4 .header-social .alignright{width:100%; margin:0; text-align:center; clear:both;margin-bottom:10px;}
-	.header-v4 .header-social .social-networks{width:100%; margin-top:0; padding-bottom:0;}
-	.header-v4 .header-social .social-networks li{float:none; margin-bottom:0; margin-left:10px; margin-right:10px; line-height:26px;}
-	.header-v4 .header-social .social-networks li a{margin-bottom:0;}
-	.header-v4 .header-social{padding-bottom:0;}
-	.header-v4 #header{padding-left:20px; padding-right:20px;}
-	.header-v4 #header .logo{width:100%; margin-bottom:10px !important;}
-	.header-v4 #header .search{width:100%; float:none; margin-bottom:5px;}
-	.header-v4 #header #s { width: 100% !important; }
-	.header-v4 #header .tagline{width:100%; float:none; text-align:center;}
-	.header-v4 #small-nav{padding:6px 20px;}
-	.header-v4 #small-nav #nav{width:100%;}
-	.header-v4 .header-social .alignright .menu{margin-top:-10px; line-height:25px;}
-
-	.header-v5 .header-social .alignleft{width:100%; margin:0; text-align:center; margin-top:-15px;margin-bottom:10px;}
-	.header-v5 .header-social .alignright{width:100%; margin:0; text-align:center;margin-bottom:10px;}
-	.header-v5 .header-social .social-networks{width:100%; padding-bottom:0;}
-	.header-v5 .header-social .social-networks li{float:none; margin-left:10px; margin-right:10px;}
-	.header-v5 .header-social{padding-bottom:0;}
-	.header-v5 #small-nav{padding:6px 20px;}
-	.header-v5 #small-nav #nav{width:100%;}
-
 	#wrapper .ei-slider{width:100% !important;}
 
 	.tfs-slider .slides{width:auto !important;}
@@ -399,6 +360,10 @@
 		-moz-box-sizing: border-box;
 		box-sizing: border-box;
 	}
+
+    .avada-row{
+    padding: 0 10px;
+    }
 	.avada-container .columns {
 		float:none;
 		width:100%;
@@ -458,15 +423,6 @@
 		line-height:11px !important;
 	}
 
-	#header{
-		padding:20px;
-	}
-	#header .logo{
-		float:none;
-		text-align:center;
-		margin:0 !important;
-		margin-bottom:20px !important;
-	}
 	#header .nav-holder{
 		float:none;
 	}
@@ -641,41 +597,6 @@
 	.header-social{padding-top:10px;}
 	.header-social .social-networks li{margin-bottom:0;}
 
-	.header-v2 .header-social .alignleft{width:100%; margin:0; text-align:center;margin-top:-15px;margin-bottom:10px;}
-	.header-v2 .header-social .alignright{width:100%; margin:0; text-align:center;margin-bottom:10px;}
-	.header-v2 .header-social .social-networks{width:100%; padding-bottom:0;}
-	.header-v2 .header-social .social-networks li{float:none; margin-left:10px; margin-right:10px;}
-	.header-v2 .header-social{padding-bottom:0;}
-
-	.header-v3 .header-social .alignleft{width:100%; margin:0; text-align:center;margin-top:-15px;margin-bottom:10px;}
-	.header-v3 .header-social .alignright{width:100%; margin:0; text-align:center;margin-bottom:10px;}
-	.header-v3 .header-social .social-networks{width:100%; padding-bottom:0;}
-	.header-v3 .header-social .social-networks li{float:none; margin-left:10px; margin-right:10px;}
-	.header-v3 .header-social{padding-bottom:0;}
-
-	.header-v4 .header-social .alignleft{width:100%; margin:0; text-align:center;margin-top:-15px;margin-bottom:10px;}
-	.header-v4 .header-social .alignright{width:100%; margin:0; text-align:center; clear:both;margin-bottom:10px;}
-	.header-v4 .header-social .social-networks{width:100%; margin-top:0; padding-bottom:0;}
-	.header-v4 .header-social .social-networks li{float:none; margin-bottom:0; margin-left:10px; margin-right:10px; line-height:26px;}
-	.header-v4 .header-social .social-networks li a{margin-bottom:0;}
-	.header-v4 .header-social{padding-bottom:0;}
-	.header-v4 #header{padding-left:20px; padding-right:20px;}
-	.header-v4 #header .logo{width:100%; margin-bottom:10px !important;}
-	.header-v4 #header .search{width:100%; float:none; margin-bottom:5px;}
-	.header-v4 #header #s { width: 100% !important; }	
-	.header-v4 #header .tagline{width:100%; float:none; text-align:center;}
-	.header-v4 #small-nav{padding:6px 20px;}
-	.header-v4 #small-nav #nav{width:100%;}
-	.header-v4 .header-social .alignright .menu{margin-top:-10px; line-height:25px;}
-
-	.header-v5 .header-social .alignleft{width:100%; margin:0; text-align:center; margin-top:-15px;margin-bottom:10px;}
-	.header-v5 .header-social .alignright{width:100%; margin:0; text-align:center;margin-bottom:10px;}
-	.header-v5 .header-social .social-networks{width:100%; padding-bottom:0;}
-	.header-v5 .header-social .social-networks li{float:none; margin-left:10px; margin-right:10px;}
-	.header-v5 .header-social{padding-bottom:0;}
-	.header-v5 #small-nav{padding:6px 20px;}
-	.header-v5 #small-nav #nav{width:100%;}	
-
 	#wrapper .ei-slider{width:100% !important;}
 
 	.tfs-slider .slides{width:auto !important;}
@@ -695,10 +616,7 @@
 	.header-social {
 	    line-height: normal;
 	}
-	#header .logo{
-		float:none;
-		margin:20px auto;
-	}
+
 	.avada-container .columns .col,
 	.footer-area .columns .col,
 	#slidingbar-area .columns .col{
@@ -798,8 +716,6 @@
 	.grid-layout .meta-info .alignright,.timeline-layout  .meta-info .alignright{
 		float:right !important;
 	}
-
-	#main,.fullwidth-box,.footer-area,#footer,#slidingbar{padding-left:12px;padding-right:12px;}
 
 	/*.title h1,.title h2,.title h3,.title h4,.title h5,.title h6{white-space:normal !important;}
 	.title .title-sep-container{width:20%;}*/
