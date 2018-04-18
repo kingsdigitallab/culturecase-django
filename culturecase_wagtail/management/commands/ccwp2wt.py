@@ -75,8 +75,6 @@ class Command(KdlWp2Wt):
                 'title': node['title'],
                 'slug': slug,
                 'body': self.convert_body(node['content:encoded']),
-                # 'sample-page' = HomePage in CC Wordpress XML, we cheat
-                'show_kcl_logo': (slug in ['about', 'sample-page']),
                 # Note that in WP, post_date_gmt is '0' if never been live
                 # get_datetime_from_wp should return None for it
                 'go_live_at': self.get_datetime_from_wp(
@@ -108,7 +106,6 @@ class Command(KdlWp2Wt):
             else:
                 info['wordpressid_alias'] = ALIAS_HOME_PAGE
                 ret['model'] = HomePage
-                ret['data']['show_kcl_logo'] = True
 
         return ret
 

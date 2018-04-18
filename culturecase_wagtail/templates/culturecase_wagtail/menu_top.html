@@ -11,7 +11,7 @@
         {% with specific_item.get_related_categories as submenuitems %}
           {% if submenuitems %}
             <ul class="sub-menu">
-              {% for category in specific_item.get_related_categories %}
+              {% for category in submenuitems %}
                 <li id="menu-item-153" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-153">
                   <a href="{{ category.url }}">
                     {{ category.specific.get_shortest_title }}
@@ -25,6 +25,17 @@
       </li>
     {% endwith %}
   {% endfor %}
+
+  <li class="menu-item menu-item-type-post_type menu-item-object-page mobile-only">
+    <a href="/">Research</a>
+    {% kdl_menu_top_second 'research' %}
+  </li>
+
+  <li class="menu-item menu-item-type-post_type menu-item-object-page mobile-only">
+    <a href="/">Data</a>
+    {% kdl_menu_top_second 'data' %}
+  </li>
+
   <li class="menu-item menu-item-type-post_type menu-item-object-page">
     <div class="search-bar">
       <form role="search" method="get" action="{% url 'search' %}">
@@ -33,4 +44,5 @@
       </form>
     </div>
   </li>
+
 </ul>

@@ -42,6 +42,13 @@ def kdl_menu_top(context, menu_slug, active_page_slug=None):
 
 
 @register.inclusion_tag(
+    'culturecase_wagtail/menu_top_second.html', takes_context=True)
+def kdl_menu_top_second(context, menu_slug, active_page_slug=None):
+    return kdl_menu(context, menu_slug=menu_slug,
+                    active_page_slug=active_page_slug)
+
+
+@register.inclusion_tag(
     'culturecase_wagtail/menu_sub.html', takes_context=True)
 def kdl_menu_sub(context, menu_slug, active_page_slug=None):
     return kdl_menu(context, menu_slug=menu_slug,
@@ -57,20 +64,21 @@ def kdl_menu(context, menu_slug, active_page_slug=None):
     request = context['request']
 
     # menuitems = menu_slug.get_children().live().in_menu()
-    menu = Menu.objects.filter(slug=menu_slug).first()
+    menus = Menu.objects.filter(slug__in=menu_slug.split(','))
 
     menuitems = []
-    for menuitem in menu.menu_items.all():
-        menuitem = menuitem.page
-        menuitem.show_dropdown = has_menu_children(menuitem)
-        # We don't directly check if calling_page is None since the template
-        # engine can pass an empty string to calling_page
-        # if the variable passed as calling_page does not exist.
-        item_path = pageurl(context, menuitem)
-        menuitem.active = menuitem.slug == active_page_slug or (
-            request.path.startswith(item_path)
-        )
-        menuitems.append(menuitem)
+    for menu in menus:
+        for menuitem in menu.menu_items.all():
+            menuitem = menuitem.page
+            menuitem.show_dropdown = has_menu_children(menuitem)
+            # We don't directly check if calling_page is None since the
+            # template engine can pass an empty string to calling_page
+            # if the variable passed as calling_page does not exist.
+            item_path = pageurl(context, menuitem)
+            menuitem.active = menuitem.slug == active_page_slug or (
+                request.path.startswith(item_path)
+            )
+            menuitems.append(menuitem)
 
     return {
         'menuitems': menuitems,
@@ -78,14 +86,14 @@ def kdl_menu(context, menu_slug, active_page_slug=None):
         'request': request,
     }
 
-# Retrieves the top menu items - the immediate children of the parent page
-# The has_menu_children method is necessary because the bootstrap menu requires
-# a dropdown class to be applied to a parent
-
 
 @register.inclusion_tag(
     'culturecase_wagtail/top_menu.html', takes_context=True)
 def top_menu(context, menu_root, calling_page=None, active_page_slug=None):
+    # DEPRECATED: replaced by use kdl_menu()
+    # Retrieves the top menu items - the immediate children of the parent page
+    # The has_menu_children method is necessary because the bootstrap menu
+    # requires a dropdown class to be applied to a parent
     '''
     menu_root: the menu root
     calling_page = the requested page
