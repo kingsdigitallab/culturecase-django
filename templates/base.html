@@ -81,47 +81,9 @@
 
 <body class="{% block body_class %}light{% endblock %}">
   <div id="wrapper">
-
-    <div class="header-wrapper">
-        <header id="header">
-          <div class="avada-row" style="margin-top: 0; margin-bottom: 0;">
-            <div class="logo">
-              {% block header%}
-                {% include 'includes/header.html' %}
-              {% endblock %}
-            </div>
-            <nav id="nav" class="nav-holder">
-              {% block menu %}
-                {% kdl_menu_top menu_slug='primary,Research:research,Data:data' active_page_slug=active_page_slug %}
-              {% endblock %}
-            </nav>
-          </div>
-        </header>
-      <div class="subnav">
-        {% if in_data_portal %}
-            {% kdl_menu_sub menu_slug='data' active_page_slug=active_page_slug %}
-        {% else %}
-            {% kdl_menu_sub menu_slug='research' active_page_slug=active_page_slug %}
-        {% endif %}
-      </div>
-      
-    </div>
-    
-    <header id="header" class="sticky-header">
-      <div class="sticky-shadow">
-        <div class="avada-row">
-          <div class="logo">
-            {% include 'includes/header.html' %}
-          </div>
-          <nav id="nav" class="nav-holder">
-            {% block menu_sticky %}
-              {% kdl_menu_top menu_slug='primary' active_page_slug=active_page_slug %}
-            {% endblock %}
-          </nav>
-        </div>
-      </div>
-    </header>
-    
+    {% block header%}
+      {% include 'includes/header.html' %}
+    {% endblock %}
     <div id="sliders-container"></div>
     <p class="print-header">
       <img src="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/images/logo-culturecase.png' %}" alt="Culture Case" />
@@ -129,10 +91,7 @@
     
     {% block title_container %}
       <div class="page-title-container">
-         
-         
         <div class="page-title avada-row">
-  
             <div class="page-title-captions">
               <h1 class="entry-title">
                   {% block title %}
@@ -140,7 +99,6 @@
                   {% endblock %}
               </h1>
             </div>
-         
         </div>
       </div>
     {% endblock %}
