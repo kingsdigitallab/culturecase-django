@@ -9,47 +9,6 @@
     min-height: 240px;
 }
 
-body div.flex-row {
-    display: flex;
-    max-width: 636px;
-    
-    p {
-        width: auto;
-        padding-right: 5px;
-        margin-right: 0 !important;
-    }
-}
-
-
-.consent-text {
-    font-size: 13px;
-    width: 64%;
-    
-    label {
-        font-weight: normal;
-    }
-}
-
-// body .mc4wp-form-ccinput {
-//     width: 22%;
-// }
-
-body .footer-widget-col p.mc4wp-form-ccsubmit {
-    float: right;
-    
-    input[type="submit"] {
-        margin: 10px 0 0 0 !important;
-    }
-}
-
-// Double-sized Checkboxes
-body div input[type=checkbox].big-checkbox {
-    -ms-transform: scale(2); /* IE */
-    -moz-transform: scale(2); /* FF */
-    -webkit-transform: scale(2); /* Safari and Chrome */
-    -o-transform: scale(2); /* Opera */
-    margin-left: 10px;
-}
 
 // this is to override crazy text-shadow by the legacy css
 body .footer-area a {
@@ -264,14 +223,29 @@ body {
             padding:0;
             width:100%;
             height: 105px;
+            .avada-row{
+
+            }
             &.sticky{
                 display:block;  
             }
             .logo{
-                margin-top:0;max-height:65px;width:auto;
+                margin-top:0;
+                max-height:65px;
+                width:auto;
+                h1{
+                    margin-top:15px;
+                }
             }
-            #nav>ul>li>a {
+            #nav>ul>li{
+                padding-top:0;
+
+            >a {
                 padding:0;
+            }
+            .search-bar{
+                padding-top:20px;
+            }
             }
             #nav ul ul{
                 ul{
@@ -378,6 +352,9 @@ ul#nav > li:last-child{padding-right:0;}
 #nav .dd-container,.top-menu .dd-container{
     max-width:100%;
     display:none;
+    /*position: absolute;
+    top: 3%;
+    right: 5%;*/
 }
 
 #nav ul .current_page_item a, #nav ul .current-menu-item a, #nav ul>.current-menu-parent a,
@@ -782,8 +759,7 @@ a.search-link:after {
     float:right;
 }
 .social-networks li{
-    float:right;
-    margin:0 20px 0 0;
+    float:left;
     position:relative;
     height:26px;
 }
@@ -879,7 +855,7 @@ a.search-link:after {
 // ** Newsletter **
 .footer-area {
     border:none;
-    padding:20px 10px;
+    padding:20px 0;
     background-color: $lightgray;
     color: $darkgray;
     h3 {
@@ -917,6 +893,7 @@ a.search-link:after {
     background-color: $lightorange;
     border-radius: 0;
     font-family: 'KingsBureauGrotTS', sans-serif;
+    width:100%;
 }
 .mc4wp-form-theme-dark button,
 .mc4wp-form-theme-dark input[type=submit] {
@@ -986,9 +963,12 @@ a.search-link:after {
 }
 
 .footer-area .footer-widget-col h3 {
-    margin-bottom:8px;
-    font-size:17px !important;
+    margin-bottom:0;
+    font-family: 'KingsBureauGrotTS', sans-serif;
+    font-size:17px;
     text-transform: none;
+    color: $darkgray;
+    font-weight: normal;
 }
 
 
@@ -997,28 +977,18 @@ a.search-link:after {
     margin-bottom:8px;
     float:left;
 }
-.mc4wp-form-ccinput {
-    width:20%;
-    margin-right:2% !important;
-}
-.mc4wp-form-ccsubmit {
-    width:12%;
-}
+
+
 .textwidget .mc4wp-form {
     margin:0;
     font-family: "PT Sans",Arial,Helvetica,sans-serif !important;
 }
 .textwidget .mc4wp-form label {
     font-size:12px;
+    float: left;
 }
-.textwidget .mc4wp-form input {
-    font-size:12px;
-    padding:2px 6px !important;
-}
-.textwidget .mc4wp-form input[type="submit"] {
-    padding:4px 24px !important;
-    margin:22px 0 0 0 !important;
-}
+
+
 .mc4wp-response p {
     color:#fff;
 }
@@ -1029,37 +999,35 @@ a.search-link:after {
 // ** Footer **
 
 footer{
-    ul{
-        list-style: none;
-        font-family: "Sorts Mill Goudy", Arial, Helvetica, sans-serif;
-        font-size: 13px;
-        line-height: 20px;
-        margin:10px 0 15px -25px;
-        padding:25px 0;
-        .styled{
-            font-family: 'KingsBureauGrotTS', sans-serif;
-            font-size: 15px;
-        }
-        li{
-        a{
-            color: $lightorange;
-        }
-    }
-    }
-    img{
+    .image{
         float:left;
         width:150px;
-        margin:0 20px 0 15px;
+        margin:0 5% 0 -15px;
+    }
+    .info{
+        float:left;
+        width:70%;
+        ul{
+            list-style: none;
+            font-family: "Sorts Mill Goudy", Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            line-height: 20px;
+            margin:0 0 0 -25px;
+            padding:25px 0;
+            .styled{
+                font-family: 'KingsBureauGrotTS', sans-serif;
+                font-size: 18px;
+            }
+            li{
+            a{
+                color: $lightorange;
+            }
+        }
+    }
     }
 }
 
-// ----------------------------------------------------------------------
 
-Avada Child_ {
-    color: green;
-}
-
-// --------
 @media only screen and (min-device-width: 768px) and (max-device-width:
     1024px) and (orientation: portrait) {
     #wrapper .ei-slider {
@@ -2041,6 +2009,14 @@ body #sidebar .tab-hold .tabs li.active a {
     .avada-row{
         padding: 0 40px;
     }
+
+
+
+
+
+
+
+
 }
 
 
@@ -2250,8 +2226,28 @@ body #sidebar .tab-hold .tabs li.active a {
 }
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 650px) {
     .avada-row{
     padding: 0 10px;
     }
+    footer{
+    .image{
+        width:100%;
+        margin: 0 auto;
+        text-align: center;
+        img{
+            width:150px;
+        }
+    }
+    .info{
+        width:100%;
+        ul{
+            text-align:center;
+            margin: 0;
+            padding:0 0 15px 0;
+    }
+    }
+}
+
+
 }

@@ -200,9 +200,7 @@
 	.share-box ul{
 		float:none;
 		overflow:hidden;
-		padding:0 25px;
-		padding-bottom:25px;
-		margin-top:0px;
+		padding-bottom:20px;
 	}
 
 	.project-content .project-description{
@@ -360,10 +358,6 @@
 		-moz-box-sizing: border-box;
 		box-sizing: border-box;
 	}
-
-    .avada-row{
-    padding: 0 10px;
-    }
 	.avada-container .columns {
 		float:none;
 		width:100%;

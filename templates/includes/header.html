@@ -31,14 +31,24 @@
 		{% kdl_menu_sub menu_slug='research' active_page_slug=active_page_slug %}
 		{% endif %}
 	</div>
-
 </div>
-
 <header id="header" class="sticky-header">
 	<div class="sticky-shadow">
 		<div class="avada-row">
 			<div class="logo">
-				{% include 'includes/header.html' %}
+			<h1>
+				<a href="/">CultureCase </a>
+			</h1>
+			{% if DATA_PORTAL_ENABLED %}
+			  <ul>
+			  	<li>
+			  		<a href="/" class="{% if not in_data_portal %}active{% endif %}">RESEARCH</a>
+			  	</li> 
+			  	<li>
+			  		<a href="/data/" class="{% if in_data_portal %}active{% endif %}">DATA PORTAL</a>
+			  	</li>
+			  </ul>
+			{% endif %}
 			</div>
 			<nav id="nav" class="nav-holder">
 				{% block menu_sticky %}
@@ -48,6 +58,8 @@
 		</div>
 	</div>
 </header>
+
+
 
 
 

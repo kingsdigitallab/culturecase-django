@@ -931,7 +931,7 @@ else
 
 // ---------------------------------
 
-var js_local_vars = {"dropdown_goto":"Go to..."};
+var js_local_vars = {"dropdown_goto":"Menu"};
 
 var mc4wp_forms_config = [];
 

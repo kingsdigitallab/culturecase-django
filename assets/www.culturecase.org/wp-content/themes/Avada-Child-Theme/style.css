@@ -136,24 +136,132 @@ display: none !important; }
 }
 
 
-@media only screen and (max-width: 700px) {
+/* newsletter form */
+
+.mc4wp-form-fields{
+	width:100%;
+	margin:7px 0;
+	float: left;
+}
 .mc4wp-form-ccinput {
-	width:45%;
+    width:23%;
+    margin-right:2%;
+}
+
+/* Customize the label (the container) */
+.checkbox {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  left: 0;
+  top:0;
+  height: 25px;
+  width: 25px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox:hover input ~ .checkmark {
+  border: 1px solid #FF9E01;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox input:checked ~ .checkmark {
+  background-color: #FF9E01;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.mc4wp-form-ccsubmit {
+	width:17%;
+    float:left;
+}
+
+.consent-text {
+    font-size: 13px;
+    width: 70%;
+    float: left;
+    margin-right: 5%;
+    label {
+        font-weight: normal;
+    }
+}
+
+
+/*.textwidget .mc4wp-form input[type="submit"] {
+    padding:4px 24px important;
+}*/
+
+@media only screen and (max-width: 800px) {
+.mc4wp-form-ccinput {
+	width:100%;
 	margin-right:5% !important;
 }
 .mc4wp-form-ccsubmit {
 	width:100%;
 }
-.textwidget .mc4wp-form input[type="submit"] {
-	margin:10px 0 0 0 !important;
-}
-}
-@media only screen and (max-width: 400px) {
 .mc4wp-form-ccinput {
 	width:100%;
 	margin-right:0 !important;
 }
-.mc4wp-form-ccsubmit {
+.textwidget .mc4wp-form label{
+	width:100%;
+}
+
+.textwidget .mc4wp-form label.checkbox{
+	width:5%;
+}
+.consent-text {
+    width: 90%;
+    margin-right: 0;
+}
+}
+@media only screen and (max-width: 400px) {
+
 }
 
 /* --------------- media queries --------------- */
