@@ -79,7 +79,7 @@
 {% endcompress %}
 </head>
 
-<body class="{% block body_class %}light{% endblock %}">
+<body class="{% block body_class %}light{% endblock %} {% if not DATA_PORTAL_ENABLED %}data-portal-hidden{% endif %} ">
   <div id="wrapper">
     {% block header%}
       {% include 'includes/header.html' %}

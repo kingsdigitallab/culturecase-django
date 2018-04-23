@@ -9,6 +9,24 @@
     min-height: 240px;
 }
 
+// Hide the mobile menu inserted by Avada JS code
+#nav div.dd-container {
+    display: none; 
+    right: 100000px;
+
+    &.kdl-mobile-menu {
+        @media only screen and (max-width: 900px) {
+            display: block;
+            right: 5%;
+        }
+        
+        &.kdl-mobile-menu-open {
+            ul.dd-options {
+                display: block;
+            }
+        }
+    }
+}
 
 // this is to override crazy text-shadow by the legacy css
 body .footer-area a {
@@ -19,8 +37,7 @@ body .footer-area a {
         text-decoration: underline;
     }
 }
- 
- 
+
  
 .search.search-results #main .post-content {
     h2 {
@@ -176,6 +193,26 @@ form, fieldset {
 
 // ** Header **
 body {
+    
+    // GN: while the the data portal section is hidden...
+    // Don't forget to test with and without this class by setting
+    // DATA_PORTAL_ENABLED = True (or False) in your local.py
+    &.data-portal-hidden {
+        // hide the 'research | data portal' menu
+        #header .logo ul {
+            display: none;
+        }
+        // move desktop menu higher
+        #nav ul li {
+            padding-top: 22px;
+        }
+        // move mobile menu higher
+        #nav .dd-container, .top-menu .dd-container {
+            top: 20px;
+        }
+    }
+    // GN: END
+    
     #header{
         font-family: "Sorts Mill Goudy", Arial, Helvetica, sans-serif;
           .logo{

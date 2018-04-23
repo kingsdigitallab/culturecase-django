@@ -1,3 +1,11 @@
+// Mobile Menu (GN)
+jQuery(function($) {
+    $('.kdl-mobile-menu .dd-select').on('click', function() {
+        $(this).parent().toggleClass('kdl-mobile-menu-open');
+    });
+});
+
+
 // head
 WebFontConfig = {
     google: { families: [ "PT+Sans:400,400italic,700,700italic:latin,greek-ext,cyrillic,latin-ext,greek,cyrillic-ext,vietnamese", "Sorts+Mill+Goudy:400,400italic,700,700italic:latin,greek-ext,cyrillic,latin-ext,greek,cyrillic-ext,vietnamese" ] },      custom: { families: ['FontAwesome'], urls: ['/static/www.culturecase.org/wp-content/themes/Avada/fonts/fontawesome.css'] }
