@@ -149,9 +149,6 @@ ul#nav > li:last-child {
   top: -3px;
   left: 170px; }
 
-#nav .dd-container, .top-menu .dd-container {
-  max-width: 100%;
-  display: none; }
 
 .search-bar {
   color: #FFF;

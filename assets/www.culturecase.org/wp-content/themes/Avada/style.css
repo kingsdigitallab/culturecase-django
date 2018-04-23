@@ -2978,22 +2978,50 @@ table{
 
 #wrapper .dd-container{font-size:12px !important;font-weight:normal !important;}
 #wrapper .dd-container .dd-select{
-    background-image:url(images/mobile_menu_bg.png)!important;
-    height:29px;
+    /* taking out for refreshed site
+    background-image:url(images/mobile_menu_bg.png)!important;*/
+    height:45px;
     line-height:29px;
-    border-color:#dadada !important;
+    border-color:#fff !important;
+    background-color:#fff !important;
     border-radius:0px !important;
     text-align:left !important;
-    /*width: 20% !important;
-    float: right;*/
+    width: 20% !important;
+    float: right;
 }
 #wrapper .dd-container .dd-selected{padding:0 15px;}
-#wrapper .dd-container .dd-pointer{border:0 !important;background:url(images/mobile_menu_icon.png) no-repeat top left;width:48px;height:29px;margin:0 !important;top:0px;right:5px;}
-#wrapper .dd-container label,#wrapper .dd-container a{color:#333333 !important;}
-#wrapper .dd-options{border-color:#dadada !important;box-shadow:none !important;position:relative !important;}
-#wrapper .dd-options li{float:none;height:auto;padding:0;line-height:normal;border-bottom:1px solid #dbdbdb !important;}
-#wrapper .dd-options li a{border:0 !important;float:none;height:auto;margin:0;padding:10px;line-height:normal;color:#333 !important;}
-#wrapper .dd-options li a:hover,#wrapper .dd-options li.dd-option-selected a{background-color:#f6f6f6 !important;color:#333 !important;}
+#wrapper .dd-container .dd-pointer{
+    border:0 !important;
+    /*background:url(images/mobile_menu_icon.png) no-repeat top left;*/
+    width:70px;
+    height:29px;
+    margin:0 !important;
+    top:0px;
+    right:5px;
+    color: #888;
+}
+#wrapper .dd-container .dd-pointer:after{
+    content:"\2261";
+    position:absolute;
+    font-size:45px;
+    right: 0;
+}
+
+#wrapper .dd-container .dd-pointer:before{
+    content:"Menu";
+    position:absolute;
+    font-size:14px;
+    line-height: 32px;
+    left: 0;
+}
+
+
+#wrapper .dd-container label,#wrapper .dd-container a{color:#fff !important;}
+#wrapper .dd-options{box-shadow:none !important;position:relative !important; background: #888 !important; border: none;}
+#wrapper .dd-options li{float:none;height:auto;padding:0;line-height:normal;}
+#wrapper .dd-options li a{border:0 !important;float:none;height:auto;margin:0;padding:10px;line-height:normal;color:#fff !important;font-size: 14px}
+#wrapper .dd-options li a:hover,#wrapper .dd-options li.dd-option-selected a{background-color:#888 !important;}
+#wrapper .dd-options li a:hover label{color:#FF9E01 !important;}
 .top-menu .dd-container{text-align:left !important;font-size:12px !important;}
 #wrapper .dd-selected{font-weight:normal !important;}
 #wrapper .dd-options li:first-child{display:none !important;}
@@ -3697,7 +3725,6 @@ border:1px solid;
 .cart-totals-container .button{float:right;}
 .cart-totals-container .checkout-button{clear:both;margin-top:10px;width:185px !important;}
 
-#wrapper .custom_select_box .dd-container .dd-select,#wrapper .custom_select_box  .dd-options li a{background:#fbfaf9 !important;background-image:none !important;}
 #wrapper .custom_select_box .dd-container .dd-selected{padding:0 !important;text-indent:10px;padding-right:15px !important;}
 #wrapper .custom_select_box .dd-options li a:hover{background-color:transparent !important;}
 #wrapper .custom_select_box .dd-pointer{background-image:none !important;width:10px !important;border-left:1px solid !important;padding-left:10px;}
@@ -5085,13 +5112,7 @@ html[xmlns] .flexslider .slides {display: block;}
                 background-size:311px 133px;
     }
 
-    #wrapper .dd-container .dd-pointer{
-        background-image:url(images/mobile_menu_icon@2x.png) !important;
-        -webkit-background-size:48px 29px;
-           -moz-background-size:48px 29px;
-             -o-background-size:48px 29px;
-                background-size:48px 29px;
-    }
+
 
     #wrapper .custom_select_box .dd-container .dd-pointer{
         background-image:none !important;

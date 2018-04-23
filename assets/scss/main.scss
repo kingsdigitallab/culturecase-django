@@ -272,7 +272,7 @@ nav{
     z-index: 99999;
 }
 #nav {
-    font-size: 15px !important;
+    font-size: 16px;
 }
 #nav ul{
     list-style:none;
@@ -350,11 +350,11 @@ ul#nav > li:last-child{padding-right:0;}
     left:170px;
 }
 #nav .dd-container,.top-menu .dd-container{
-    max-width:100%;
+    width:90% !important;
     display:none;
-    /*position: absolute;
-    top: 3%;
-    right: 5%;*/
+    position: absolute;
+    top: 2rem;
+    right: 5%;
 }
 
 #nav ul .current_page_item a, #nav ul .current-menu-item a, #nav ul>.current-menu-parent a,
@@ -362,7 +362,7 @@ ul#nav > li:last-child{padding-right:0;}
     color: #FE5900 !important;
 }
 
-// ** Subnav **
+// ** Subnav ** //
 .subnav{
     background: $darkgray;
     width: 100%;
@@ -371,38 +371,50 @@ ul#nav > li:last-child{padding-right:0;}
     ul{
         list-style: none;
         float: right;
-        li{
+        >li{
             float: left;
-            padding-right:40px;
+            margin-right:30px;
+            position:relative;
+            padding-right:10px;
             &:last-child{
-                padding-right:0;
+                margin-right:0;
             }
             a{
                 font-family: 'KingsBureauGrotTS', sans-serif;
                 font-size: 14px;
                 color:$white;
+                display:block;
                 &:hover{
                     color: $lightorange;
                 }
             }
-            
-            // dropdown menu
             &.active > a{
                 color: $lightorange;
             }
-
+            // dropdown menu
             ul{
                 position: absolute;
-                margin: 0 0 0 -10px;
+                margin: 0;
                 z-index: 30;
-                padding: 5px 5px 5px 9px;
+                padding: 0;
                 background: $darkgray;
                 display: none;
-                position: absolute;
+                float: none;
+                left:auto; /* Bring back on-screen when needed */
+                right:-5px;
+                text-align: right;
+                width:200px;
                 li{
-                    padding-top: 3px;
+                    padding: 18px 0 0 0;
                     display: block;
-                    float: none;
+                    float: right;
+                    width: 100%;
+                    margin-right:15px;
+                    line-height: 18px;
+                    &:last-child{
+                        margin-right:15px;
+                        padding-bottom: 18px
+                }
                     a{
                         color: $white;
                         margin:0;
@@ -418,6 +430,13 @@ ul#nav > li:last-child{padding-right:0;}
         }
     }
 }
+
+
+
+
+
+
+
 
 // ** Search **
 
@@ -682,7 +701,7 @@ a.search-link:after {
     background-color:$lightorange;
     display: table;
     width:100%;
-    padding:20px 0;
+    padding:17px 0;
 }
 .page-title{
     display: table-cell;
@@ -889,17 +908,14 @@ a.search-link:after {
 /* mailchimp styles */
 .mc4wp-form-theme-dark button,
 .mc4wp-form-theme-dark input[type=submit] {
-    color: #fff;
+    color: $white;
     background-color: $lightorange;
     border-radius: 0;
     font-family: 'KingsBureauGrotTS', sans-serif;
     width:100%;
+    font-size:14px;
 }
-.mc4wp-form-theme-dark button,
-.mc4wp-form-theme-dark input[type=submit] {
-    color: $white;
-    background-color: #FF9E01;
-}
+
 .mc4wp-form-theme-dark button:active,
 .mc4wp-form-theme-dark button:focus,
 .mc4wp-form-theme-dark button:hover,
@@ -1024,17 +1040,6 @@ footer{
             }
         }
     }
-    }
-}
-
-
-@media only screen and (min-device-width: 768px) and (max-device-width:
-    1024px) and (orientation: portrait) {
-    #wrapper .ei-slider {
-        width: 100% !important;
-    }
-    body #header.sticky-header, body #header.sticky-header.sticky {
-        display: none !important;
     }
 }
 
@@ -2004,19 +2009,32 @@ body #sidebar .tab-hold .tabs li.active a {
     .subnav{
         ul{
             float: left;
+            li{
+                // dropdown menu
+                ul{
+                    float: none;
+                    left:-15px;
+                    text-align: left;
+                    width:200px;
+                    li{
+                        padding: 15px 0 0 0;
+                        display: block;
+                        float: right;
+                        width: 100%;
+                        margin-right: -15px;
+                        &:last-child{
+                            margin-right: -15px;
+                        }
+                    }
+                }
+            }
         }
     }
+
+
     .avada-row{
         padding: 0 40px;
     }
-
-
-
-
-
-
-
-
 }
 
 

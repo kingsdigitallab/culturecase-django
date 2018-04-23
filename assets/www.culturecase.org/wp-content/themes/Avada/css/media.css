@@ -2,7 +2,30 @@
 	.fullwidth-box{padding-left:12px;padding-right:12px;}
 	.sep-boxed-pricing .column { margin-left: 0.5% !important; }
 	.sep-boxed-pricing.columns-2 .column { margin-left: 0.4% !important; }
+
 }
+
+@media only screen and (max-width: 900px){
+	#header{
+		padding:0;
+	}
+	#header .logo{
+		float:none !important;
+		margin:0 !important;
+		margin-bottom:20px !important;
+	}
+	#header .nav-holder{
+		float:none;
+	}
+	.nav-holder ul,.top-menu .menu{display:none;}
+	.nav-holder .dd-container,.top-menu .dd-container{display:block !important;width:100%;}
+	body #header.sticky-header,body #header.sticky-header.sticky{display:none !important;}
+		#header-banner{float:none;text-align:center;margin:0 auto;width:100%;margin-top:20px;}
+}
+
+
+
+
 @media only screen and (max-width: 800px){
 	#wrapper{
 		width:auto !important;
@@ -86,19 +109,7 @@
 		line-height:11px !important;
 	}
 
-	#header{
-		padding:20px 0;
-	}
-	#header .logo{
-		float:none !important;
-		margin:0 !important;
-		margin-bottom:20px !important;
-	}
-	#header .nav-holder{
-		float:none !important;
-	}
-	.nav-holder ul,.top-menu .menu{display:none;}
-	.nav-holder .dd-container,.top-menu .dd-container{display:block !important;width:100%;}
+
 	.top-menu .dd-container{width:50% !important;margin:0 auto !important;}
 	.one_half, .one_third, .two_third, .three_fourth, .one_fourth{
 		width:100%;
@@ -293,7 +304,7 @@
 
 	.share-box .social-networks{text-align:left;}
 
-	#header-banner{float:none;text-align:center;margin:0 auto;width:100%;margin-top:20px;}
+
 
 	.products li{width:225px;}
 	.products li,.catalog-ordering > ul,.catalog-ordering .order,.products li:nth-child(3n),.products li:nth-child(4n),.has-sidebar .products li{float:none;margin-left:auto !important;margin-right:auto !important;}
@@ -327,7 +338,7 @@
 	#customer_login_box .remember-box{clear:both;display:block;padding:0;width:125px;float:left;}
 	#customer_login_box .lost_password{float:left;}
 
-	body #header.sticky-header,body #header.sticky-header.sticky{display:none !important;}
+	
 
 	body #small-nav{visibility:visible !important;}
 
@@ -417,11 +428,7 @@
 		line-height:11px !important;
 	}
 
-	#header .nav-holder{
-		float:none;
-	}
-	.nav-holder ul,.top-menu .menu{display:none;}
-	.nav-holder .dd-container,.top-menu .dd-container{display:block !important;width:100%;}
+
 	.one_half, .one_third, .two_third, .three_fourth, .one_fourth{
 		width:100%;
 		margin-bottom:20px;
@@ -580,8 +587,6 @@
 		width:100% !important;
 	}
 
-	#wrapper .page-title-container{height:auto !important;max-height:87px;padding-bottom:20px;}
-
 	.error_page .useful_links{width:100%;padding-left:0;}
 
 	#gmap{width:100% !important;margin-bottom:20px !important;}
@@ -603,7 +608,7 @@
 
 	.share-box .social-networks{text-align:left;}
 
-	body #header.sticky-header,body #header.sticky-header.sticky{display:none !important;}
+
 	body #small-nav{visibility:visible !important;}
 }
 @media only screen and (max-width: 640px){
@@ -784,8 +789,6 @@
 	.my_account_orders .order-status{display:none;}
 	.my_account_orders .order-date{display:none;}
 	.my_account_orders .order-number time{display:block !important;font-size:10px;line-height:normal;}
-
-	body #header.sticky-header,body #header.sticky-header.sticky{display:none !important;}
 	body #small-nav{visibility:visible !important;}
 
 	.portfolio-masonry .portfolio-item{width:100% !important;}
