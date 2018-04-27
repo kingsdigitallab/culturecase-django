@@ -7,7 +7,7 @@
 <link rel="shortcut icon" href="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/favicon.ico' %}" />
 
 <title>CultureCase
-{% if page.url != '/' %} - {{page.title}}{% endif %}
+{% block head_title %}{% if page.url != '/' %} - {{page.title}}{% endif %}{% endblock %}
 </title>
 
 <link rel="stylesheet" type="text/css" media="print" href="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/print.css' %}" />
