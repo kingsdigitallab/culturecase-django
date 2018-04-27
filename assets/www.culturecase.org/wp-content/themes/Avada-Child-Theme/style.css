@@ -83,7 +83,7 @@ table.research-meta td {
 }
 .keywords a:hover, .keywords a:active, .keywords a:focus {
 	color: #333;
-	background: #FFFF00;
+	background: #FF9E01;
 }
 
 .page-template-bibliography-php #content h2 {
@@ -124,12 +124,13 @@ display: none !important; }
 	text-align: right;
 }
 .print-pdf a {
-	background:#fe5900;
+	background:#FF9E01;
 	color:#fff;
-	padding:2px 10px;
+	padding:4px 10px 2px 10px;
 }
 .print-pdf a:hover {
 	color:#fff;
+	background:#FE5900;
 }
 .print-header {
 	display:none;

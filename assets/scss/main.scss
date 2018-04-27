@@ -105,6 +105,7 @@ form.django-form-ul {
 // Navigation
 // Search
 // Slider
+// Article
 // Social networks icons
 // Footer
 
@@ -820,6 +821,11 @@ a.search-link:after {
     width:100% !important;
 }
 
+// ** Article **
+.print-pdf{
+    font-family: "Sorts Mill Goudy", Arial, Helvetica, sans-serif;
+}
+
 // ** Social Networks **
 #footer .social-networks{width:40%;}
 #footer .social-networks li{margin-bottom:10px;}
@@ -1463,7 +1469,8 @@ body {
 }
 
 #wrapper {
-    width: 1100px;
+    max-width: 1100px;
+    width:100%;
     margin: 0 auto;
 }
 
@@ -2315,9 +2322,42 @@ body #sidebar .tab-hold .tabs li.active a {
             text-align:center;
             margin: 0;
             padding:0 0 15px 0;
+        }
+        }
     }
+    #wrapper .dd-container .dd-pointer{
+        width:50px;
+        &:after{
+            font-size:30px;
+            right:0;
+        }
+        &:before{
+            font-size:12px;
+            line-height: 30px;
+        }
+        }
+            .footer-widget-col p{
+       margin-bottom:0;
     }
+
 }
 
+@media only screen and (max-width: 400px) {
+    .textwidget .mc4wp-form label.checkbox {
+    width: 100%;
+    }
 
+    .consent-text{
+        padding:20px 0 5px 0;
+    }
+    footer .info ul li a {
+        display: block;
+        margin-bottom: 5px
+    }
+    #nav div.dd-container.kdl-mobile-menu {
+    right: 0;
+    }
+    .page-title-container{
+        padding:10px 0;
+    }
 }

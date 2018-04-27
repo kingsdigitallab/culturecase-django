@@ -76,7 +76,7 @@ body.body_blank.admin-bar #wrapper #slidingbar-area {
 }
 .gallery-box img{width:100%;}
 #main{
-    padding:55px 0 45px;
+    padding:55px 0 15px;
     background:#fff;
     overflow:hidden !important;
     clear:both;
@@ -530,9 +530,7 @@ body .post-content .image-extras .link-icon{margin-right:3px !important;}
 .post-content .image-extras h3,.post-content .image-extras h4{line-height:normal !important;}
 .post-content .image-extras h4{font-size:11px !important;margin-top:3px !important;}
 
-.post{
-    margin-bottom:65px;
-}
+
 .post .image{
     margin-bottom:40px;
 }
@@ -574,7 +572,6 @@ body .post-content .image-extras .link-icon{margin-right:3px !important;}
     float:right;
 }
 #sidebar .widget{
-    margin-bottom:45px;
     position:relative;
 }
 #sidebar .widget.flickr{
@@ -2993,7 +2990,7 @@ table{
 
 #wrapper .dd-container .dd-pointer{
     border:0 !important;
-    width:63px;
+    width:65px;
     height:29px;
     margin:0;
     top:0;
@@ -3008,17 +3005,23 @@ table{
 #wrapper .dd-container .dd-pointer:after{
     content:"\2261";
     position:absolute;
-    font-size:45px;
+    font-size:40px;
     right: 0;
 }
 
 #wrapper .dd-container .dd-pointer:before{
     content:"Menu";
     position:absolute;
-    font-size:16px;
+    font-size:14px;
     line-height: 37px;
     left: 0;
 }
+
+
+input.dd-selected-value{
+    display:none;
+}
+
 
 
 #wrapper .dd-container label,#wrapper .dd-container a{color:#fff;}
@@ -3731,9 +3734,8 @@ border:1px solid;
 #wrapper .custom_select_box .dd-container .dd-selected{padding:0 !important;text-indent:10px;padding-right:15px !important;}
 #wrapper .custom_select_box .dd-options li a:hover{background-color:transparent !important;}
 #wrapper .custom_select_box .dd-pointer{background-image:none !important;width:10px !important;border-left:1px solid !important;padding-left:10px;}
-#wrapper .custom_select_box .dd-pointer-down:after{font-family:'FontAwesome' !important;content:"\f107";font-weight:bold;}
 #wrapper .custom_select_box .dd-options{position:absolute !important;top:auto !important;max-height:143px;}
-#wrapper .custom_select_box .dd-pointer-down{border-color:#dadada !important;}
+
 
 /*.post-content .gform_wrapper .ginput_complex .ginput_left, .post-content .gform_wrapper .ginput_complex .ginput_right, .post-content .gform_wrapper .ginput_complex .ginput_full,.post-content .gform_wrapper .ginput_complex{overflow:visible;}
 .chzn-container-single .chzn-single,.chzn-drop{background:#fbfaf9 !important;border-bottom:1px solid !important;

@@ -119,11 +119,6 @@
 		margin-bottom:0;
 	}
 
-	.title{
-		margin-top:0px !important;
-		margin-bottom:20px !important;
-	}
-
 	#content{
 		width:100% !important;
 		float:none !important;
@@ -206,7 +201,7 @@
 		float:none;
 		line-height:20px !important;
 		padding-top:25px;
-		padding-bottom:25px;
+		padding-bottom:10px;
 	}
 	.share-box ul{
 		float:none;
@@ -265,7 +260,7 @@
 		width:100% !important;
 	}
 
-	#wrapper .page-title-container{height:auto !important;max-height:87px;padding-bottom:20px;}
+	#wrapper .page-title-container{height:auto !important;}
 
 	.error_page .useful_links{width:100%;padding-left:0;}
 
@@ -437,11 +432,6 @@
 		margin-bottom:0;
 	}
 
-	.title{
-		margin-top:0px !important;
-		margin-bottom:20px !important;
-	}
-
 	#content{
 		width:100% !important;
 		float:none !important;
@@ -527,9 +517,8 @@
 	.share-box ul{
 		float:none;
 		overflow:hidden;
-		padding:0 25px;
-		padding-bottom:25px;
-		margin-top:0px;
+		padding-bottom:10px;
+		margin-top:0;
 	}
 
 	.project-content .project-description{
