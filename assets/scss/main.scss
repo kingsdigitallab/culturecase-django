@@ -210,6 +210,9 @@ body {
         #nav .dd-container, .top-menu .dd-container {
             top: 20px;
         }
+        body #header.sticky-header .logo h1 {
+            margin-top: 20px;
+        }
     }
     // GN: END
     
@@ -489,6 +492,8 @@ ul#nav > li:last-child{padding-right:0;}
 
 .search-bar {
     color: #FFF;
+    width:100%;
+    padding-bottom:20px;
 }
 .search-bar input{
     background: $white;
@@ -496,9 +501,9 @@ ul#nav > li:last-child{padding-right:0;}
 .search-bar #s {
     color: #333 !important;
     font-size: 13px;
-    width: 65%;
+    width: 68%;
     height: 25px;
-    padding: 0 5%;
+    padding: 0 2%;
     float: left;
     border: 1px solid $midgray;
     border-right: none;
@@ -508,7 +513,7 @@ ul#nav > li:last-child{padding-right:0;}
     font-family: FontAwesome !important;
     font-size: 14px;
     text-indent: 0 !important;
-    width: 23%;
+    width: 24%;
     height: 27px;
     margin: 0;
     padding: 0;

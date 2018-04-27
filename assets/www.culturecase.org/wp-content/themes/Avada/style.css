@@ -2990,16 +2990,21 @@ table{
     float: right;
 }
 #wrapper .dd-container .dd-selected{padding:0 15px;}
+
 #wrapper .dd-container .dd-pointer{
     border:0 !important;
-    /*background:url(images/mobile_menu_icon.png) no-repeat top left;*/
-    width:70px;
+    width:63px;
     height:29px;
-    margin:0 !important;
-    top:0px;
+    margin:0;
+    top:0;
     right:5px;
     color: #888;
 }
+
+#wrapper .dd-container .dd-pointer:hover{
+    color: #FE5900;
+    }
+
 #wrapper .dd-container .dd-pointer:after{
     content:"\2261";
     position:absolute;
@@ -3010,21 +3015,19 @@ table{
 #wrapper .dd-container .dd-pointer:before{
     content:"Menu";
     position:absolute;
-    font-size:14px;
-    line-height: 32px;
+    font-size:16px;
+    line-height: 37px;
     left: 0;
 }
 
 
-#wrapper .dd-container label,#wrapper .dd-container a{color:#fff !important;}
+#wrapper .dd-container label,#wrapper .dd-container a{color:#fff;}
 #wrapper .dd-options{box-shadow:none !important;position:relative !important; background: #888 !important; border: none;}
-#wrapper .dd-options li{float:none;height:auto;padding:0;line-height:normal;}
-#wrapper .dd-options li a{border:0 !important;float:none;height:auto;margin:0;padding:10px;line-height:normal;color:#fff !important;font-size: 14px}
-#wrapper .dd-options li a:hover,#wrapper .dd-options li.dd-option-selected a{background-color:#888 !important;}
+#wrapper .dd-options li{float:none;height:auto;padding:0;line-height:normal; padding:10px;}
+#wrapper .dd-options li a{border:0 !important;float:none;height:auto;margin:0;line-height:normal;color:#fff;font-size: 14px}
+#wrapper .dd-options li a:hover,#wrapper .dd-options li.dd-option-selected a{background-color:#888 !important; color:#FF9E01 !important;}
 #wrapper .dd-options li a:hover label{color:#FF9E01 !important;}
-.top-menu .dd-container{text-align:left !important;font-size:12px !important;}
-#wrapper .dd-selected{font-weight:normal !important;}
-#wrapper .dd-options li:first-child{display:none !important;}
+
 
 /* WP 3.6 media player responsive */
 

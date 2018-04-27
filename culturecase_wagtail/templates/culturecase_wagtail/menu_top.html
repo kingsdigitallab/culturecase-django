@@ -57,18 +57,14 @@
 
   {# Search box #}
   <ul class="dd-options" style="width: 100%;">
-
-    {# Leave first element empty, because Avada CSS hides it ;( Whatever... #}
-    <li>
-    </li>
-    
-
     {# Search box #}
     <li>
+      <div class="search-bar">
         <form role="search" method="get" action="{% url 'search' %}">
           <input type="text" id="s" name="s" {% if search_query %} value="{{ search_query }}"{% endif %} placeholder="Search..." > 
           <input type="submit" id="searchsubmit" value="">
         </form>
+      </div>
     </li>
 
     {# Top Nav #}
