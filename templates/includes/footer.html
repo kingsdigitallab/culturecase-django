@@ -2,6 +2,7 @@
 
 {% if not newsletter_form %}
 
+  {% block newsletter_form %}
   <div class="footer-area">
     <div class="avada-row">
           <div id="text-2" class="footer-widget-col widget_text">
@@ -66,6 +67,7 @@
           </div>
     </div>
   </div>
+  {% endblock %}
 
 {% endif %}
 

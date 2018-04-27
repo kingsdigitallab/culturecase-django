@@ -9,7 +9,7 @@
 <link rel="icon" href="{% static 'images/cc-favicon.png' %}" type="image/png"/>
 
 <title>CultureCase
-{% if page.url != '/' %} - {{page.title}}{% endif %}
+{% block head_title %}{% if page.url != '/' %} - {{page.title}}{% endif %}{% endblock %}
 </title>
 
 <link rel="stylesheet" type="text/css" media="print" href="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/print.css' %}" />
