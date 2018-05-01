@@ -415,6 +415,10 @@ ul#nav > li:last-child{padding-right:0;}
     color: #FE5900 !important;
 }
 
+[hidden] {
+   display: none;
+}
+
 // ** Subnav ** //
 .subnav{
     background: $darkgray;
@@ -2345,6 +2349,9 @@ body #sidebar .tab-hold .tabs li.active a {
 }
 
 @media only screen and (max-width: 400px) {
+    #main{
+        padding: 25px 0 15px;
+    }
     .textwidget .mc4wp-form label.checkbox {
     width: 100%;
     }
@@ -2361,6 +2368,10 @@ body #sidebar .tab-hold .tabs li.active a {
     }
     .page-title-container{
         padding:10px 0;
+        .page-title h1{
+        font-size: 23px!important;
+        line-height: 1.1 !important;
+        }
     }
 }
 
