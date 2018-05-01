@@ -589,6 +589,24 @@ class ResearchCategory(RichPage):
         # TODO: optimise this page, it's a bit slower than the rest (1.3s)
         return self.research_summaries.live().order_by('-go_live_at')
 
+    def serve(self, request):
+        from .views import render_page_list
+
+        summaries = self.get_summaries().filter(
+            categories__id=self.id
+        ).order_by('-go_live_at')
+
+        return render_page_list(
+            request,
+            summaries,
+            'culturecase_wagtail/category_results.html',
+            {
+                'search_category': self,
+                # Make sure parent category is highlighted in the menu.
+                'active_page_slug': self.get_parent().slug
+            }
+        )
+
 
 class ResearchCategoriesTree(RoutablePageMixin, RichPage):
     '''
@@ -608,22 +626,7 @@ class ResearchCategoriesTree(RoutablePageMixin, RichPage):
         if not category:
             raise Http404
 
-        summaries = self.get_summaries().filter(
-            categories__id=category.id
-        ).order_by('-go_live_at')
-
-        from .views import render_page_list
-
-        return render_page_list(
-            request,
-            summaries,
-            'culturecase_wagtail/category_results.html',
-            {
-                'search_category': category,
-                # Make sure parent category is highlighted in the menu.
-                'active_page_slug': category.get_parent().slug
-            }
-        )
+        return category.serve(request)
 
 
 class CategorisedSummariesPage(RichPage):
