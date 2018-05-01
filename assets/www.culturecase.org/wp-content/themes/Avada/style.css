@@ -537,12 +537,16 @@ body .post-content .image-extras .link-icon{margin-right:3px !important;}
 #main .post h2{
     font:18px 'MuseoSlab500Regular', arial, helvetica, sans-serif;
     color:#333333;
-    margin:0 0 25px 0;
+    margin:20px 0 10px 0;
     padding:0;
 }
 #main .post h2 a{
     color:#333333;
 }
+#main .post h2.entry-title{
+    margin:25px 0 10px 0;
+}
+
 .post .post-content{
     color:#747474;
 }
@@ -550,7 +554,7 @@ body .post-content .image-extras .link-icon{margin-right:3px !important;}
     line-height:34px;
     border-top:1px solid #e7e6e6;
     border-bottom:1px solid #e7e6e6;
-    margin-top:36px;
+    margin-top:26px;
     font-size:12px;
     clear:both;
     overflow:hidden;

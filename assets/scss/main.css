@@ -849,7 +849,7 @@ a.search-link:after {
 /* mailchimp styles */
 .mc4wp-form-theme-dark button,
 .mc4wp-form-theme-dark input[type=submit] {
-  color: #fff;
+  color: #fff !important;
   background-color: #FF9E01;
   border-radius: 0;
   font-family: 'KingsBureauGrotTS', sans-serif;
