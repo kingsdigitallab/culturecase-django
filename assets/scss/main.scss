@@ -92,6 +92,21 @@ form.django-form-ul {
             color: grey;
         }
     }
+
+    .header-wrapper {
+        display: none;
+    }
+
+    img.kcl-logo {
+        // Need to fix the width otherwise SVG looks tiny in PDF
+        width: 10em;
+    }
+
+    footer {
+        .avada-row {
+            padding: 0;
+        }
+    }
 }
 
 .mobile-only {
