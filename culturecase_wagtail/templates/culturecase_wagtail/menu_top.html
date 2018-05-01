@@ -85,11 +85,13 @@
     </li>
     {% kdl_menu_top_second 'research' %}
   
-    {# Data Portal and secondary nav items #}
-    <li>
-      <a href="/data/" class="dd-options">Data Portal</a>
-    </li>
-    {% kdl_menu_top_second 'data' %}
+    {% if DATA_PORTAL_ENABLED %}
+      {# Data Portal and secondary nav items #}
+      <li>
+        <a href="/data/" class="dd-options">Data Portal</a>
+      </li>
+      {% kdl_menu_top_second 'data' %}
+    {% endif %}
     
   </ul>
 </div>

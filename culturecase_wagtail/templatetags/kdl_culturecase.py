@@ -4,6 +4,7 @@ from wagtail.wagtailcore.models import Site
 from django.utils.safestring import mark_safe
 from wagtail.wagtailcore.templatetags.wagtailcore_tags import pageurl
 
+
 register = template.Library()
 
 
@@ -80,41 +81,17 @@ def kdl_menu(context, menu_slug, active_page_slug=None):
             )
             menuitems.append(menuitem)
 
-    return {
+    from culturecase_wagtail.context_processors import\
+        settings as settings_processor
+
+    ret = {
         'menuitems': menuitems,
         # required by the pageurl tag that we want to use within this template
         'request': request,
     }
+    ret.update(settings_processor(request))
 
-
-@register.inclusion_tag(
-    'culturecase_wagtail/top_menu.html', takes_context=True)
-def top_menu(context, menu_root, calling_page=None, active_page_slug=None):
-    # DEPRECATED: replaced by use kdl_menu()
-    # Retrieves the top menu items - the immediate children of the parent page
-    # The has_menu_children method is necessary because the bootstrap menu
-    # requires a dropdown class to be applied to a parent
-    '''
-    menu_root: the menu root
-    calling_page = the requested page
-    active_page_slug = slug of a page that should be selected in the menu
-    '''
-    menuitems = menu_root.get_children().live().in_menu()
-    for menuitem in menuitems:
-        menuitem.show_dropdown = has_menu_children(menuitem)
-        # We don't directly check if calling_page is None since the template
-        # engine can pass an empty string to calling_page
-        # if the variable passed as calling_page does not exist.
-        menuitem.active = menuitem.slug == active_page_slug or (
-            calling_page.path.startswith(menuitem.path)
-            if calling_page else False
-        )
-
-    return {
-        'menuitems': menuitems,
-        # required by the pageurl tag that we want to use within this template
-        'request': context['request'],
-    }
+    return ret
 
 
 # Retrieves all live pages which are children of the calling page
