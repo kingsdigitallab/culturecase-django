@@ -2402,7 +2402,7 @@ body #sidebar .tab-hold .tabs li.active a {
     position: fixed;
     text-align: center;
     width: 100%;
-    z-index: 2;
+    z-index: 100;
     display: none;
 
     a {
