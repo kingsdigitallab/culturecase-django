@@ -1,3 +1,21 @@
+// Mobile Menu (GN)
+jQuery(function($) {
+    $('.kdl-mobile-menu .dd-select').on('click', function() {
+        $(this).parent().toggleClass('kdl-mobile-menu-open');
+    });
+    
+    // Cookie consent button at the bottom of the page
+    if (typeof(Storage) !== "undefined") {
+        // TODO: IE 10-
+        $('.cookies-box').toggle((localStorage.getItem('privacy_accepted') !== '2'));
+        $('.cookies-box button').on('click', function() {
+            localStorage.setItem('privacy_accepted', '2');
+            $('.cookies-box').hide();
+        });
+    }
+});
+
+
 // head
 WebFontConfig = {
     google: { families: [ "PT+Sans:400,400italic,700,700italic:latin,greek-ext,cyrillic,latin-ext,greek,cyrillic-ext,vietnamese", "Sorts+Mill+Goudy:400,400italic,700,700italic:latin,greek-ext,cyrillic,latin-ext,greek,cyrillic-ext,vietnamese" ] },      custom: { families: ['FontAwesome'], urls: ['/static/www.culturecase.org/wp-content/themes/Avada/fonts/fontawesome.css'] }
@@ -14,8 +32,9 @@ WebFontConfig = {
 
 // ------------------------------
 
-window._wpemojiSettings = {"baseUrl":"http:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/www.culturecase.org\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.3"}};
-!function(a,b,c){function d(a){var c=b.createElement("canvas"),d=c.getContext&&c.getContext("2d");return d&&d.fillText?(d.textBaseline="top",d.font="600 32px Arial","flag"===a?(d.fillText(String.fromCharCode(55356,56812,55356,56807),0,0),c.toDataURL().length>3e3):(d.fillText(String.fromCharCode(55357,56835),0,0),0!==d.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+// GN: removed emoji, calls missing file over http => errors
+// window._wpemojiSettings = {"baseUrl":"http:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/www.culturecase.org\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.3"}};
+// !function(a,b,c){function d(a){var c=b.createElement("canvas"),d=c.getContext&&c.getContext("2d");return d&&d.fillText?(d.textBaseline="top",d.font="600 32px Arial","flag"===a?(d.fillText(String.fromCharCode(55356,56812,55356,56807),0,0),c.toDataURL().length>3e3):(d.fillText(String.fromCharCode(55357,56835),0,0),0!==d.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
 
 //------------------------------
 
@@ -235,7 +254,7 @@ jQuery(window).load(function() {
                               }
       });
 
-                  if(window.yt_vid_exists == true) {
+      if(window.yt_vid_exists == true) {
           var tag = document.createElement('script');
           tag.src = "https://www.youtube.com/iframe_api";
           var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -931,7 +950,7 @@ else
 
 // ---------------------------------
 
-var js_local_vars = {"dropdown_goto":"Go to..."};
+var js_local_vars = {"dropdown_goto":""};
 
 var mc4wp_forms_config = [];
 

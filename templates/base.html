@@ -4,10 +4,12 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="shortcut icon" href="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/favicon.ico' %}" />
+
+<!-- favicon -->
+<link rel="icon" href="{% static 'images/cc-favicon.png' %}" type="image/png"/>
 
 <title>CultureCase
-{% if page.url != '/' %} - {{page.title}}{% endif %}
+{% block head_title %}{% if page.url != '/' %} - {{page.title}}{% endif %}{% endblock %}
 </title>
 
 <link rel="stylesheet" type="text/css" media="print" href="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/print.css' %}" />
@@ -73,60 +75,17 @@
 <!--[if lte IE 8]>
     <script type="text/javascript" src="{% static 'www.culturecase.org/wp-content/themes/Avada/js/respond.js' %}"></script>
     <![endif]-->
+<link rel="stylesheet" type="text/css" href="{% static 'vendor/avida/css/avida.css' %}">
 {% compress css %}
 <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/main.scss' %}">
 {% endcompress %}
 </head>
 
-<body class="{% block body_class %}light{% endblock %}">
+<body class="{% block body_class %}light{% endblock %} {% if not DATA_PORTAL_ENABLED %}data-portal-hidden{% endif %} ">
   <div id="wrapper">
-  
-    <div class="header-wrapper">
-      <div class="header-v1">
-        <header id="header">
-          <div class="avada-row" style="margin-top: 0; margin-bottom: 0;">
-            <div class="logo" style="margin-right: 0; margin-top: 10px; margin-left: 0; margin-bottom: 10px;">
-              <a href="/"> <img src="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/images/logo-culturecase.png' %}" alt="CultureCase" class="normal_logo" />
-              </a>
-            </div>
-            <nav id="nav" class="nav-holder">
-              {# % include "culturecase_wagtail/top_menu_static.html" % #}
-              {% block menu %}
-                {% get_site_root as site_root %}
-                {% top_menu parent=site_root calling_page=page menu_slug=menu_slug %}
-              {% endblock %}
-            </nav>
-          </div>
-        </header>
-      </div>
-      
-      <div class="search-bar">
-        <form role="search" method="get" action="{% url 'search' %}">
-          <input type="text" id="s" name="s" {% if search_query %} value="{{ search_query }}"{% endif %} placeholder="Search..." > 
-          <input type="submit" id="searchsubmit" value="">
-        </form>
-      </div>
-    </div>
-    
-    <header id="header" class="sticky-header">
-      <div class="sticky-shadow">
-        <div class="avada-row">
-          <div class="logo">
-            <a href="http://www.culturecase.org"> <img src="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/images/logo-culturecase.png' %}" alt="CultureCase"
-              class="normal_logo"
-            />
-            </a>
-          </div>
-          <nav id="nav" class="nav-holder">
-            {% block menu_sticky %}
-              {% get_site_root as site_root %}
-              {% top_menu parent=site_root calling_page=page %}
-            {% endblock %}
-          </nav>
-        </div>
-      </div>
-    </header>
-    
+    {% block header%}
+      {% include 'includes/header.html' %}
+    {% endblock %}
     <div id="sliders-container"></div>
     <p class="print-header">
       <img src="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/images/logo-culturecase.png' %}" alt="Culture Case" />
@@ -134,8 +93,7 @@
     
     {% block title_container %}
       <div class="page-title-container">
-        <div class="page-title">
-          <div class="page-title-wrapper">
+        <div class="page-title avada-row">
             <div class="page-title-captions">
               <h1 class="entry-title">
                   {% block title %}
@@ -143,7 +101,6 @@
                   {% endblock %}
               </h1>
             </div>
-          </div>
         </div>
       </div>
     {% endblock %}
@@ -174,16 +131,9 @@
                   <div class="post-content">
                   
                     {% block post_body %}
-                      POST BODY
+
                     {% endblock %}
       
-                    {% if page.show_kcl_logo %}
-                      <p>
-                        <a href="http://www.kcl.ac.uk/" id="footer-logo" target="_blank">
-                          <img src="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/images/logo-kcl.png' %}" alt="King's College London">
-                        </a>
-                      </p>
-                    {% endif %}
                   </div>
                 {% endblock %}
                 
@@ -197,72 +147,29 @@
   
           </div>
   
-          {% include "includes/sidebar.html" %}
+          {% block sidebar %}
+            {% if not in_data_portal %}
+                {% include "includes/sidebar.html" %}
+            {% endif %}
+          {% endblock %}
   
         </div>
       </div>
     {% endblock%}
-    
-    <footer class="footer-area">
-      <div class="avada-row">
-        <section class="columns columns-1">
-          <article class="col">
-            <div id="text-2" class="footer-widget-col widget_text">
-              <h3>Sign up to our newsletter</h3>
-              <div class="textwidget">
-                <!-- MailChimp for WordPress v3.0.2 - https://wordpress.org/plugins/mailchimp-for-wp/ -->
-                <form action="/newsletter/" id="mc4wp-form-1" class="mc4wp-form mc4wp-form-974 mc4wp-form-theme mc4wp-form-theme-dark" method="post" data-id="974" data-name="Newsletter sign up form">
-                  {% csrf_token %}
-                  <div class="mc4wp-form-fields">
-                    <p class="mc4wp-form-ccinput">
-                      <label>First Name</label> <input type="text" name="first_name" required>
-                    </p>
-                    <p class="mc4wp-form-ccinput">
-                      <label>Last Name</label> <input type="text" name="last_name" required>
-                    </p>
-                    <p class="mc4wp-form-ccinput">
-                      <label>Organisation</label> <input type="text" name="organisation">
-                    </p>
-                    <p class="mc4wp-form-ccinput">
-                      <label>Email address</label> <input type="email" id="mc4wp_email" name="email" required />
-                    </p>
-                    <p class="mc4wp-form-ccsubmit">
-                      <input type="submit" value="Sign up" />
-                    </p>
-                    <div style="display: none;">
-                      <input type="text" name="_mc4wp_honeypot" value="" tabindex="-1" autocomplete="off" />
-                    </div>
-                    <input type="hidden" name="_mc4wp_timestamp" value="1518659561" /><input type="hidden" name="_mc4wp_form_id" value="974" /><input type="hidden" name="_mc4wp_form_element_id"
-                      value="mc4wp-form-1"
-                    /><input type="hidden" name="_mc4wp_form_nonce" value="4184becd68" />
-                  </div>
-                  <div class="mc4wp-response"></div>
-                </form>
-                <!-- / MailChimp for WordPress Plugin -->
-              </div>
-              <div style="clear: both;"></div>
-            </div>
-          </article>
-          <article class="col"></article>
-          <article class="col"></article>
-          <article class="col last"></article>
-        </section>
-      </div>
-    </footer>
-    
-    <footer id="footer">
-      <div class="avada-row">
-        <ul class="social-networks social-networks-dark">
-        </ul>
-        <ul class="copyright">
-          <li>©Copyright 2014. An initiative of the <a href='http://www.kcl.ac.uk/culturalinstitute' target='_blank'>Cultural Institute at King's College London</a>. All Rights Reserved. Built by
-            <a href='http://www.weheartdigital.co.uk' target='_blank'>weheartdigital Ltd</a>.
-          </li>
-        </ul>
-      </div>
+        
+    <footer>
+        {% block footer %}
+            {% include 'includes/footer.html' %}
+        {% endblock %}
     </footer>
     
   </div>
+  <div class="callout cookies-box" id="cookie-disclaimer">
+    <p>We use cookies to track usage and preferences.</p>
+    <p><button class="button reverse closeme" aria-label="Dismiss alert" type="button">Accept</button></p>
+    <p><a href="/privacy-policy/" class="small">Privacy &amp; cookie policy</a></p>
+  </div>
+
   <!-- wrapper -->
   <div class="revsliderstyles"></div>
   <!-- JAVASCRIPT -->
@@ -275,10 +182,6 @@
   <script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/themes/Avada/js/jquery.prettyPhoto-min.js' %}"></script>
   <script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/themes/Avada/js/jquery.flexslider-min.js' %}"></script>
   <script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/themes/Avada/js/jquery.fitvids-min.js' %}"></script>
-  {% comment %} {# TODO: GN remove completely if not used at all#}
-  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false&amp;language=en"></script>
-  <script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/themes/Avada/js/gmap-min.js' %}"></script>
-  {% endcomment %}
   <script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/themes/Avada/js/main-min.js' %}"></script>
   <script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/plugins/mailchimp-for-wp/assets/js/forms-api.min.js' %}"></script>
 </body>

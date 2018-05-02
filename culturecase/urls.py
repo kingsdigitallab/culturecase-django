@@ -12,6 +12,7 @@ kdl_ldap_register_signal_hadlers()
 
 admin.autodiscover()
 
+
 urlpatterns = [
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/', include(admin.site.urls)),
@@ -21,7 +22,6 @@ urlpatterns = [
     url(r'^documents/', include(wagtaildocs_urls)),
     # url(r'^search/', include(wagtailsearch_frontend_urls)),
     url(r'^search/', view_search, name='search'),
-    url(r'', include(wagtail_urls)),
 ]
 
 # -----------------------------------------------------------------------------
@@ -40,12 +40,37 @@ except ImportError:
 # -----------------------------------------------------------------------------
 # Static file DEBUGGING
 # -----------------------------------------------------------------------------
-if settings.DEBUG:
+production_debug = getattr(settings, 'PRODUCTION_DEBUG', False)
+if settings.DEBUG or production_debug:
     from django.conf.urls.static import static
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns
     import os.path
 
-    urlpatterns += staticfiles_urlpatterns()
-    urlpatterns += static(settings.MEDIA_URL + 'images/',
-                          document_root=os.path.join(settings.MEDIA_ROOT,
-                                                     'images'))
+    def test_500(request):
+        raise Exception('Test 500')
+
+    urlpatterns += [url(r'^test/500/', test_500)]
+
+    if production_debug:
+        from django.views.static import serve
+        urlpatterns += [
+            url(
+                r'^static/CACHE/(?P<path>.*)$', serve,
+                {'document_root': '%s/CACHE' % settings.STATIC_ROOT}
+            ),
+            url(
+                r'^static/media/(?P<path>.*)$', serve,
+                {'document_root': '%s/media' % settings.STATIC_ROOT}
+            ),
+            url(
+                r'^static/(?P<path>.*)$', serve,
+                {'document_root': settings.STATICFILES_DIRS[0]}
+            )
+        ]
+    else:
+        urlpatterns += staticfiles_urlpatterns()
+        urlpatterns += static(settings.MEDIA_URL + 'images/',
+                              document_root=os.path.join(settings.MEDIA_ROOT,
+                                                         'images'))
+
+urlpatterns += [url(r'', include(wagtail_urls)), ]

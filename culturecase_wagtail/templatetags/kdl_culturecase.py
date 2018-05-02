@@ -1,7 +1,9 @@
 from django import template
-from culturecase_wagtail.models import ResearchSummary
+from culturecase_wagtail.models import ResearchSummary, Menu
 from wagtail.wagtailcore.models import Site
 from django.utils.safestring import mark_safe
+from wagtail.wagtailcore.templatetags.wagtailcore_tags import pageurl
+
 
 register = template.Library()
 
@@ -33,40 +35,63 @@ def has_menu_children(page):
     return page.get_children().live().in_menu().exists()
 
 
-# Retrieves the top menu items - the immediate children of the parent page
-# The has_menu_children method is necessary because the bootstrap menu requires
-# a dropdown class to be applied to a parent
 @register.inclusion_tag(
-    'culturecase_wagtail/top_menu.html', takes_context=True)
-def top_menu(context, parent, calling_page=None, menu_slug=None):
-    menuitems = parent.get_children().live().in_menu()
-    for menuitem in menuitems:
-        menuitem.show_dropdown = has_menu_children(menuitem)
-        # We don't directly check if calling_page is None since the template
-        # engine can pass an empty string to calling_page
-        # if the variable passed as calling_page does not exist.
-        menuitem.active = (calling_page.path.startswith(menuitem.path)
-                           if calling_page else False)
-    return {
-        'calling_page': calling_page,
+    'culturecase_wagtail/menu_top.html', takes_context=True)
+def kdl_menu_top(context, menu_slug, active_page_slug=None):
+    return kdl_menu(context, menu_slug=menu_slug,
+                    active_page_slug=active_page_slug)
+
+
+@register.inclusion_tag(
+    'culturecase_wagtail/menu_top_second.html', takes_context=True)
+def kdl_menu_top_second(context, menu_slug, active_page_slug=None):
+    return kdl_menu(context, menu_slug=menu_slug,
+                    active_page_slug=active_page_slug)
+
+
+@register.inclusion_tag(
+    'culturecase_wagtail/menu_sub.html', takes_context=True)
+def kdl_menu_sub(context, menu_slug, active_page_slug=None):
+    return kdl_menu(context, menu_slug=menu_slug,
+                    active_page_slug=active_page_slug)
+
+
+def kdl_menu(context, menu_slug, active_page_slug=None):
+    '''
+    menu_root: the menu root
+    calling_page = the requested page
+    active_page_slug = slug of a page that should be selected in the menu
+    '''
+    request = context['request']
+
+    # menuitems = menu_slug.get_children().live().in_menu()
+    menus = Menu.objects.filter(slug__in=menu_slug.split(','))
+
+    menuitems = []
+    for menu in menus:
+        for menuitem in menu.menu_items.all():
+            menuitem = menuitem.page
+            menuitem.show_dropdown = has_menu_children(menuitem)
+            # We don't directly check if calling_page is None since the
+            # template engine can pass an empty string to calling_page
+            # if the variable passed as calling_page does not exist.
+            item_path = pageurl(context, menuitem)
+            menuitem.active = menuitem.slug == active_page_slug or (
+                request.path.startswith(item_path)
+            )
+            menuitems.append(menuitem)
+
+    from culturecase_wagtail.context_processors import\
+        settings as settings_processor
+
+    ret = {
         'menuitems': menuitems,
         # required by the pageurl tag that we want to use within this template
-        'request': context['request'],
-        'menu_slug': menu_slug,
+        'request': request,
     }
+    ret.update(settings_processor(request))
 
-
-# Retrieves the children of the top menu items for the drop downs
-@register.inclusion_tag('demo/tags/top_menu_children.html', takes_context=True)
-def top_menu_children(context, parent):
-    menuitems_children = parent.get_children()
-    menuitems_children = menuitems_children.live().in_menu()
-    return {
-        'parent': parent,
-        'menuitems_children': menuitems_children,
-        # required by the pageurl tag that we want to use within this template
-        'request': context['request'],
-    }
+    return ret
 
 
 # Retrieves all live pages which are children of the calling page

@@ -7,7 +7,6 @@ from django.contrib.contenttypes.models import ContentType
 
 
 def load_initial_wordpress_content(apps, schema_editor):
-    from django.core.management.commands import loaddata
     from django.core import management
 
     if 1:

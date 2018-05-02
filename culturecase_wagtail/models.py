@@ -11,7 +11,7 @@ from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel,\
     PageChooserPanel, InlinePanel
-from django.db.models.fields import BooleanField, CharField, URLField,\
+from django.db.models.fields import CharField, URLField,\
     EmailField, IntegerField
 from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
 from django.http import Http404
@@ -24,6 +24,7 @@ from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from django.shortcuts import render
 from django.http.response import HttpResponseRedirect, HttpResponse
 from weasyprint import CSS
+from modelcluster.models import ClusterableModel
 
 '''
 Page and Snippet classes:
@@ -41,6 +42,7 @@ HomePage                       /
 
 SNIPPETS
     ResearchTag
+    Menu
 '''
 
 # ===================================================================
@@ -56,20 +58,13 @@ class RichPage(Page):
 
     body = RichTextField(blank=True)
 
-    show_kcl_logo = BooleanField(
-        'Show KCL Logo',
-        blank=False,
-        null=False,
-        default=False
-    )
-
     short_title = CharField(
-        'Short title',
+        'Menu label',
         max_length=32,
         blank=True,
         null=True,
         default=None,
-        help_text='A word or two that can be included in the main menu'
+        help_text='A very short label used to represent this page in a menu'
     )
 
     content_panels = Page.content_panels + [
@@ -78,7 +73,6 @@ class RichPage(Page):
 
     promote_panels = Page.promote_panels + [
         MultiFieldPanel([
-            FieldPanel('show_kcl_logo'),
             FieldPanel('short_title')
         ],
             heading='Presentation',
@@ -177,6 +171,7 @@ class NewsLetterForm(forms.Form):
     last_name = forms.CharField(max_length=64)
     organisation = forms.CharField(max_length=64, required=False)
     email = forms.EmailField()
+    agree = forms.BooleanField(required=True)
 
 
 class HomePage(RoutablePageMixin, RichPage):
@@ -215,15 +210,16 @@ class HomePage(RoutablePageMixin, RichPage):
             if form.is_valid():
                 # TODO: error management!
 
-                # we sign them up with mailchimp API
-                from .utils import signup_to_newsletter
+                if 1:
+                    # we sign them up with mailchimp API
+                    from .utils import signup_to_newsletter
 
-                signup_to_newsletter({
-                    'EMAIL': form.cleaned_data['email'],
-                    'FNAME': form.cleaned_data['first_name'],
-                    'LNAME': form.cleaned_data['last_name'],
-                    'ORG': form.cleaned_data['organisation'],
-                })
+                    signup_to_newsletter({
+                        'EMAIL': form.cleaned_data['email'],
+                        'FNAME': form.cleaned_data['first_name'],
+                        'LNAME': form.cleaned_data['last_name'],
+                        'ORG': form.cleaned_data['organisation'],
+                    })
 
                 # then redirect to thank you page
                 return HttpResponseRedirect(
@@ -251,6 +247,14 @@ class HomePage(RoutablePageMixin, RichPage):
                 'page': StaticPage(title='Signed up to newsletter'),
             }
         )
+
+# ===================================================================
+#                     Data Portal / Section
+# ===================================================================
+
+
+class DataSectionPage(RichPage):
+    pass
 
 # ===================================================================
 #                            FAQs
@@ -486,6 +490,44 @@ class ResearchSummariesTree(RoutablePageMixin, RichPage):
 
         return ResearchSummary.serve(summary, request, *args, **kwargs)
 
+
+# ===================================================================
+#                              MENUS
+# ===================================================================
+
+class MenuItem(Orderable, models.Model):
+    menu = ParentalKey(
+        'Menu',
+        on_delete=models.CASCADE,
+        related_name='menu_items')
+    page = ParentalKey(
+        'wagtailcore.Page',
+        on_delete=models.CASCADE,
+        related_name='menu_items')
+
+    class Meta:
+        verbose_name = 'Menu item'
+        verbose_name_plural = 'Menu items'
+
+    panels = [
+        PageChooserPanel('page'),
+    ]
+
+
+@register_snippet
+class Menu(ClusterableModel):
+    # https://stackoverflow.com/a/36342864/3748764
+
+    slug = models.SlugField(unique=True)
+
+    panels = [
+        FieldPanel('slug'),
+        InlinePanel('menu_items', label="Menu Item"),
+    ]
+
+    def __str__(self):
+        return self.slug
+
 # ===================================================================
 #                              TAGS
 # ===================================================================
@@ -547,6 +589,24 @@ class ResearchCategory(RichPage):
         # TODO: optimise this page, it's a bit slower than the rest (1.3s)
         return self.research_summaries.live().order_by('-go_live_at')
 
+    def serve(self, request):
+        from .views import render_page_list
+
+        summaries = self.get_summaries().filter(
+            categories__id=self.id
+        ).order_by('-go_live_at')
+
+        return render_page_list(
+            request,
+            summaries,
+            'culturecase_wagtail/category_results.html',
+            {
+                'search_category': self,
+                # Make sure parent category is highlighted in the menu.
+                'active_page_slug': self.get_parent().slug
+            }
+        )
+
 
 class ResearchCategoriesTree(RoutablePageMixin, RichPage):
     '''
@@ -566,22 +626,7 @@ class ResearchCategoriesTree(RoutablePageMixin, RichPage):
         if not category:
             raise Http404
 
-        summaries = self.get_summaries().filter(
-            categories__id=category.id
-        ).order_by('-go_live_at')
-
-        from .views import render_page_list
-
-        return render_page_list(
-            request,
-            summaries,
-            'culturecase_wagtail/category_results.html',
-            {
-                'search_category': category,
-                # Make sure parent category is highlighted in the menu.
-                'menu_slug': category.get_parent().slug
-            }
-        )
+        return category.serve(request)
 
 
 class CategorisedSummariesPage(RichPage):
