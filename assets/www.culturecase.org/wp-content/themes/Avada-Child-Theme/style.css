@@ -63,6 +63,20 @@ table.research-meta th {
 table.research-meta td {
 	background-color: #F3F3F3;
 }
+table.research-meta a{
+      /* Warning: Needed for oldIE support, but words are broken up letter-by-letter */
+    -ms-word-break: break-all;
+    word-break: break-all;
+    /* Non standard for webkit */
+    word-break: break-word;
+
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    display:block;
+}
+
 
 .keywords {
 	margin: 30px 0 40px;
