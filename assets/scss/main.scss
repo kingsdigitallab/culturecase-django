@@ -491,6 +491,9 @@ ul#nav > li:last-child{padding-right:0;}
                         color: $white;
                         margin:0;
                         font-family: "Sorts Mill Goudy", Arial, Helvetica, sans-serif;
+                        display: initial;
+                        word-break: keep-all;
+                        hyphens: none;
                     }
                 }
             }
