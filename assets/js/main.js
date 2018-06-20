@@ -3,16 +3,6 @@ jQuery(function($) {
     $('.kdl-mobile-menu .dd-select').on('click', function() {
         $(this).parent().toggleClass('kdl-mobile-menu-open');
     });
-    
-    // Cookie consent button at the bottom of the page
-    if (typeof(Storage) !== "undefined") {
-        // TODO: IE 10-
-        $('.cookies-box').toggle((localStorage.getItem('privacy_accepted') !== '2'));
-        $('.cookies-box button').on('click', function() {
-            localStorage.setItem('privacy_accepted', '2');
-            $('.cookies-box').hide();
-        });
-    }
 });
 
 
