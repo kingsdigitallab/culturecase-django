@@ -185,16 +185,6 @@ object{
 a{
     text-decoration:none;
     color:#333;
-      /* Warning: Needed for oldIE support, but words are broken up letter-by-letter */
-    -ms-word-break: break-all;
-    word-break: break-all;
-    /* Non standard for webkit */
-    word-break: break-word;
-
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    -ms-hyphens: auto;
-    hyphens: auto;
 }
 
 input,
@@ -2380,8 +2370,13 @@ body #sidebar .tab-hold .tabs li.active a {
         display: block;
         margin-bottom: 5px
     }
+    #nav ul{ /* Hacky but can't use z-index */
+        margin: 0 0 0 -300%;
+        width: 400% !important;
+    }
     #nav div.dd-container.kdl-mobile-menu {
     right: 0;
+    width:65px !important; /* Hacky but can't use z-index */
     }
     .page-title-container{
         padding:10px 0;

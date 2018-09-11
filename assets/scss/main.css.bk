@@ -1,3 +1,13 @@
+/* GN Sept 2018: I have disabled this file by adding extention .bk 
+    because it was conflicting with main.scss in the same directory.
+    Not sure how we ended up with 2 main.* files...
+    
+    Can remove it after trial period.
+    
+    PLEASE DO NOT MODIFY THIS FILE, ONLY USE main.scss INSTEAD
+ */
+
+
 /** Your custom scss here **/
 /** GN, copied from inline styles on CultureCase Wordpress Home Page */
 #main {
@@ -141,15 +151,7 @@ object {
 a {
   text-decoration: none;
   color: #333;
-  /* Warning: Needed for oldIE support, but words are broken up letter-by-letter */
-  -ms-word-break: break-all;
-  word-break: break-all;
-  /* Non standard for webkit */
-  word-break: break-word;
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  hyphens: auto; }
+}
 
 input,
 textarea,
