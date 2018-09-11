@@ -1,3 +1,13 @@
+/* GN Sept 2018: I have disabled this file by adding extention .bk 
+    because it was conflicting with main.scss in the same directory.
+    Not sure how we ended up with 2 main.* files...
+    
+    Can remove it after trial period.
+    
+    PLEASE DO NOT MODIFY THIS FILE, ONLY USE main.scss INSTEAD
+ */
+
+
 /** Your custom scss here **/
 /** GN, copied from inline styles on CultureCase Wordpress Home Page */
 #main {
