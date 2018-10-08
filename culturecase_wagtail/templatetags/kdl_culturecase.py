@@ -62,24 +62,24 @@ def kdl_menu(context, menu_slug, active_page_slug=None):
     calling_page = the requested page
     active_page_slug = slug of a page that should be selected in the menu
     '''
-    request = context['request']
-
-    # menuitems = menu_slug.get_children().live().in_menu()
-    menus = Menu.objects.filter(slug__in=menu_slug.split(','))
-
+    request = context.get('request', {})
     menuitems = []
-    for menu in menus:
-        for menuitem in menu.menu_items.all():
-            menuitem = menuitem.page
-            menuitem.show_dropdown = has_menu_children(menuitem)
-            # We don't directly check if calling_page is None since the
-            # template engine can pass an empty string to calling_page
-            # if the variable passed as calling_page does not exist.
-            item_path = pageurl(context, menuitem)
-            menuitem.active = menuitem.slug == active_page_slug or (
-                request.path.startswith(item_path)
-            )
-            menuitems.append(menuitem)
+    if request:
+        # menuitems = menu_slug.get_children().live().in_menu()
+        menus = Menu.objects.filter(slug__in=menu_slug.split(','))
+
+        for menu in menus:
+            for menuitem in menu.menu_items.all():
+                menuitem = menuitem.page
+                menuitem.show_dropdown = has_menu_children(menuitem)
+                # We don't directly check if calling_page is None since the
+                # template engine can pass an empty string to calling_page
+                # if the variable passed as calling_page does not exist.
+                item_path = pageurl(context, menuitem)
+                menuitem.active = menuitem.slug == active_page_slug or (
+                    request.path.startswith(item_path)
+                )
+                menuitems.append(menuitem)
 
     from culturecase_wagtail.context_processors import\
         settings as settings_processor
