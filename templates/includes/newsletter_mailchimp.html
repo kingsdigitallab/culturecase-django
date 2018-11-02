@@ -1,0 +1,64 @@
+  <div class="footer-area">
+    <div class="avada-row">
+          <div id="text-2" class="footer-widget-col widget_text">
+            <h3>Sign up to our newsletter</h3>
+            <div class="textwidget">
+              <!-- MailChimp for WordPress v3.0.2 - https://wordpress.org/plugins/mailchimp-for-wp/ -->
+              <form action="/newsletter/" id="mc4wp-form-1" class="mc4wp-form mc4wp-form-974 mc4wp-form-theme mc4wp-form-theme-dark" method="post" data-id="974" data-name="Newsletter sign up form">
+                {% csrf_token %}
+                <div class="mc4wp-form-fields">
+                  <p class="mc4wp-form-ccinput">
+                    <label>First Name *</label> 
+                    <input type="text" name="first_name" required>
+                  </p>
+                  
+                  <p class="mc4wp-form-ccinput">
+                    <label>Last Name *</label> 
+                    <input type="text" name="last_name" required>
+                  </p>
+                  <p class="mc4wp-form-ccinput">
+                    <label>Organisation</label> 
+                    <input type="text" name="organisation">
+                  </p>
+                  <p class="mc4wp-form-ccinput">
+                    <label>Email *</label> 
+                    <input type="email" id="mc4wp_email" name="email" required />
+                  </p>
+                </div>
+
+                <div class="mc4wp-form-fields">
+                    <label class="checkbox">
+                      <input type="checkbox" id="mc4wp_agree" name="agree" required />
+                      <span class="checkmark"></span>
+                    </label>
+                    <div class="consent-text">
+                      <label for="mc4wp_agree">
+                        By providing my details I am consenting to King’s College London 
+                        sending me information about King’s &amp; 
+                        Culture, such as news, bulletins and events. 
+                        <a target="_blank" href="https://www.kcl.ac.uk/terms/privacy.aspx">
+                          King’s College London’s privacy policy applies.
+                        </a>
+                      </label>
+                    </div>
+                    <div class="mc4wp-form-ccsubmit">
+                    <input type="submit" value="Sign up" />
+                  </div>
+                    <div style="display: none;">
+                      <input type="text" name="_mc4wp_honeypot" value="" tabindex="-1" autocomplete="off" />
+                    </div>
+
+                    <input type="hidden" name="_mc4wp_timestamp" value="1518659561" />
+                    <input type="hidden" name="_mc4wp_form_id" value="974" />
+                    <input type="hidden" name="_mc4wp_form_element_id" value="mc4wp-form-1"/>
+                    <input type="hidden" name="_mc4wp_form_nonce" value="4184becd68" />
+                </div>
+                <div class="mc4wp-response"></div>
+              </form>
+              
+              <!-- / MailChimp for WordPress Plugin -->
+            </div>
+            <div style="clear: both;"></div>
+          </div>
+    </div>
+  </div>
