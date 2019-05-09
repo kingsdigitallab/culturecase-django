@@ -10,7 +10,13 @@ register = template.Library()
 
 @register.assignment_tag()
 def get_latest_research_articles():
-    ret = ResearchSummary.objects.live().order_by('-go_live_at')[:5]
+    # see AC-129
+    # field = '-go_live_at'
+    field = '-first_published_at'
+    ret = ResearchSummary.objects.live().filter(
+        first_published_at__isnull=False
+    ).order_by(field)[:5]
+
     return ret
 
 

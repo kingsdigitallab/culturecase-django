@@ -8,8 +8,8 @@ django-redis
 psycopg2-binary
 redis
 elasticsearch>=5.0.0,<6.0.0
-mailchimp
-weasyprint
+mailchimp<2.1
+weasyprint<1
 
 django-kdl-ldap
 wagtail<2

@@ -317,3 +317,5 @@ WAGTAILSEARCH_BACKENDS = {
 }
 
 DATA_PORTAL_ENABLED = False
+
+NEWSLETTER_URL = 'https://www.kcl.ac.uk/cultural/contact-us'
