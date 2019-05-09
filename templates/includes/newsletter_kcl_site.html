@@ -1,8 +1,10 @@
-  <div class="footer-area">
-    <div class="avada-row">
-          <div id="text-2" class="footer-widget-col widget_text">
-            <h3><a target="_blank" href="https://www.kcl.ac.uk/Cultural/signup.aspx">Sign up to our newsletter<a></h3>
-            <div style="clear: both;"></div>
-          </div>
-    </div>
+<div class="footer-area">
+  <div class="avada-row">
+        <div id="text-2" class="footer-widget-col widget_text">
+            {% if NEWSLETTER_URL %}
+                <h3><a target="_blank" href="{{ NEWSLETTER_URL }}">Sign up to our newsletter<a></h3>
+            {% endif %}
+          <div style="clear: both;"></div>
+        </div>
   </div>
+</div>
