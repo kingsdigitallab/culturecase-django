@@ -9,7 +9,7 @@ from django.core.exceptions import ValidationError
 from ._kdlcommand import KDLCommand
 from kdl_wordpress2wagtail.utils.kdl_node import KDLNode
 import re
-from wagtail.wagtailcore.models import Page
+from wagtail.core.models import Page
 from time import strptime
 import pytz
 

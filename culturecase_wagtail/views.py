@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
-from wagtail.wagtailcore.models import Page
-from wagtail.wagtailsearch.models import Query
+from wagtail.core.models import Page
+from wagtail.search.models import Query
 from django.conf import settings
 from django.core.paginator import Paginator
 
@@ -26,11 +26,11 @@ def view_search(request):
     )
 
 
-def render_page_list(request, page_query_set, template_name, context=None):
+def render_page_list(request, search_results, template_name, context=None):
     page_number = request.GET.get('p', 1)
 
     # replicate legacy site trimming to 50 result items
-    page_query_set = page_query_set[:settings.ITEMS_PER_RESULT]
+    page_query_set = search_results[:settings.ITEMS_PER_RESULT]
 
     # paginate
     paginator = Paginator(page_query_set, settings.ITEMS_PER_PAGE)
@@ -39,4 +39,6 @@ def render_page_list(request, page_query_set, template_name, context=None):
     context['result_page'] = paginator.page(int(page_number))
 
     # Render template
-    return render(request, template_name, context)
+    ret = render(request, template_name, context)
+
+    return ret

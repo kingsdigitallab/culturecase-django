@@ -6,7 +6,7 @@ from django.db import migrations, models
 import django.db.models.deletion
 import modelcluster.contrib.taggit
 import modelcluster.fields
-import wagtail.contrib.wagtailroutablepage.models
+import wagtail.contrib.routable_page.models
 
 
 class Migration(migrations.Migration):
@@ -38,7 +38,7 @@ class Migration(migrations.Migration):
             options={
                 'abstract': False,
             },
-            bases=(wagtail.contrib.wagtailroutablepage.models.RoutablePageMixin, 'culturecase_wagtail.richpage'),
+            bases=(wagtail.contrib.routable_page.models.RoutablePageMixin, 'culturecase_wagtail.richpage'),
         ),
         migrations.CreateModel(
             name='ResearchSummary',

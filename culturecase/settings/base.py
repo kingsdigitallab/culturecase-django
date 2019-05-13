@@ -85,22 +85,21 @@ INSTALLED_APPS += [    # your project apps here
     'culturecase_wagtail',
     'kdl_ldap',
     'rest_framework',
-    'wagtail.wagtailcore',
-    'wagtail.wagtailadmin',
-    'wagtail.wagtaildocs',
-    'wagtail.wagtailsnippets',
-    'wagtail.wagtailusers',
-    'wagtail.wagtailimages',
-    'wagtail.wagtailembeds',
-    'wagtail.wagtailredirects',
-    'wagtail.wagtailforms',
-    'wagtail.wagtailsites',
-    'wagtail.contrib.wagtailapi',
-    'wagtail.contrib.wagtailroutablepage',
+    'wagtail.core',
+    'wagtail.admin',
+    'wagtail.documents',
+    'wagtail.snippets',
+    'wagtail.users',
+    'wagtail.images',
+    'wagtail.embeds',
+    'wagtail.contrib.redirects',
+    'wagtail.contrib.forms',
+    'wagtail.sites',
+    'wagtail.contrib.routable_page',
     'wagtail.contrib.table_block',
     'taggit',
     'modelcluster',
-    'wagtail.wagtailsearch',
+    'wagtail.search',
 ]
 
 INTERNAL_IPS = ['127.0.0.1']
@@ -171,14 +170,13 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
 
-    'wagtail.wagtailcore.middleware.SiteMiddleware',
-    'wagtail.wagtailredirects.middleware.RedirectMiddleware',
+    'wagtail.core.middleware.SiteMiddleware',
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 
 ]
 
@@ -213,7 +211,7 @@ WSGI_APPLICATION = PROJECT_NAME + '.wsgi.application'
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth
 # -----------------------------------------------------------------------------
 
-if 'wagtail.wagtailcore' in INSTALLED_APPS:
+if 'wagtail.core' in INSTALLED_APPS:
     LOGIN_URL = '/wagtail/login/'
 else:
     LOGIN_URL = '/admin/login/'
@@ -245,7 +243,7 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 
-MEDIA_URL = STATIC_URL + 'media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_URL.strip('/'))
 
 if not os.path.exists(MEDIA_ROOT):
@@ -307,7 +305,7 @@ ITEMS_PER_PAGE = 10
 ITEMS_PER_RESULT = 50
 WAGTAILSEARCH_BACKENDS = {
     'default': {
-        # 'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch5',
+        # 'BACKEND': 'wagtail.search.backends.elasticsearch5',
         'BACKEND': 'culturecase_wagtail.search_backend',
         'AUTO_UPDATE': False,
         'URLS': ['http://127.0.0.1:9200'],

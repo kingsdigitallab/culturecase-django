@@ -1,27 +1,24 @@
 from django.conf import settings
-from django.conf.urls import include, url
+from django.conf.urls import include
+from django.urls import path
 from django.contrib import admin
 from kdl_ldap.signal_handlers import \
     register_signal_handlers as kdl_ldap_register_signal_hadlers
-from wagtail.wagtailadmin import urls as wagtailadmin_urls
-from wagtail.wagtailcore import urls as wagtail_urls
-from wagtail.wagtaildocs import urls as wagtaildocs_urls
+from wagtail.admin import urls as wagtailadmin_urls
+from wagtail.core import urls as wagtail_urls
+from wagtail.documents import urls as wagtaildocs_urls
 from culturecase_wagtail.views import view_search
+from rest_framework.compat import re_path
 
 kdl_ldap_register_signal_hadlers()
 
 admin.autodiscover()
 
-
 urlpatterns = [
-    url(r'^grappelli/', include('grappelli.urls')),
-    url(r'^admin/', include(admin.site.urls)),
-
-
-    url(r'^wagtail/', include(wagtailadmin_urls)),
-    url(r'^documents/', include(wagtaildocs_urls)),
-    # url(r'^search/', include(wagtailsearch_frontend_urls)),
-    url(r'^search/', view_search, name='search'),
+    path('admin/', admin.site.urls),
+    path('wagtail/', include(wagtailadmin_urls)),
+    path('documents/', include(wagtaildocs_urls)),
+    path('search/', view_search, name='search'),
 ]
 
 # -----------------------------------------------------------------------------
@@ -31,8 +28,8 @@ try:
     if settings.DEBUG:
         import debug_toolbar
         urlpatterns += [
-            url(r'^__debug__/',
-                include(debug_toolbar.urls)),
+            path(r'__debug__/',
+                 include(debug_toolbar.urls)),
         ]
 except ImportError:
     pass
@@ -49,28 +46,29 @@ if settings.DEBUG or production_debug:
     def test_500(request):
         raise Exception('Test 500')
 
-    urlpatterns += [url(r'^test/500/', test_500)]
+    urlpatterns += [path('test/500/', test_500)]
 
     if production_debug:
         from django.views.static import serve
         urlpatterns += [
-            url(
+            re_path(
                 r'^static/CACHE/(?P<path>.*)$', serve,
                 {'document_root': '%s/CACHE' % settings.STATIC_ROOT}
             ),
-            url(
-                r'^static/media/(?P<path>.*)$', serve,
-                {'document_root': '%s/media' % settings.STATIC_ROOT}
+            re_path(
+                r'^media/(?P<path>.*)$', serve,
+                {'document_root': '%s/media' % settings.MEDIA_ROOT}
             ),
-            url(
+            re_path(
                 r'^static/(?P<path>.*)$', serve,
                 {'document_root': settings.STATICFILES_DIRS[0]}
             )
         ]
     else:
         urlpatterns += staticfiles_urlpatterns()
-        urlpatterns += static(settings.MEDIA_URL + 'images/',
-                              document_root=os.path.join(settings.MEDIA_ROOT,
-                                                         'images'))
+        urlpatterns += static(
+            settings.MEDIA_URL + 'images/',
+            document_root=os.path.join(settings.MEDIA_ROOT, 'images')
+        )
 
-urlpatterns += [url(r'', include(wagtail_urls)), ]
+urlpatterns += [path('', include(wagtail_urls)), ]

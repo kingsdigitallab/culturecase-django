@@ -6,21 +6,21 @@ Created on 15 Feb 2018
 from __future__ import unicode_literals
 from django.db import models
 
-from wagtail.wagtailsearch import index
-from wagtail.wagtailcore.models import Page, Orderable
-from wagtail.wagtailcore.fields import RichTextField
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel,\
+from wagtail.search import index
+from wagtail.core.models import Page, Orderable
+from wagtail.core.fields import RichTextField
+from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel,\
     PageChooserPanel, InlinePanel
 from django.db.models.fields import CharField, URLField,\
     EmailField, IntegerField
-from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
+from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from django.http import Http404
 from taggit.models import TaggedItemBase, Tag as TaggitTag
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
-from wagtail.wagtailsnippets.models import register_snippet
+from wagtail.snippets.models import register_snippet
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from django import forms
-from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.images.edit_handlers import ImageChooserPanel
 from django.shortcuts import render
 from django.http.response import HttpResponseRedirect, HttpResponse
 from weasyprint import CSS
@@ -635,12 +635,9 @@ class CategorisedSummariesPage(RichPage):
     '''
 
     def get_context(self, *args, **kwargs):
-        ret = super(
-            CategorisedSummariesPage,
-            self).get_context(
-            *
-            args,
-            **kwargs)
+        ret = super(CategorisedSummariesPage, self).get_context(
+            *args, **kwargs
+        )
 
         root = ResearchCategoriesTree.objects.first()
         ret['categories'] = []

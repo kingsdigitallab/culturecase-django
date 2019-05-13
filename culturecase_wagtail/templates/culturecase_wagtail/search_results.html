@@ -9,20 +9,21 @@
 {% endblock %}
 
 {% block content %}
-    {% block result_intro %}
-    {% endblock %}
+
+  {% block result_intro %}
+  {% endblock %}
 
   {% if result_page.paginator.count %}
-     {% for result in result_page %}
+     {% for result in result_page.object_list %}
        {% include "culturecase_wagtail/search_result.html" with result=result.specific highlights=result.highlights %}
      {% endfor %}
-     
+
      {% include "culturecase_wagtail/pagination.html" with result_page=result_page %}
   {% elif search_query %}
       <h2>Couldn't find what you're looking for!</h2>
-      
+
       <p>Try again!</p>
-      
+
       <p>If you want to rephrase your query, here is your chance:</p>
       <form action="{% url 'search' %}" method="get">
         <input type="text" name="s" value="{{ search_query }}">
@@ -33,6 +34,5 @@
         <p>Please type something into the search box</p>
       {% endblock %}
   {% endif %}
-    
-{% endblock %}
 
+{% endblock %}

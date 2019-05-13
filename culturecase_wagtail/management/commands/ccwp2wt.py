@@ -12,7 +12,7 @@ from culturecase_wagtail.models import (
     ResearchCategory, ResearchSummariesTree, CategorisedSummariesPage,
     FAQsPage, QuestionAndAnswer, HomePageSlide, RichPage)
 from django.utils.text import slugify
-from wagtail.wagtailimages.models import Image
+from wagtail.images.models import Image
 from willow import Image as WillowImage
 from django.conf import settings
 import os
