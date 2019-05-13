@@ -1,14 +1,14 @@
 from django import template
 from culturecase_wagtail.models import ResearchSummary, Menu
-from wagtail.wagtailcore.models import Site
+from wagtail.core.models import Site
 from django.utils.safestring import mark_safe
-from wagtail.wagtailcore.templatetags.wagtailcore_tags import pageurl
+from wagtail.core.templatetags.wagtailcore_tags import pageurl
 
 
 register = template.Library()
 
 
-@register.assignment_tag()
+@register.simple_tag()
 def get_latest_research_articles():
     # see AC-129
     # field = '-go_live_at'
@@ -20,7 +20,7 @@ def get_latest_research_articles():
     return ret
 
 
-@register.assignment_tag(takes_context=True)
+@register.simple_tag(takes_context=True)
 def get_site_root(context):
     # NB this returns a core.Page, not the implementation-specific model used
     # so object-comparison to self will return false as objects would differ

@@ -1,7 +1,6 @@
-from wagtail.wagtailsearch.backends.elasticsearch5 import (
+from wagtail.search.backends.elasticsearch5 import (
     Elasticsearch5SearchBackend, Elasticsearch5SearchResults
 )
-import types
 
 '''
 A search backend for wagtail.
@@ -15,7 +14,7 @@ Those fields must be in plain text (no XML/HTML tags).
 Author: Geoffroy Noel, 2018
 '''
 
-# Size of the fragments/snippets, in charcters
+# Size of the fragments/snippets, in characters
 SEARCH_HIGHLIGHTS_SIZE = 500
 SEARCH_HIGHLIGHTS_LIMIT = 1
 SEARCH_HIGHLIGHTS_CLASS = 'relevanssi-query-term'
@@ -24,6 +23,10 @@ SEARCH_HIGHLIGHTS_CLASS = 'relevanssi-query-term'
 class ElasticsearchSearchResultsWithHighlights(Elasticsearch5SearchResults):
 
     def _get_es_body(self, for_count=False, *args, **kwargs):
+        '''
+        Returns the json body of the search request to be sent to ES5.
+        We request highlights.
+        '''
         ret = super()._get_es_body(for_count=for_count, *args, **kwargs)
 
         if not for_count:
@@ -46,51 +49,27 @@ class ElasticsearchSearchResultsWithHighlights(Elasticsearch5SearchResults):
 
         return ret
 
-    def _do_search(self, *args, **kwargs):
-        ret = super()._do_search(*args, **kwargs)
+    def _get_results_from_hits(self, hits, *args, **kwargs):
+        ret = super()._get_results_from_hits(hits, *args, **kwargs)
 
-        # set .highlights to each result
+        def get_highlights_from_hit(hit):
+            ret = []
+            for vals in hit['highlight'].values():
+                ret.extend([v.replace('\n', '<br>') for v in vals])
+            return ret
+
+        highlights = {
+            hit['fields']['pk'][0]: get_highlights_from_hit(hit)
+            for hit in hits
+        }
+
         for rec in ret:
-            rec.highlights = self.backend.es.highlights[str(rec.pk)]
-
-        return ret
-
-
-def es_search(self, *args, **kwargs):
-    self.highlights = {}
-
-    ret = self.search_old(*args, **kwargs)
-
-    '''
-    ret = {
-
-    hits: {
-      hits: [{
-        'highlight': {
-          'culturecase_wagtail_richpage__body_highlightable': [
-            "This research was conducted by Brian Kisida, Da
-    '''
-
-    for hit in ret['hits']['hits']:
-        highlights = []
-        for _, values in hit['highlight'].items():
-            highlights.extend([v.replace('\n', '<br>') for v in values])
-        self.highlights[str(hit['fields']['pk'][0])] = highlights
-
-    return ret
+            rec.highlights = highlights.get(str(rec.pk), [])
+            yield rec
 
 
 class Elasticsearch5SearchWithHighlightsBackend(Elasticsearch5SearchBackend):
     results_class = ElasticsearchSearchResultsWithHighlights
-
-    def __init__(self, params, *args, **kwargs):
-        super().__init__(params, *args, **kwargs)
-
-        # it's a bit of a hack to replace the method here
-        # but it's more sustainable and stable than copying
-        # _do_search() (see above) and patching it
-        self.es.search_old = self.es.search
-        self.es.search = types.MethodType(es_search, self.es)
 
 
 SearchBackend = Elasticsearch5SearchWithHighlightsBackend

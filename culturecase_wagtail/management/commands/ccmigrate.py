@@ -6,7 +6,7 @@ Created on 13 April 2018
 
 import re
 from kdl_wordpress2wagtail.management.commands._kdlcommand import KDLCommand
-from wagtail.wagtailcore.models import Page
+from wagtail.core.models import Page
 from culturecase_wagtail.models import Menu, MenuItem, StaticPage,\
     DataSectionPage
 from django.core.exceptions import ValidationError

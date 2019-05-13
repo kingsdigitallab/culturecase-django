@@ -1,4 +1,4 @@
-django<2
+django
 django-compressor
 django-extensions
 django-grappelli
@@ -8,9 +8,13 @@ django-redis
 psycopg2-binary
 redis
 elasticsearch>=5.0.0,<6.0.0
-mailchimp<2.1
-weasyprint<1
+mailchimp<3
+weasyprint
 
 django-kdl-ldap
-wagtail<2
-pyldap<3
+wagtail
+pyldap
+
+#
+urllib3<1.25
+
