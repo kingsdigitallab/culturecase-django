@@ -19,7 +19,7 @@
   - name: apt | install https transport for apt
     apt:
       pkg: apt-transport-https
-      state: installed
+      state: present
       update_cache: yes
     tags:
       -system
@@ -41,22 +41,21 @@
 
   - name: apt | install required system packages
     apt:
-      pkg: '{{ item }}'
-      state: installed
+      pkg: '{{ system_packages }}'
+      state: present
       update_cache: yes
-    with_items: '{{ system_packages }}'
     tags:
       - system
 
   - name: Upgrade all packages to the latest version
     apt:
-      upgrade: yes
+      upgrade: "yes"
     tags:
       - system
 
   - name: git-lfs | add git ppa
     become: yes
-    command: add-apt-repository ppa:git-core/ppa
+    command: add-apt-repository -y ppa:git-core/ppa
     tags:
       - system
       - git
@@ -81,7 +80,7 @@
   - name: git-lfs | install
     apt:
       pkg: git-lfs
-      state: installed
+      state: present
       update_cache: yes
     tags:
       - system
@@ -143,23 +142,23 @@
 
   - name: pip | setup virtualenv
     file: path={{ python.virtualenv_location }} state=directory
-  - command: virtualenv {{ python.virtualenv_location }}
+  - command: python -m venv {{ python.virtualenv_location }}
     tags:
       - python
 
-  - name: pip | update setuptools
-    pip:
-      name: setuptools
-      virtualenv: "{{ python.virtualenv_location }}"
-      state: latest
-    tags:
-      - python
+#  - name: pip | update setuptools
+#    pip:
+#      name: setuptools
+#      virtualenv: "{{ python.virtualenv_location }}"
+#      state: latest
+#    tags:
+#      - python
 
   - name: pip | update pip
     pip:
-      name: pip
+      # ubuntu 16 => python 3.5 => pip 20
+      name: "pip>=20,<21"
       virtualenv: "{{ python.virtualenv_location }}"
-      state: latest
     tags:
       - python
 
