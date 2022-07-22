@@ -9,7 +9,12 @@ from django.contrib.contenttypes.models import ContentType
 def load_initial_wordpress_content(apps, schema_editor):
     from django.core import management
 
-    if 1:
+    # GN - 2022 - commented out, this is a very bad idea to load fixture
+    # from a migration, because Django will complain about the latest model
+    # not matching the old schema saved in the fixture.
+    # In this case culturecase_wagtail_richpage.show_kcl_logo will be removed
+    # in migration 0024, but the model already reflect that change.
+    if 0:
         # remove all existing content types to avoid duplicate keys
         for ct in ContentType.objects.all():
             ct.delete()

@@ -14,5 +14,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        get_operation_from_migration(migrations, debug=False),
+        # get_operation_from_migration(migrations, debug=False),
     ]

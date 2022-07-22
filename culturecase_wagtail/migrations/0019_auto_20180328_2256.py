@@ -10,17 +10,17 @@ def load_initial_wordpress_content(apps, schema_editor):
     from django.core.management.commands import loaddata
     from django.core import management
 
-    for i in [0, 1]:
-        management.call_command(
-            'ccwp2wt',
-            'import',
-            'culturecase_wagtail/fixtures/culturecase.wordpress.2018-03-28.xml',
-        )
-
     if 0:
         # Not a good idea to do it here.
         # Because at this stage the model can be more complete or different
         # than in the database and the indexing will crash..
+        for i in [0, 1]:
+            management.call_command(
+                'ccwp2wt',
+                'import',
+                'culturecase_wagtail/fixtures/culturecase.wordpress.2018-03-28.xml',
+            )
+
         management.call_command(
             'update_index',
         )
