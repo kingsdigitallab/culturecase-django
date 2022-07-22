@@ -7,7 +7,7 @@ from kdl_ldap.signal_handlers import \
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
-from culturecase_wagtail.views import view_search
+from culturecase_wagtail.views import view_search, view_audit
 from rest_framework.compat import re_path
 
 kdl_ldap_register_signal_hadlers()
@@ -19,6 +19,7 @@ urlpatterns = [
     path('wagtail/', include(wagtailadmin_urls)),
     path('documents/', include(wagtaildocs_urls)),
     path('search/', view_search, name='search'),
+    path('audit/', view_audit, name='audit'),
 ]
 
 # -----------------------------------------------------------------------------

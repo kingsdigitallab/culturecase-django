@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags  staticfiles compress %}
+
+{% block body_class %}audit {{ block.super }}{% endblock %}
+
+{% block title %}
+    Audit
+{% endblock %}
+
+{% block content %}
+
+  {% block result_intro %}
+  {% endblock %}
+
+  <form method="POST">
+    {% csrf_token %}
+    <p>Download the research summaries as a CSV file.</p>
+    <button type="submit" name="action" value="download">Download</button>
+  </form>
+
+{% endblock %}
