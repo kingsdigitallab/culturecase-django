@@ -78,7 +78,7 @@ def view_audit(request):
 
 def get_summaries_meta():
     ret = []
-    for summary in ResearchSummary.objects.live().prefetch_related('tags'):
+    for summary in ResearchSummary.objects.prefetch_related('tags'):
         summary_body = strip_tags(summary.body or '')
 
         ret.append(OrderedDict([
@@ -86,6 +86,7 @@ def get_summaries_meta():
             ['page_slug', summary.slug],
             ['page_url', summary.get_full_url()],
             ['page_published', summary.go_live_at.strftime('%Y-%m-%d') if summary.go_live_at else ''],
+            ['page_is_live', 'true' if summary.live else 'false'],
             ['tags', ', '.join([
                 tag.slug
                 for tag
