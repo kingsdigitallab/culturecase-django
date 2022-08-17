@@ -1,0 +1,300 @@
+/*
+Theme Name:		Avada Child
+Description:	Avada child theme for Kings Cultural Institute
+Author:			Tim Poole
+Author URI:		http://www.weheartdigital.co.uk
+Template:		Avada
+*/
+
+@import url("../Avada/style.css");
+
+
+
+/* --------------- search --------------- */
+
+
+
+.relevanssi-query-term {
+	background: #FFDB00;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	padding: 0 2px;
+}
+
+/* --------------- page title --------------- */
+
+.page-title h1.entry-title {
+	line-height: 1.2 !important;
+}
+
+/* --------------- content --------------- */
+
+.post-content a, .post-content a:visited {
+	text-decoration: underline;
+}
+.post-content a:hover, .post-content a:active, .post-content a:focus {
+	text-decoration: none;
+}
+.meta-info a:hover, .meta-info a:active, .meta-info a:focus {
+	text-decoration: underline;
+}
+
+.single-research .single-navigation {
+	margin-bottom: 25px;
+	text-align: left;
+}
+
+table.research-meta {
+	margin: 0 0 25px;
+}
+table.research-meta th,
+table.research-meta td {
+	color: #333333;
+	font-size: 13px;
+	text-align: left;
+	font-weight: normal;
+	padding: 3px 7px;
+	border: 1px solid #FFFFFF;
+}
+table.research-meta th {
+	white-space: nowrap;
+	background-color: #DDDDDD;
+}
+table.research-meta td {
+	background-color: #F3F3F3;
+}
+table.research-meta a{
+      /* Warning: Needed for oldIE support, but words are broken up letter-by-letter */
+    -ms-word-break: break-all;
+    word-break: break-all;
+    /* Non standard for webkit */
+    word-break: break-word;
+
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    display:block;
+}
+
+
+.keywords {
+	margin: 30px 0 40px;
+}
+.keywords h3 {
+	margin: 0 0 5px;
+}
+.keywords a, .keywords a:visited {
+	color: #333;
+	font-size: 14px;
+	text-decoration: none;
+	background: #FFDB00;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	padding: 0 5px 1px;
+	margin: 0 2px 4px 0;
+	display: inline-block;
+}
+.keywords a:hover, .keywords a:active, .keywords a:focus {
+	color: #333;
+	background: #FF9E01;
+}
+
+.page-template-bibliography-php #content h2 {
+	margin-bottom: 12px;
+}
+.page-template-bibliography-php .accordian {
+	margin-bottom: 40px;
+}
+.page-template-bibliography-php .accordian p {
+	margin-bottom: 12px;
+}
+
+
+
+/* --------------- side bar --------------- */
+
+.dpe-flexible-posts .title {
+	margin-bottom: 2px;
+}
+.dpe-flexible-posts h4:hover, .dpe-flexible-posts h4:active, .dpe-flexible-posts h4:focus {
+	text-decoration: underline;
+}
+
+/* --------------- footer --------------- */
+
+
+/* sliders */
+#layerslider-wrapper .ls-shadow-top, .rev_slider_wrapper .shadow-left {
+display: none !important; }
+#main .post-content .rev_slider_wrapper + h2, #main .post-content .rev_slider_wrapper + p {
+	margin-top:30px;
+}
+
+
+
+/* pdf link */
+.print-pdf {
+	text-align: right;
+}
+.print-pdf a {
+	background:#FF9E01;
+	color:#fff;
+	padding:4px 10px 2px 10px;
+}
+.print-pdf a:hover {
+	color:#fff;
+	background:#FE5900;
+}
+.print-header {
+	display:none;
+}
+
+
+/* newsletter form */
+
+.mc4wp-form-fields{
+	width:100%;
+	margin:7px 0;
+	float: left;
+}
+.mc4wp-form-ccinput {
+    width:23%;
+    margin-right:2%;
+}
+
+/* Customize the label (the container) */
+.checkbox {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  left: 0;
+  top:0;
+  height: 25px;
+  width: 25px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox:hover input ~ .checkmark {
+  border: 1px solid #FF9E01;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox input:checked ~ .checkmark {
+  background-color: #FF9E01;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.mc4wp-form-ccsubmit {
+	width:17%;
+    float:left;
+}
+
+.consent-text {
+    font-size: 13px;
+    width: 70%;
+    float: left;
+    margin-right: 5%;
+    label {
+        font-weight: normal;
+    }
+}
+
+
+/*.textwidget .mc4wp-form input[type="submit"] {
+    padding:4px 24px important;
+}*/
+
+@media only screen and (max-width: 800px) {
+.mc4wp-form-ccinput {
+	width:100%;
+	margin-right:5% !important;
+}
+.mc4wp-form-ccsubmit {
+	width:100%;
+}
+.mc4wp-form-ccinput {
+	width:100%;
+	margin-right:0 !important;
+}
+.textwidget .mc4wp-form label{
+	width:100%;
+}
+
+.textwidget .mc4wp-form label.checkbox{
+	width:5%;
+}
+.consent-text {
+    width: 90%;
+    margin-right: 0;
+}
+}
+@media only screen and (max-width: 400px) {
+
+}
+
+/* --------------- media queries --------------- */
+
+@media only screen and (max-width: 1000px){
+}
+
+@media only screen and (max-width: 800px) {
+	.search-bar form {
+		padding: 0;
+	}
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 640px){
+}
+
+@media only screen and (max-width: 640px){
+}
+
+@media only screen and (max-width: 480px) {
+}

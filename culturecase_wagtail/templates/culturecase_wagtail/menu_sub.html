@@ -1,0 +1,28 @@
+{% load wagtailcore_tags kdl_culturecase %}
+
+<ul class="avada-row">
+  {% for menuitem in menuitems %}
+  
+    {% with menuitem.specific as specific_item %}
+      <li class="{% if menuitem.active %}active{% endif %}">
+        <a href="{% pageurl menuitem %}">{{ specific_item.get_shortest_title }}</a>
+        
+        {% with specific_item.get_related_categories as submenuitems %}
+          {% if submenuitems %}
+            <ul class="">
+              {% for category in submenuitems %}
+                <li class="{% if category.url in request.path %}active{% endif %}">
+                  <a href="{{ category.url }}">
+                    {{ category.specific.get_shortest_title }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+          
+      </li>
+    {% endwith %}
+    
+  {% endfor %}
+</ul>

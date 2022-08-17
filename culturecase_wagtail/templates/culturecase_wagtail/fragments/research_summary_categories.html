@@ -1,0 +1,15 @@
+<div class="meta-info">
+  <div class="alignleft vcard">
+    <span class="fn">By <a href="/author/Culture.Case/" title="Posts by Culture.Case" rel="author">Culture.Case</a></span>
+    <span class="sep">|</span> 
+    <span class="updated">{{ page.go_live_at|date:"j F Y" }}</span>
+    <span class="sep">|</span>
+    {% for category in page.categories.all %} 
+        <a href="{{ category.url }}" rel="tag">{{ category.title }}</a>
+        {% if not forloop.last %}, {% endif%} 
+    {% endfor %}
+    <span class="sep">|</span>
+    <!-- <span>Comments Off<span class="screen-reader-text"> on The health benefits of an arts project for older offenders</span></span> -->
+  </div>
+</div>
+

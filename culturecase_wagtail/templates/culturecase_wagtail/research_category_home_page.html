@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags  staticfiles compress %}
+
+{% block body_class %}page page-id-2 page-template-default {{ block.super }}{% endblock %}
+
+{% block post_body %}
+
+  {{ page.body|richtext }}
+  
+{% endblock %}

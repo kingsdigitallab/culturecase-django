@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% comment %}
+    This format will work better with weasyprint package.
+    
+    Worfklow:
+    * user clicks print ;
+    * we redirect to ?format=pdf ;
+    * the view requests ?format=print (uses this print template)
+    * convert it to PDF with weasyprint 
+    * the return the PDF in the HTTP response 
+    
+    See AC #42: Wordpress -> Wagtail: print button and styles
+{% endcomment %}
+
+{% load wagtailcore_tags staticfiles compress %}
+
+{% block body_class %}single single-research postid-1421 {{block.super}}{% endblock %}
+
+ {% block title_container %}{% endblock %}
+
+{% block main %}
+
+  <h1 class="entry-title">
+    {{ page.title }}
+  </h1>
+
+
+  <div class="single-navigation clearfix">
+    <a href="/">Home</a> 
+    {% for category in page.get_breadcrumb %}
+        &gt;
+        <a href="{{ category.url }}">{{ category.title }}</a> 
+    {% endfor %}
+  </div>
+
+  {{ page.body|richtext }}
+
+  {% include "culturecase_wagtail/fragments/research_summary_keywords_and_meta.html" %}
+
+  {% include "culturecase_wagtail/fragments/research_summary_categories.html" %}
+  
+  <br>
+  
+
+{% endblock %}
+

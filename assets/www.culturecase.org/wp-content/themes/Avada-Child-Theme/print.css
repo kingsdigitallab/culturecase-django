@@ -1,0 +1,68 @@
+
+html body {
+	background:#fff !important;
+}
+#header {
+	display:none !important;
+}
+div#wrapper {
+    /* GN: fixed to 1000px elsewhere.
+    So print preview is truncated right.
+    */
+    width: auto;
+}
+#wrapper .print-header {
+	display:block !important;
+	margin:0 0 10px 10px;
+	line-height: auto;
+}
+.footer-area {
+	display: none;
+}
+#sidebar {
+	display:none;
+}
+.search-bar {
+	display:none;
+}
+#wrapper .page-title-container {
+    background:none;
+    border:none;
+}
+.page-title .page-title-captions {
+    width: 100%;
+}
+.page-title h1.entry-title {
+    color:#333 !important;
+}
+#wrapper #main {
+	padding-top:0;
+}
+#wrapper #main #content {
+	width:100%;
+}
+#wrapper #footer {
+	background:#fff !important;
+	color:#000 !important;
+}
+#wrapper #footer .copyright {
+	color:#000 !important;
+}
+#wrapper #footer .copyright a {
+    color:#000 !important;
+}
+.share-box {
+	display:none;
+}
+#content .single-navigation {
+	text-align: left;
+}
+.clearfix::after, #content::after {
+    display: none !important;
+}
+.print-pdf {
+	display: none;
+}
+.post-content .keywords a, .post-content .keywords a:visited {
+	background:#f3f3f3;
+}

@@ -1,0 +1,35 @@
+{% load staticfiles %}
+
+{% if not newsletter_form %}
+
+  {% block newsletter_form %}
+    {# % include "includes/newsletter_mailchimp.html" % #}
+    {% include "includes/newsletter_kcl_site.html" %}
+  {% endblock %}
+
+{% endif %}
+
+<div class="avada-row">
+  <div class="image">
+    <a href="//www.kcl.ac.uk/" title="King's College London">
+        <img class="kcl-logo" src="{% static 'images/KCL-logo-red.svg' %}" alt="King's College London">
+    </a>
+  </div>
+  <div class="info">
+    <ul>
+      <li class="styled">
+        <a href='//www.kcl.ac.uk/cultural' target='_blank'>Culture</a>
+      </li>
+    <li>
+      © Copyright {% now 'Y' %}
+    </li>
+    <li>
+      Designed, developed and maintained by <a href='//www.kdl.kcl.ac.uk' target='_blank' title="King's Digital Lab">King's Digital Lab</a>
+    </li>
+    <li>
+      Originally built by <a href='https://www.weheartdigital.co.uk' target='_blank'>weheartdigital Ltd</a>
+    </li>
+  </ul>
+  </div>
+</div>
+

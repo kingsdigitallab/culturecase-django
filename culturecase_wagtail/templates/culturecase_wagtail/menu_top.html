@@ -1,0 +1,97 @@
+{% load wagtailcore_tags kdl_culturecase %}
+
+<ul id="nav" class="menu">
+  {% for menuitem in menuitems %}
+
+    {% with menuitem.specific as specific_item %}
+      <li class="menu-item menu-item-type-post_type menu-item-object-page
+        {% if menuitem.active %}current_page_item{% endif %}">
+        <a href="{% pageurl menuitem %}">{{ specific_item.get_shortest_title }}</a>
+
+        {% with specific_item.get_related_categories as submenuitems %}
+          {% if submenuitems %}
+            <ul class="sub-menu">
+              {% for category in submenuitems %}
+                <li id="menu-item-153" class="menu-item menu-item-type-taxonomy menu-item-object-research-category menu-item-153">
+                  <a href="{{ category.url }}">
+                    {{ category.specific.get_shortest_title }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+      </li>
+    {% endwith %}
+  {% endfor %}
+
+  <li class="menu-item menu-item-type-post_type menu-item-object-page">
+    <div class="search-bar">
+      <form role="search" method="get" action="{% url 'search' %}">
+        <input type="text" id="s" name="s" {% if search_query %} value="{{ search_query }}"{% endif %} placeholder="Search..." autocomplete="off">
+        <input type="submit" id="searchsubmit" value="">
+      </form>
+    </div>
+  </li>
+
+</ul>
+
+{% comment %}
+  Mobile Menu
+
+  GN: todo: this menu should really be entirely redone from scratch.
+  The html below was copied/adapated from Avada javascript mobile menu
+  and is, like the rest of Avada code, quite horrid and full of inline
+  and javascripted-injected styles.
+{% endcomment %}
+
+<div class="dd-container kdl-mobile-menu">
+
+  {# Hamburger #}
+  <div class="dd-select" style="width: 100%; background: rgb(238, 238, 238);">
+    <input class="dd-selected-value" type="hidden" value="" hidden="hidden">
+    <a class="dd-selected"></a>
+    <span class="dd-pointer dd-pointer-down"></span>
+  </div>
+
+  {# Search box #}
+  <ul class="dd-options" style="width: 100%;">
+    {# Search box #}
+    <li>
+      <div class="search-bar">
+        <form role="search" method="get" action="{% url 'search' %}">
+          <input type="text" id="s" name="s" {% if search_query %} value="{{ search_query }}"{% endif %} placeholder="Search..." autocomplete="off">
+          <input type="submit" id="searchsubmit" value="">
+        </form>
+      </div>
+    </li>
+
+    {# Top Nav #}
+    {% for menuitem in menuitems %}
+      {% with menuitem.specific as specific_item %}
+
+        <li>
+            <a class="dd-option" href="{% pageurl menuitem %}">{{ specific_item.get_shortest_title }}</a>
+        </li>
+
+        {# <li><a class="dd-option"> <input class="dd-option-value" type="hidden" value="/about-data/"> <label class="dd-option-text">- About CultureCase Data</label></a></li> #}
+      {% endwith %}
+    {% endfor %}
+
+    {# Research and secondary nav items #}
+    <li>
+      <a href="/" class="dd-options">Research</a>
+    </li>
+    {% kdl_menu_top_second 'research' %}
+
+    {% if DATA_PORTAL_ENABLED %}
+      {# Data Portal and secondary nav items #}
+      <li>
+        <a href="/data/" class="dd-options">Data Portal</a>
+      </li>
+      {% kdl_menu_top_second 'data' %}
+    {% endif %}
+
+  </ul>
+</div>
