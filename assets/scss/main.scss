@@ -31,7 +31,7 @@
 // this is to override crazy text-shadow by the legacy css
 body .footer-area a {
     text-shadow: none;
-    color: #FE5900;
+    color: #D14900;
     
     &:hover {
         text-decoration: underline;
@@ -130,7 +130,7 @@ form.django-form-ul {
 // Colours
 $black: #000;
 $darkgray: #757575;
-$darkorange: #FE5900;
+$darkorange: #D14900;
 $midgray:#ccc;
 $lightgray: #f1f1f1;
 $lightorange: #FF9E01;
@@ -359,7 +359,7 @@ nav{
     z-index:100000;
     border-top:3px solid #a0ce4e;
     z-index: 99999;
-    border-color: #FE5900;
+    border-color: #D14900;
     -moz-box-shadow: 1px 1px 30px rgba(0, 0, 0, 0.06);
     -webkit-box-shadow: 1px 1px 30px rgba(0, 0, 0, 0.06);
     box-shadow: 1px 1px 30px rgba(0, 0, 0, 0.06);
@@ -427,7 +427,7 @@ ul#sticky-nav > li:last-child {
 #sticky-nav ul .current_page_item a, #sticky-nav ul .current-menu-item a, #sticky-nav ul>.current-menu-parent a,
 #sticky-nav ul ul, #sticky-nav li.current-menu-ancestor a, #sticky-nav ul li a:hover
 {
-    color: #FE5900 !important;
+    color: #D14900 !important;
 }
 
 [hidden] {
@@ -546,7 +546,7 @@ ul#sticky-nav > li:last-child {
     float: left;
 }
 .search-bar input[type="submit"]:hover {
-    background: #FE5900;
+    background: #D14900;
 }
 .search input,#searchform input{
     border:1px solid #e7e6e6;
@@ -1298,7 +1298,7 @@ img.wp-smiley, img.emoji {
 
 // --------
 a:hover {
-    color: #FE5900;
+    color: #D14900;
 }
 
 #nav ul .current_page_item a, #nav ul .current-menu-item a, #nav ul>.current-menu-parent a,
@@ -1341,11 +1341,11 @@ a:hover {
     .ginput_shipping_price, .bbp-topics-front ul.super-sticky a:hover,
     .bbp-topics ul.super-sticky a:hover, .bbp-topics ul.sticky a:hover,
     .bbp-forum-content ul.sticky a:hover {
-    color: #FE5900 !important;
+    color: #D14900 !important;
 }
 
 .star-rating:before, .star-rating span:before {
-    color: #FE5900 !important;
+    color: #D14900 !important;
 }
 
 .tagcloud a:hover, #slidingbar-area .tagcloud a:hover, .footer-area .tagcloud a:hover
@@ -1359,15 +1359,15 @@ a:hover {
 #nav li.current-menu-ancestor a,
 #sticky-nav li.current-menu-ancestor a
 {
-    color: #FE5900 !important;
+    color: #D14900 !important;
 }
 
 .side-nav li.current_page_item a {
-    border-right-color: #FE5900 !important;
+    border-right-color: #D14900 !important;
 }
 
 .rtl .side-nav li.current_page_item a {
-    border-left-color: #FE5900 !important;
+    border-left-color: #D14900 !important;
 }
 
 
@@ -1382,7 +1382,7 @@ h5.toggle.active span.arrow, .post-content ul.circle-yes li:before,
     .main-nav-search-form input[type="submit"]:hover,
     .search-page-search-form input[type="submit"]:hover, ul.arrow li:before
     {
-    background-color: #FE5900 !important;
+    background-color: #D14900 !important;
 }
 
 .bbp-topics-front ul.super-sticky, .bbp-topics ul.super-sticky,
@@ -1443,16 +1443,16 @@ h5.toggle.active span.arrow, .post-content ul.circle-yes li:before,
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(254,
         89, 0, 1)), color-stop(1, rgba(254, 89, 0, 1)));
     // GN: commented out, invalid scss
-    // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FE5900', endColorstr='#FE5900') progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+    // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#D14900', endColorstr='#D14900') progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
 }
 
 .no-cssgradients .image .image-extras {
-    background: #FE5900;
+    background: #D14900;
 }
 
 .image:hover .image-extras {
     // GN: commented out, invalid scss
-    // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FE5900', endColorstr='#FE5900') progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
+    // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#D14900', endColorstr='#D14900') progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
 }
 
 
@@ -1461,7 +1461,7 @@ h5.toggle.active span.arrow, .post-content ul.circle-yes li:before,
     .no-cssgradients .wpcf7-form input[type="submit"], .no-cssgradients .bbp-submit-wrapper button,
     .no-cssgradients .button.default, .no-cssgradients .price_slider_amount button,
     .no-cssgradients .gform_wrapper .gform_button {
-    background: #FE5900;
+    background: #D14900;
 }
 
 #main .portfolio-one .button:hover, #main .comment-submit:hover,
@@ -1469,18 +1469,18 @@ h5.toggle.active span.arrow, .post-content ul.circle-yes li:before,
     .wpcf7-form input[type="submit"]:hover, .bbp-submit-wrapper button:hover,
     .button.default:hover, .price_slider_amount button:hover,
     .gform_wrapper .gform_button:hover {
-    background: #FE5900;
-    color: #FE5900 !important;
-    background-image: linear-gradient(top, #FE5900 0%, #FE5900 100%);
-    background-image: -o-linear-gradient(top, #FE5900 0%, #FE5900 100%);
-    background-image: -moz-linear-gradient(top, #FE5900 0%, #FE5900 100%);
-    background-image: -webkit-linear-gradient(top, #FE5900 0%, #FE5900 100%);
-    background-image: -ms-linear-gradient(top, #FE5900 0%, #FE5900 100%);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FE5900),
-        color-stop(1, #FE5900));
-    border: 1px solid #FE5900;
+    background: #D14900;
+    color: #D14900 !important;
+    background-image: linear-gradient(top, #D14900 0%, #D14900 100%);
+    background-image: -o-linear-gradient(top, #D14900 0%, #D14900 100%);
+    background-image: -moz-linear-gradient(top, #D14900 0%, #D14900 100%);
+    background-image: -webkit-linear-gradient(top, #D14900 0%, #D14900 100%);
+    background-image: -ms-linear-gradient(top, #D14900 0%, #D14900 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #D14900),
+        color-stop(1, #D14900));
+    border: 1px solid #D14900;
     // GN: commented out, invalid scss
-    // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FE5900', endColorstr='#FE5900');
+    // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#D14900', endColorstr='#D14900');
 }
 
 .no-cssgradients #main .portfolio-one .button:hover, .no-cssgradients #main .comment-submit:hover,
@@ -1489,7 +1489,7 @@ h5.toggle.active span.arrow, .post-content ul.circle-yes li:before,
     .no-cssgradients .bbp-submit-wrapper button:hover, .no-cssgradients .button.default,
     .no-cssgradients .price_slider_amount button:hover, .no-cssgradients .gform_wrapper .gform_button
     {
-    background: #FE5900;
+    background: #D14900;
 }
 
 body {
@@ -1755,7 +1755,7 @@ body, .post .post-content, .post-content blockquote, .tab-holder .news-list li .
 }
 
 body a {
-    color: #FE5900;
+    color: #D14900;
 }
 
 .project-content .project-info .project-info-box a, #sidebar .widget li a,
@@ -1765,7 +1765,7 @@ body a {
     .shop_table thead tr th, .cart_totals table th, form.checkout .shop_table tfoot th,
     form.checkout .payment_methods label, #final-order-details .mini-order-details th,
     #main .product .product_title {
-    color: #FE5900 !important;
+    color: #D14900 !important;
 }
 
 .page-title ul li, .page-title ul li a {
@@ -1911,7 +1911,7 @@ body a {
 }
 
 #wrapper .header-social {
-    background-color: #FE5900 !important;
+    background-color: #D14900 !important;
 }
 
 #wrapper .header-social .menu>li {
@@ -2009,7 +2009,7 @@ body #sidebar .tab-hold .tabs li.active a {
 }
 
 body #sidebar .tab-hold .tabs li.active a {
-    border-top-color: #FE5900 !important;
+    border-top-color: #D14900 !important;
 }
 
 .share-box {
