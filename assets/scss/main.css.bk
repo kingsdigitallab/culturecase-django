@@ -25,7 +25,7 @@
 
 body .footer-area a {
   text-shadow: none;
-  color: #FE5900; }
+  color: #D14900; }
   body .footer-area a:hover {
     text-decoration: underline; }
 
@@ -196,7 +196,7 @@ body #header {
         float: left;
         margin-right: 5px; }
         body #header .logo ul li .active {
-          color: #FE5900;
+          color: #D14900;
           border-bottom: 2px solid; }
         body #header .logo ul li a {
           color: #FF9E01;
@@ -275,7 +275,7 @@ nav {
   z-index: 100000;
   border-top: 3px solid #a0ce4e;
   z-index: 99999;
-  border-color: #FE5900;
+  border-color: #D14900;
   -moz-box-shadow: 1px 1px 30px rgba(0, 0, 0, 0.06);
   -webkit-box-shadow: 1px 1px 30px rgba(0, 0, 0, 0.06);
   box-shadow: 1px 1px 30px rgba(0, 0, 0, 0.06);
@@ -329,7 +329,7 @@ ul#nav > li:last-child {
 
 #nav ul .current_page_item a, #nav ul .current-menu-item a, #nav ul > .current-menu-parent a,
 #nav ul ul, #nav li.current-menu-ancestor a, #nav ul li a:hover {
-  color: #FE5900 !important; }
+  color: #D14900 !important; }
 
 .subnav {
   background: #757575;
@@ -418,7 +418,7 @@ ul#nav > li:last-child {
   float: left; }
 
 .search-bar input[type="submit"]:hover {
-  background: #FE5900; }
+  background: #D14900; }
 
 .search input, #searchform input {
   border: 1px solid #e7e6e6;
@@ -864,7 +864,7 @@ a.search-link:after {
 .mc4wp-form-theme-dark input[type=submit]:active,
 .mc4wp-form-theme-dark input[type=submit]:focus,
 .mc4wp-form-theme-dark input[type=submit]:hover {
-  background-color: #FE5900;
+  background-color: #D14900;
   color: #fff; }
 
 .mc4wp-form-theme-dark input[type=text]:focus,
@@ -1108,7 +1108,7 @@ img.wp-smiley, img.emoji {
   color: #ffa902; }
 
 a:hover {
-  color: #FE5900; }
+  color: #D14900; }
 
 #nav ul .current_page_item a, #nav ul .current-menu-item a, #nav ul > .current-menu-parent a,
 .footer-area ul li a:hover, #slidingbar-area ul li a:hover,
@@ -1150,10 +1150,10 @@ a:hover {
 .ginput_shipping_price, .bbp-topics-front ul.super-sticky a:hover,
 .bbp-topics ul.super-sticky a:hover, .bbp-topics ul.sticky a:hover,
 .bbp-forum-content ul.sticky a:hover {
-  color: #FE5900 !important; }
+  color: #D14900 !important; }
 
 .star-rating:before, .star-rating span:before {
-  color: #FE5900 !important; }
+  color: #D14900 !important; }
 
 .tagcloud a:hover, #slidingbar-area .tagcloud a:hover, .footer-area .tagcloud a:hover {
   color: #FFFFFF !important;
@@ -1162,13 +1162,13 @@ a:hover {
   -webkit-text-shadow: none !important; }
 
 #nav li.current-menu-ancestor a {
-  color: #FE5900 !important; }
+  color: #D14900 !important; }
 
 .side-nav li.current_page_item a {
-  border-right-color: #FE5900 !important; }
+  border-right-color: #D14900 !important; }
 
 .rtl .side-nav li.current_page_item a {
-  border-left-color: #FE5900 !important; }
+  border-left-color: #D14900 !important; }
 
 h5.toggle.active span.arrow, .post-content ul.circle-yes li:before,
 .progress-bar-content, .pagination .current, .bbp-topic-pagination .current,
@@ -1179,7 +1179,7 @@ h5.toggle.active span.arrow, .post-content ul.circle-yes li:before,
 .cart-loading, #toTop:hover, #bbpress-forums div.bbp-topic-tags a:hover,
 .main-nav-search-form input[type="submit"]:hover,
 .search-page-search-form input[type="submit"]:hover, ul.arrow li:before {
-  background-color: #FE5900 !important; }
+  background-color: #D14900 !important; }
 
 .bbp-topics-front ul.super-sticky, .bbp-topics ul.super-sticky,
 .bbp-topics ul.sticky, .bbp-forum-content ul.sticky {
@@ -1209,44 +1209,44 @@ h5.toggle.active span.arrow, .post-content ul.circle-yes li:before,
   color: #A53A7C !important; }
 
 .image .image-extras {
-  background-image: linear-gradient(top, #fe5900 0%, #fe5900 100%);
-  background-image: -o-linear-gradient(top, #fe5900 0%, #fe5900 100%);
-  background-image: -moz-linear-gradient(top, #fe5900 0%, #fe5900 100%);
-  background-image: -webkit-linear-gradient(top, #fe5900 0%, #fe5900 100%);
-  background-image: -ms-linear-gradient(top, #fe5900 0%, #fe5900 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fe5900), color-stop(1, #fe5900)); }
+  background-image: linear-gradient(top, #D14900 0%, #D14900 100%);
+  background-image: -o-linear-gradient(top, #D14900 0%, #D14900 100%);
+  background-image: -moz-linear-gradient(top, #D14900 0%, #D14900 100%);
+  background-image: -webkit-linear-gradient(top, #D14900 0%, #D14900 100%);
+  background-image: -ms-linear-gradient(top, #D14900 0%, #D14900 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #D14900), color-stop(1, #D14900)); }
 
 .no-cssgradients .image .image-extras {
-  background: #FE5900; }
+  background: #D14900; }
 
 .no-cssgradients #main .portfolio-one .button, .no-cssgradients #main .comment-submit,
 .no-cssgradients #reviews input#submit, .no-cssgradients .comment-form input[type="submit"],
 .no-cssgradients .wpcf7-form input[type="submit"], .no-cssgradients .bbp-submit-wrapper button,
 .no-cssgradients .button.default, .no-cssgradients .price_slider_amount button,
 .no-cssgradients .gform_wrapper .gform_button {
-  background: #FE5900; }
+  background: #D14900; }
 
 #main .portfolio-one .button:hover, #main .comment-submit:hover,
 #reviews input#submit:hover, .comment-form input[type="submit"]:hover,
 .wpcf7-form input[type="submit"]:hover, .bbp-submit-wrapper button:hover,
 .button.default:hover, .price_slider_amount button:hover,
 .gform_wrapper .gform_button:hover {
-  background: #FE5900;
-  color: #FE5900 !important;
-  background-image: linear-gradient(top, #FE5900 0%, #FE5900 100%);
-  background-image: -o-linear-gradient(top, #FE5900 0%, #FE5900 100%);
-  background-image: -moz-linear-gradient(top, #FE5900 0%, #FE5900 100%);
-  background-image: -webkit-linear-gradient(top, #FE5900 0%, #FE5900 100%);
-  background-image: -ms-linear-gradient(top, #FE5900 0%, #FE5900 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FE5900), color-stop(1, #FE5900));
-  border: 1px solid #FE5900; }
+  background: #D14900;
+  color: #D14900 !important;
+  background-image: linear-gradient(top, #D14900 0%, #D14900 100%);
+  background-image: -o-linear-gradient(top, #D14900 0%, #D14900 100%);
+  background-image: -moz-linear-gradient(top, #D14900 0%, #D14900 100%);
+  background-image: -webkit-linear-gradient(top, #D14900 0%, #D14900 100%);
+  background-image: -ms-linear-gradient(top, #D14900 0%, #D14900 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #D14900), color-stop(1, #D14900));
+  border: 1px solid #D14900; }
 
 .no-cssgradients #main .portfolio-one .button:hover, .no-cssgradients #main .comment-submit:hover,
 .no-cssgradients #reviews input#submit:hover, .no-cssgradients .comment-form input[type="submit"]:hover,
 .no-cssgradients .wpcf7-form input[type="submit"]:hover,
 .no-cssgradients .bbp-submit-wrapper button:hover, .no-cssgradients .button.default,
 .no-cssgradients .price_slider_amount button:hover, .no-cssgradients .gform_wrapper .gform_button {
-  background: #FE5900; }
+  background: #D14900; }
 
 #wrapper {
   max-width: 1100px;
@@ -1438,7 +1438,7 @@ body, .post .post-content, .post-content blockquote, .tab-holder .news-list li .
   color: #333333 !important; }
 
 body a {
-  color: #FE5900; }
+  color: #D14900; }
 
 .project-content .project-info .project-info-box a, #sidebar .widget li a,
 #sidebar .widget .recentcomments, #sidebar .widget_categories li,
@@ -1447,7 +1447,7 @@ body a {
 .shop_table thead tr th, .cart_totals table th, form.checkout .shop_table tfoot th,
 form.checkout .payment_methods label, #final-order-details .mini-order-details th,
 #main .product .product_title {
-  color: #FE5900 !important; }
+  color: #D14900 !important; }
 
 .page-title ul li, .page-title ul li a {
   color: #333333 !important; }
@@ -1554,7 +1554,7 @@ p.order-info, .cart-content a img, .panel.entry-content,
   width: 23.4042553%; }
 
 #wrapper .header-social {
-  background-color: #FE5900 !important; }
+  background-color: #D14900 !important; }
 
 #wrapper .header-social .menu > li {
   border-color: #ffffff !important; }
@@ -1627,7 +1627,7 @@ body #sidebar .tab-hold .tabs li.active a {
   border-bottom: 0 !important; }
 
 body #sidebar .tab-hold .tabs li.active a {
-  border-top-color: #FE5900 !important; }
+  border-top-color: #D14900 !important; }
 
 .share-box {
   background-color: #f6f6f6; }
