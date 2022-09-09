@@ -520,7 +520,8 @@ ul#sticky-nav > li:last-child {
 .search-bar input{
     background: $white;
 }
-.search-bar #s {
+// .search-bar #s, .search-bar #mobile-s {
+.search-bar .search-input-text {
     color: #333 !important;
     font-size: 13px;
     width: 68%;
