@@ -453,15 +453,15 @@ ul#sticky-nav > li:last-child {
             }
             a{
                 font-family: 'KingsBureauGrotTS', sans-serif;
-                font-size: 14px;
+                font-size: 16px;
                 color:$white;
                 display:block;
                 &:hover{
-                    color: $lightorange;
+                    opacity:0.8;
                 }
             }
             &.active > a{
-                color: $lightorange;
+                border-bottom: 4px solid $lightorange;
             }
             // dropdown menu
             ul{
@@ -475,7 +475,7 @@ ul#sticky-nav > li:last-child {
                 left:auto; /* Bring back on-screen when needed */
                 right:-5px;
                 text-align: right;
-                width:200px;
+                width:220px;
                 li{
                     padding: 18px 0 0 0;
                     display: block;
