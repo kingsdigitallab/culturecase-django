@@ -61,7 +61,7 @@
     <li>
       <div class="search-bar">
         <form role="search" method="get" action="{% url 'search' %}">
-          <input class="search-input-text" type="text" data-id="s" name="s" {% if search_query %} value="{{ search_query }}"{% endif %} placeholder="Search..." autocomplete="off">
+          <input class="search-input-text" title="Type your search here" type="text" data-id="s" name="s" {% if search_query %} value="{{ search_query }}"{% endif %} placeholder="Search..." autocomplete="off">
           <input class="search-input-submit" type="submit" data-id="searchsubmit" value="">
         </form>
       </div>
