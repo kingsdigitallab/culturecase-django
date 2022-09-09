@@ -773,10 +773,12 @@ a.search-link:after {
 .page-title-container{
     background-position:center center;
     background-repeat:no-repeat;
-    background-color:$lightorange;
+    background-color:$white;
     display: table;
     width:100%;
     padding:17px 0;
+    border-top:10px solid $lightorange!important;
+    border-bottom:1px solid $lightorange!important;
 }
 .page-title{
     display: table-cell;
@@ -797,7 +799,7 @@ a.search-link:after {
     font-weight:normal;
     font:18px 'MuseoSlab500Regular', arial, helvetica, sans-serif;
     line-height:26px;
-    color:#343333;
+    color:$darkgray;
     margin:0;
     padding:0;
 }
@@ -957,14 +959,27 @@ a.search-link:after {
 .footer-area {
     border:none;
     padding:20px 0;
-    background-color: $lightgray;
-    color: $darkgray;
+    border-top: 6px solid $darkgray;
+    border-bottom: 1px solid $darkgray;
+    padding: 10px 0;
+    text-align:center;
     h3 {
     font-family: "Sorts Mill Goudy", Arial, Helvetica, sans-serif;
     font-size: 13px;
     color: $black;
     margin:0 0 28px;
     text-transform:uppercase;
+    padding:10px;
+    border:1px solid $darkorange;
+    display: inline-block;
+    text-align:center;
+    a{
+        text-align:center;
+
+    }
+  }
+  .footer-widget-col{
+    margin-bottom:0;
   }
 }
 .footer-area .columns{
@@ -1740,10 +1755,6 @@ body, .post .post-content, .post-content blockquote, .tab-holder .news-list li .
 
 .post-content h6, .title h6 {
     color: #333333 !important;
-}
-
-.page-title h1 {
-    color: #FFFFFF !important;
 }
 
 .sep-boxed-pricing ul li.title-row {
