@@ -261,7 +261,7 @@ nav {
   margin: 0;
   position: relative; }
   #nav ul li a {
-    color: #888; }
+    color: #757575; }
 
 #nav ul li:hover ul {
   display: block; }
@@ -332,7 +332,7 @@ ul#nav > li:last-child {
   color: #FE5900 !important; }
 
 .subnav {
-  background: #888;
+  background: #757575;
   width: 100%;
   float: left;
   padding: 5px 0; }
@@ -360,7 +360,7 @@ ul#nav > li:last-child {
         margin: 0;
         z-index: 30;
         padding: 0;
-        background: #888;
+        background: #757575;
         display: none;
         float: none;
         left: auto;
@@ -817,7 +817,7 @@ a.search-link:after {
   border: none;
   padding: 20px 0;
   background-color: #f1f1f1;
-  color: #888; }
+  color: #757575; }
   .footer-area h3 {
     font-family: "Sorts Mill Goudy", Arial, Helvetica, sans-serif;
     font-size: 13px;
@@ -919,7 +919,7 @@ a.search-link:after {
   font-family: 'KingsBureauGrotTS', sans-serif;
   font-size: 17px;
   text-transform: none;
-  color: #888;
+  color: #757575;
   font-weight: normal; }
 
 .footer-widget-col p {
