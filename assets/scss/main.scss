@@ -10,7 +10,7 @@
 }
 
 // Hide the mobile menu inserted by Avada JS code
-#nav div.dd-container {
+#nav div.dd-container, #sticky-nav div.dd-container {
     display: none; 
     right: 100000px;
 
@@ -207,24 +207,24 @@ body {
     // DATA_PORTAL_ENABLED = True (or False) in your local.py
     &.data-portal-hidden {
         // hide the 'research | data portal' menu
-        #header .logo ul {
+        #header .logo ul, #sticky-header .logo ul {
             display: none;
         }
         // move desktop menu higher
-        #nav ul li {
+        #sticky-nav ul li, #nav ul li {
             padding-top: 22px;
         }
         // move mobile menu higher
-        #nav .dd-container, .top-menu .dd-container {
+        #sticky-nav .dd-container, #nav .dd-container, .top-menu .dd-container {
             top: 20px;
         }
-        body #header.sticky-header .logo h1 {
+        body #sticky-header.sticky-header .logo h1 {
             margin-top: 20px;
         }
     }
     // GN: END
     
-    #header{
+    #header, #sticky-header {
         font-family: "Sorts Mill Goudy", Arial, Helvetica, sans-serif;
           .logo{
             float:left;
@@ -295,7 +295,7 @@ body {
                     margin-top:15px;
                 }
             }
-            #nav>ul>li{
+            #nav>ul>li, #sticky-nav>ul>li{
                 padding-top:0;
 
             >a {
@@ -305,7 +305,7 @@ body {
                 padding-top:20px;
             }
             }
-            #nav ul ul{
+            #nav ul ul, #sticky-nav ul ul{
                 ul{
                 top:-3px !important;
                 }
@@ -329,16 +329,16 @@ nav{
     font-family: 'KingsBureauGrotTS', sans-serif;
     z-index: 99999;
 }
-#nav {
+#nav, #sticky-nav {
     font-size: 16px;
 }
-#nav ul{
+#nav ul, #sticky-nav ul{
     list-style:none;
     margin:0;
     padding:0;
 }
 
-#nav ul li{
+#nav ul li, #sticky-nav ul li{
     float:left;
     padding: 35px 35px 30px 0;
     margin: 0;
@@ -347,10 +347,10 @@ nav{
         color: $darkgray;
     }
 }
-#nav ul li:hover ul{
+#nav ul li:hover ul, #sticky-nav ul li:hover ul{
     display:block;
 }
-#nav ul ul{
+#nav ul ul, #sticky-nav ul ul{
     display:none;
     position:absolute;
     left:0px;
@@ -368,27 +368,31 @@ nav{
     box-shadow: -1px 1px 10px rgba(0,0,0,.22);*/
 }
 
-#nav ul ul ul{
+#nav ul ul ul, #sticky-nav ul ul ul{
     display:none !important;
 }
 
-#nav ul ul li:hover ul {
+#nav ul ul li:hover ul, #sticky-nav ul ul li:hover ul {
     left: 170px !important;
 }
 
-ul#nav > li:last-child{padding-right:0;}
-#nav ul a,#nav li.current-menu-ancestor a{
+ul#nav > li:last-child,
+ul#sticky-nav > li:last-child {
+    padding-right:0;
+}
+#nav ul a,#nav li.current-menu-ancestor a,
+#sticky-nav ul a,#sticky-nav li.current-menu-ancestor a{
     display:block;
     border-top:3px solid #fff;
 }
 
-#nav ul li ul li{
+#nav ul li ul li, #sticky-nav ul li ul li{
     display:block;
     float:none;
     margin:0;
     padding: 0;
 }
-#wrapper #nav ul li ul li a{
+#wrapper #nav ul li ul li a, #wrapper #sticky-nav ul li ul li a{
     border:0;
     border-bottom:1px solid #dcdadb;
     height:auto;
@@ -398,16 +402,19 @@ ul#nav > li:last-child{padding-right:0;}
     padding:7px 20px;
     line-height:19px;
 }
-#wrapper #nav ul li ul li a:hover,#wrapper #nav ul li ul li.current-menu-item a{
+#wrapper #nav ul li ul li a:hover,#wrapper #nav ul li ul li.current-menu-item a,
+#wrapper #stiky-nav ul li ul li a:hover,#wrapper #sticky-nav ul li ul li.current-menu-item a{
     background-color:rgba(255,255,255,0.5);
 }
 
-#nav ul ul li:hover ul{
+#nav ul ul li:hover ul,
+#sticky-nav ul ul li:hover ul{
     display:block !important;
     top:-3px;
     left:170px;
 }
-#nav .dd-container,.top-menu .dd-container{
+#nav .dd-container,.top-menu .dd-container,
+#sticky-nav .dd-container{
     width:90% !important;
     display:none;
     position: absolute;
@@ -416,7 +423,10 @@ ul#nav > li:last-child{padding-right:0;}
 }
 
 #nav ul .current_page_item a, #nav ul .current-menu-item a, #nav ul>.current-menu-parent a,
-    #nav ul ul, #nav li.current-menu-ancestor a, #nav ul li a:hover {
+#nav ul ul, #nav li.current-menu-ancestor a, #nav ul li a:hover,
+#sticky-nav ul .current_page_item a, #sticky-nav ul .current-menu-item a, #sticky-nav ul>.current-menu-parent a,
+#sticky-nav ul ul, #sticky-nav li.current-menu-ancestor a, #sticky-nav ul li a:hover
+{
     color: #FE5900 !important;
 }
 
@@ -1119,7 +1129,7 @@ footer{
     #wrapper .ei-slider {
         width: 100% !important;
     }
-    body #header.sticky-header, body #header.sticky-header.sticky {
+    body #sticky-header.sticky-header, body #sticky-header.sticky-header.sticky {
         display: none !important;
     }
 }
@@ -1345,7 +1355,9 @@ a:hover {
     -webkit-text-shadow: none !important;
 }
 
-#nav li.current-menu-ancestor a {
+#nav li.current-menu-ancestor a,
+#sticky-nav li.current-menu-ancestor a
+{
     color: #FE5900 !important;
 }
 
@@ -1391,7 +1403,9 @@ h5.toggle.active span.arrow, .post-content ul.circle-yes li:before,
 
 
 
-.no-rgba body #header.sticky-header .sticky-shadow {
+.no-rgba body #header.sticky-header .sticky-shadow ,
+.no-rgba body #sticky-header.sticky-header .sticky-shadow
+{
     background: #ffffff;
     // GN: commented out, invalid scss
     // filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0.97);
@@ -1640,13 +1654,13 @@ body, #sidebar .slide-excerpt h2, .footer-area .slide-excerpt h2,
     line-height: 28px !important;
 }
 
-.post-content h3, .project-content h3, #header .tagline, .product-title
+.post-content h3, .project-content h3, #header .tagline, #sticky-header .tagline, .product-title
     {
     font-size: 18px !important;
     line-height: 27px !important;
 }
 
-.post-content h3, .project-content h3, #header .tagline, .product-title
+.post-content h3, .project-content h3, #header .tagline, #sticky-header .tagline, .product-title
     {
     line-height: 24px !important;
 }
@@ -1774,7 +1788,7 @@ body a {
 
 
 
-#wrapper #nav ul li ul li a, .side-nav li li a, .side-nav li.current_page_item li a
+#wrapper #nav ul li ul li a, #wrapper #sticky-nav ul li ul li a, .side-nav li li a, .side-nav li.current_page_item li a
     {
     color: #333333 !important;
 }
@@ -1860,12 +1874,14 @@ body a {
 
 
 
-#wrapper #nav ul li ul li a {
+#wrapper #nav ul li ul li a, #wrapper #sticky-nav ul li ul li a {
     border-bottom: 1px solid #dcdadb !important;
 }
 
-#wrapper #nav ul li ul li a:hover, #wrapper #nav ul li ul li.current-menu-item a,
-    #header .cart-content a:hover, #small-nav .cart-content a:hover {
+#wrapper #nav ul li ul li a:hover, #wrapper #sticky-nav ul li ul li a:hover,
+#wrapper #nav ul li ul li.current-menu-item a, #wrapper #sticky-nav ul li ul li.current-menu-item a,
+#header .cart-content a:hover, #sticky-header .cart-content a:hover, #small-nav .cart-content a:hover
+{
     background-color: #f5f4f4 !important;
 }
 
@@ -2070,7 +2086,7 @@ body #sidebar .tab-hold .tabs li.active a {
 
 @media only screen and (max-width: 800px) {
 
-    #header{
+    #header, #sticky-header {
         padding:0 0 20px 0;
       .logo{
           h1{
@@ -2123,8 +2139,9 @@ body #sidebar .tab-hold .tabs li.active a {
 
 
 
-.sticky-header #nav>li>a.my-cart-link, .sticky-header #nav li.current-menu-ancestor a.my-cart-link
-    {
+.sticky-header #nav>li>a.my-cart-link, .sticky-header #nav li.current-menu-ancestor a.my-cart-link,
+.sticky-header #sticky-nav>li>a.my-cart-link, .sticky-header #sticky-nav li.current-menu-ancestor a.my-cart-link,
+{
     height: 63px;
     line-height: 63px;
 }
@@ -2370,13 +2387,13 @@ body #sidebar .tab-hold .tabs li.active a {
         display: block;
         margin-bottom: 5px
     }
-    #nav ul{ /* Hacky but can't use z-index */
+    #nav ul, #sticky-nav ul{ /* Hacky but can't use z-index */
         margin: 0 0 0 -300%;
         width: 400% !important;
     }
-    #nav div.dd-container.kdl-mobile-menu {
-    right: 0;
-    width:65px !important; /* Hacky but can't use z-index */
+    #nav div.dd-container.kdl-mobile-menu, #sticky-nav div.dd-container.kdl-mobile-menu {
+        right: 0;
+        width:65px !important; /* Hacky but can't use z-index */
     }
     .page-title-container{
         padding:10px 0;
@@ -2387,3 +2404,8 @@ body #sidebar .tab-hold .tabs li.active a {
     }
 }
 
+// GN: AX-4.1.1-home
+#sticky-nav li a {
+    height: 63px;
+    line-height: 63px;
+}
