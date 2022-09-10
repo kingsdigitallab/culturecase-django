@@ -486,7 +486,7 @@ ul#sticky-nav > li:last-child {
                     &:last-child{
                         margin-right:15px;
                         padding-bottom: 18px
-                }
+                    }
                     a{
                         color: $white;
                         margin:0;
@@ -2420,4 +2420,14 @@ body #sidebar .tab-hold .tabs li.active a {
 #sticky-nav li a {
     height: 63px;
     line-height: 63px;
+}
+
+// GN: AX-2.4.7-content - focus visible on expandable sub-categories
+.faq-item .toggle a:focus {
+    border: 2px solid blue;
+}
+
+// GN: AX-1.4.3-search
+.relevanssi-query-term {
+    color: #616161;
 }
