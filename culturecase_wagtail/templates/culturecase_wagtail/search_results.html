@@ -2,6 +2,8 @@
 
 {% load wagtailcore_tags  staticfiles compress %}
 
+{% block head_title %} - Search{% if result_page.paginator.count %} results for: {{search_query}}{% endif %}{% endblock %}
+
 {% block body_class %}search search-results {{ block.super }}{% endblock %}
 
 {% block title %}
