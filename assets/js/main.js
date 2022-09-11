@@ -1265,12 +1265,18 @@ jQuery(function($) {
             // AX-4.1.2-home - avada inserts a lot of empty <a>
             $('a:empty').attr('aria-hidden', 'true')
             // remove attribute-less <a> in the footer, but keep content
-            jQuery('footer a:not([href])').each(function() {
+            $('footer a:not([href])').each(function() {
                 $e = $(this)
                 $e.replaceWith($e.html())
             })
             // AX-4.1.2-home
-            jQuery('#toTop').attr('aria-label', 'Back to top')
+            $('#toTop').attr('aria-label', 'Back to top')
+            // AX-4.1.2-home slide links have no text
+            $('.kdl-slide-link').each(function() {
+                let linkText = $(this).text()
+                let $link = $(this).parent().find('a[target=_self]')
+                $link.attr('aria-label', linkText)
+            })
         },
         0
     )
