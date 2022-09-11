@@ -11,8 +11,13 @@
 
 // Hide the mobile menu inserted by Avada JS code
 #nav div.dd-container, #sticky-nav div.dd-container {
-    display: none; 
+    display: none;
     right: 100000px;
+
+	.nav-holder .dd-container, .top-menu .dd-container {
+	    display: block !important;
+	    width:100%;
+	}
 
     &.kdl-mobile-menu {
         @media only screen and (max-width: 900px) {
