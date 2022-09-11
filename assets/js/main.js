@@ -1269,6 +1269,8 @@ jQuery(function($) {
                 $e = $(this)
                 $e.replaceWith($e.html())
             })
+            // AX-4.1.2-home
+            jQuery('#toTop').attr('aria-label', 'Back to top')
         },
         0
     )
