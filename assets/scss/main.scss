@@ -11,8 +11,13 @@
 
 // Hide the mobile menu inserted by Avada JS code
 #nav div.dd-container, #sticky-nav div.dd-container {
-    display: none; 
+    display: none;
     right: 100000px;
+
+	.nav-holder .dd-container, .top-menu .dd-container {
+	    display: block !important;
+	    width:100%;
+	}
 
     &.kdl-mobile-menu {
         @media only screen and (max-width: 900px) {
@@ -486,7 +491,7 @@ ul#sticky-nav > li:last-child {
                     &:last-child{
                         margin-right:15px;
                         padding-bottom: 18px
-                }
+                    }
                     a{
                         color: $white;
                         margin:0;
@@ -959,22 +964,22 @@ a.search-link:after {
 .footer-area {
     border:none;
     padding:20px 0;
-    border-top: 6px solid $darkgray;
-    border-bottom: 1px solid $darkgray;
+    border-top: 4px solid $lightorange;
     padding: 10px 0;
     text-align:center;
     h3 {
     font-family: "Sorts Mill Goudy", Arial, Helvetica, sans-serif;
     font-size: 13px;
-    color: $black;
+    color: $darkgray;
     margin:0 0 28px;
     text-transform:uppercase;
     padding:10px;
-    border:1px solid $darkorange;
+    border:1px solid $darkgray;
     display: inline-block;
     text-align:center;
     a{
         text-align:center;
+        color: $darkgray;
 
     }
   }
@@ -1112,6 +1117,7 @@ a.search-link:after {
 // ** Footer **
 
 footer{
+    border-top:8px solid $darkgray;
     .image{
         float:left;
         width:150px;
@@ -2416,8 +2422,39 @@ body #sidebar .tab-hold .tabs li.active a {
     }
 }
 
+// Cookies
+.cookies-box{
+    p{
+        a{
+            color:white !important;
+            text-decoration: underline !important;
+            &:hover{
+                opacity: 0.8;
+            }//&:hover
+        }//a
+        button{
+            border: 1px solid white;
+            background-color:#3f464a;
+            &:hover{
+                background-color:black;
+            }//&:hover
+        }// button
+    }//p
+
+}//.cookies-box
+
 // GN: AX-4.1.1-home
 #sticky-nav li a {
     height: 63px;
     line-height: 63px;
+}
+
+// GN: AX-2.4.7-content - focus visible on expandable sub-categories
+.faq-item .toggle a:focus {
+    border: 2px solid blue;
+}
+
+// GN: AX-1.4.3-search
+.relevanssi-query-term {
+    color: #616161;
 }
