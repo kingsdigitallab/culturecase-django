@@ -11,13 +11,8 @@
 
 // Hide the mobile menu inserted by Avada JS code
 #nav div.dd-container, #sticky-nav div.dd-container {
-    display: none;
+    display: none; 
     right: 100000px;
-
-	.nav-holder .dd-container, .top-menu .dd-container {
-	    display: block !important;
-	    width:100%;
-	}
 
     &.kdl-mobile-menu {
         @media only screen and (max-width: 900px) {
@@ -491,7 +486,7 @@ ul#sticky-nav > li:last-child {
                     &:last-child{
                         margin-right:15px;
                         padding-bottom: 18px
-                    }
+                }
                     a{
                         color: $white;
                         margin:0;
@@ -2425,14 +2420,4 @@ body #sidebar .tab-hold .tabs li.active a {
 #sticky-nav li a {
     height: 63px;
     line-height: 63px;
-}
-
-// GN: AX-2.4.7-content - focus visible on expandable sub-categories
-.faq-item .toggle a:focus {
-    border: 2px solid blue;
-}
-
-// GN: AX-1.4.3-search
-.relevanssi-query-term {
-    color: #616161;
 }

@@ -122,11 +122,3 @@ def update_qs(context, name, value):
     params[name] = value
     ret = '?{}'.format(parse.urlencode(params))
     return mark_safe(ret)
-
-
-@register.filter(name='clean_result')
-def clean_result(value):
-    ret = value or ''
-    import re
-    ret = re.sub(r'(<br/?>\s*)+', '<br>', ret)
-    return ret

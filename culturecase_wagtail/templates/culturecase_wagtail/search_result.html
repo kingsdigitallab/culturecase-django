@@ -14,7 +14,7 @@
   <div class="post-content">
     {% if highlights %}
         {% for highlight in highlights %}
-            {{ highlight|clean_result|safe }}
+            {{ highlight|safe }}
         {% endfor %}
     {% else %}
         {{ result.body|truncatewords_html:51|safe }}
