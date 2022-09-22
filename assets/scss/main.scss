@@ -2439,7 +2439,7 @@ body #sidebar .tab-hold .tabs li.active a {
 }
 
 // Cookies
-#cookie-disclaimer{ // TO: Using instead of .cookies-box as not styles not overriding 
+#cookie-disclaimer{ // TO: Using #cookie-disclaimer instead of .cookies-box to force override
     background: rgb(63, 70, 74);
     p{
         a{
@@ -2452,6 +2452,7 @@ body #sidebar .tab-hold .tabs li.active a {
         }//a
         button{
             background-color:$darkorange;
+            color:white!important;
             &:hover{
                 background-color:$white!important;
                 color:$darkorange!important;
