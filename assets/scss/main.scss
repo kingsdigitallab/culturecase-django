@@ -2046,7 +2046,7 @@ body #sidebar .tab-hold .tabs li.active a {
 }
 
 .share-box {
-    background-color: #f6f6f6;
+    background-color: white;
     h4 {
         // GN: reduced padding otherwise h4 pushed the icon bar down,
         // under certain viewport scaling/width conditions.
@@ -2445,6 +2445,7 @@ body #sidebar .tab-hold .tabs li.active a {
         a{
             color:white!important;
             text-decoration: underline!important;
+            background-color:none!important;
             &:hover{
                 opacity: 0.8;
             }//&:hover
@@ -2457,8 +2458,7 @@ body #sidebar .tab-hold .tabs li.active a {
             }//&:hover
         }// button
     }//p
-
-}//.cookies-box
+}//#cookie-disclaimer
 
 
 // GN: AX-4.1.1-home
