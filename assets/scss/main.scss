@@ -207,9 +207,18 @@ form, fieldset {
 // ** Header **
 body {
     .hidden{
-        font-size:0;
-        line-height: 0;
+          position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+      &:focus {
+      position: static;
+      width: auto;
+      height: auto;
     }
+}//.hidden
     
     // GN: while the the data portal section is hidden...
     // Don't forget to test with and without this class by setting
