@@ -82,8 +82,8 @@
 </head>
 
 <body class="{% block body_class %}light{% endblock %} {% if not DATA_PORTAL_ENABLED %}data-portal-hidden{% endif %} ">
+  <a class="hidden" role="navigation" href="#main">Skip to main content</a>
   <div id="wrapper">
-    <a class="hidden" href="#main">Skip to main content</a>
     {% block header%}
       {% include 'includes/header.html' %}
     {% endblock %}
