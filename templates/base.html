@@ -83,6 +83,7 @@
 
 <body class="{% block body_class %}light{% endblock %} {% if not DATA_PORTAL_ENABLED %}data-portal-hidden{% endif %} ">
   <div id="wrapper">
+    <a class="hidden" href="#main">Skip to main content</a>
     {% block header%}
       {% include 'includes/header.html' %}
     {% endblock %}
@@ -90,7 +91,6 @@
     <p class="print-header">
       <img src="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/images/logo-culturecase.png' %}" alt="Culture Case" />
     </p>
-
     {% block title_container %}
       <div class="page-title-container">
         <div class="page-title avada-row">
