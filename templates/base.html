@@ -82,8 +82,8 @@
 </head>
 
 <body class="{% block body_class %}light{% endblock %} {% if not DATA_PORTAL_ENABLED %}data-portal-hidden{% endif %} ">
-  <a class="hidden" role="navigation" href="#main">Skip to main content</a>
-  <div id="wrapper">
+  <a class="hidden" role="navigation" href="#main" aria-label="skip">Skip to main content</a>
+  <div id="wrapper" role="navigation">
     {% block header%}
       {% include 'includes/header.html' %}
     {% endblock %}
@@ -92,7 +92,7 @@
       <img src="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/images/logo-culturecase.png' %}" alt="Culture Case" />
     </p>
     {% block title_container %}
-      <div class="page-title-container">
+      <div class="page-title-container" role="banner">
         <div class="page-title avada-row">
             <div class="page-title-captions">
               <h1 class="entry-title">
@@ -106,7 +106,7 @@
     {% endblock %}
 
     {% block main %}
-      <div id="main" class="" style="overflow: hidden !important;">
+      <div id="main" role="main" class="" style="overflow: hidden !important;">
         <div class="avada-row" style="">
           <div id="content" style="float: left;"
               class="{% block content_class %} {% endblock %}">
