@@ -1277,6 +1277,11 @@ jQuery(function($) {
                 let $link = $(this).parent().find('a[target=_self]')
                 $link.attr('aria-label', linkText)
             })
+            // ax-1.3.1-home siteimprove duplicate aria-label b/c sticky menu is cloned
+            $('.sticky-header [aria-label]').each(function() {
+                $(this).attr('aria-label', 'sticky ' + $(this).attr('aria-label'))
+            })
+            $('.sticky-header').attr('aria-label', 'sticky header')
         },
         0
     )

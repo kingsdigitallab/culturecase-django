@@ -1,5 +1,5 @@
 {% load staticfiles compress kdl_culturecase wagtailroutablepage_tags %}
-<div class="header-wrapper" role="navigation">
+<div class="header-wrapper" role="navigation" aria-label="main menu">
   <header id="header" aria-label="logo">
     <div class="avada-row" style="margin-top: 0; margin-bottom: 0;">
       <div class="logo">
@@ -22,7 +22,7 @@
       </nav>
     </div>
   </header>
-  <div class="subnav" role="navigation">
+  <div class="subnav" role="navigation" aria-label="article categories">
     {% if in_data_portal %}
       {% kdl_menu_sub menu_slug='data' active_page_slug=active_page_slug %}
     {% else %}

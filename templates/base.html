@@ -83,7 +83,7 @@
 
 <body class="{% block body_class %}light{% endblock %} {% if not DATA_PORTAL_ENABLED %}data-portal-hidden{% endif %} ">
   <a class="hidden" role="navigation" href="#main" aria-label="skip">Skip to main content</a>
-  <div id="wrapper" role="navigation">
+  <div id="wrapper">
     {% block header%}
       {% include 'includes/header.html' %}
     {% endblock %}
@@ -92,7 +92,7 @@
       <img src="{% static 'www.culturecase.org/wp-content/themes/Avada-Child-Theme/images/logo-culturecase.png' %}" alt="Culture Case" />
     </p>
     {% block title_container %}
-      <div class="page-title-container" role="banner">
+      <div class="page-title-container" role="banner" aria-label="top banner">
         <div class="page-title avada-row">
             <div class="page-title-captions">
               <h1 class="entry-title">
@@ -154,6 +154,8 @@
           {% endblock %}
 
         </div>
+        <!-- wrapper : GN: what is this? -->
+        <div class="revsliderstyles"></div>
       </div>
     {% endblock%}
 
@@ -172,8 +174,6 @@
     <p><a href="/privacy-policy/" class="small">Privacy &amp; cookie policy</a></p>
   </div -->
 
-  <!-- wrapper -->
-  <div class="revsliderstyles"></div>
   <!-- JAVASCRIPT -->
   <!-- W3TC-include-js-head -->
   <script type='text/javascript' src="{% static 'www.culturecase.org/wp-content/themes/Avada/framework/plugins/tf-flexslider/assets/js/jquery.mousewheel.min.js' %}"></script>
