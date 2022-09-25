@@ -127,7 +127,7 @@ jQuery(window).load(function () {
       jQuery(this).addClass("portfolio-" + columns + "-sidebar");
     });
   }
-  jQuery(".full-video, .video-shortcode, .wooslider .slide-content").fitVids();
+  //jQuery(".full-video, .video-shortcode, .wooslider .slide-content").fitVids();
 
   if (jQuery().isotope) {
     // modified Isotope methods for gutters in masonry
@@ -936,11 +936,11 @@ jQuery(window).load(function ($) {
       if (jQuery().prettyPhoto) {
         jQuery("a[rel^='prettyPhoto']").prettyPhoto(ppArgs);
       }
-      jQuery(posts).each(function () {
-        jQuery(this)
-          .find(".full-video, .video-shortcode, .wooslider .slide-content")
-          .fitVids();
-      });
+//      jQuery(posts).each(function () {
+//        jQuery(this)
+//          .find(".full-video, .video-shortcode, .wooslider .slide-content")
+//          .fitVids();
+//      });
 
       if (jQuery().isotope) {
         jQuery("#posts-container").isotope("reLayout");
@@ -1074,11 +1074,11 @@ jQuery(window).load(function ($) {
       if (jQuery().prettyPhoto) {
         jQuery("a[rel^='prettyPhoto']").prettyPhoto(ppArgs);
       }
-      jQuery(posts).each(function () {
-        jQuery(this)
-          .find(".full-video, .video-shortcode, .wooslider .slide-content")
-          .fitVids();
-      });
+//      jQuery(posts).each(function () {
+//        jQuery(this)
+//          .find(".full-video, .video-shortcode, .wooslider .slide-content")
+//          .fitVids();
+//      });
 
       if (jQuery().isotope) {
         jQuery("#posts-container-infinite").isotope("reLayout");
