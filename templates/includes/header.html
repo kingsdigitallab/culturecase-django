@@ -1,21 +1,11 @@
 {% load staticfiles compress kdl_culturecase wagtailroutablepage_tags %}
 <div class="header-wrapper" role="navigation" aria-label="main menu">
-  <header id="header" aria-label="logo">
+  <header id="header" aria-label="primary navigation">
     <div class="avada-row" style="margin-top: 0; margin-bottom: 0;">
       <div class="logo">
         <h1>
           <a href="/">CultureCase </a>
         </h1>
-        {% comment %}
-        <ul>
-          <li>
-            <a href="/" class="{% if not in_data_portal %}active{% endif %}">RESEARCH</a>
-          </li> 
-          <li>
-            <a href="/data/" class="{% if in_data_portal %}active{% endif %}">DATA PORTAL</a>
-          </li>
-        </ul>
-        {% endcomment %}
       </div>
       <nav id="nav" class="nav-holder" aria-label="menu">
         {% block menu %}
@@ -32,21 +22,13 @@
     {% endif %}
   </div>
 </div>
-<header id="sticky-header" class="sticky-header" aria-label="logo">
+<header id="sticky-header" class="sticky-header" aria-label="sticky primary navigation">
   <div class="sticky-shadow">
     <div class="avada-row">
       <div class="logo">
         <h1>
           <a href="/">CultureCase </a>
         </h1>
-        <ul>
-          <li>
-            <a href="/" class="{% if not in_data_portal %}active{% endif %}">RESEARCH</a>
-          </li> 
-          <li>
-            <a href="/data/" class="{% if in_data_portal %}active{% endif %}">DATA PORTAL</a>
-          </li>
-        </ul>
       </div>
       <nav id="sticky-nav" class="nav-holder" aria-label="menu">
         {% block menu_sticky %}

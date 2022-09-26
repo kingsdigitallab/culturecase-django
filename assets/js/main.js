@@ -1281,7 +1281,6 @@ jQuery(function($) {
             $('.sticky-header [aria-label]').each(function() {
                 $(this).attr('aria-label', 'sticky ' + $(this).attr('aria-label'))
             })
-            $('.sticky-header').attr('aria-label', 'sticky header')
         },
         0
     )
