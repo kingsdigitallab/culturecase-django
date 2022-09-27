@@ -12,19 +12,19 @@
 {% block below_post_content %}
 
         <div class="portfolio-wrapper" style="display: block;">
-          <div class="accordian">
-          
-            {% for question in page.get_questions %} 
-              <div class="faq-item">
-                <h5 class="toggle">
-                  <a href="#"><span class="arrow"></span><span class="toggle-title">{{ question.title }}</span></a>
-                </h5>
-                <div class="toggle-content post-content" style="display: none;">
-                    {{ question.body|richtext }}
-                </div>
-              </div>
+          <div class="accordian" role="presentation">
+
+            {% for question in page.get_questions %}
+              <h5>
+                <button id="accordion-header-{{ forloop.counter }}" aria-expanded="false" aria-controls="accordion-panel-{{ forloop.counter }}">
+                  {{ question.title }}
+                </button>
+              </h5>
+              <section class="post-content" hidden id="accordion-panel-{{ forloop.counter }}" aria-labelledby="accordion-header-{{ forloop.counter }}">
+                  {{ question.body|richtext }}
+              </section>
             {% endfor %}
-            
+
           </div>
         </div>
 

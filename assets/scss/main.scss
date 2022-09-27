@@ -2494,3 +2494,29 @@ body #sidebar .tab-hold .tabs li.active a {
 .relevanssi-query-term {
     color: #616161;
 }
+
+// GN: improved accessibility of the accordions on FAQs, ...
+.accordian button {
+    text-align: inherit;
+    color: #D14900;
+    background-color: inherit;
+    border: none;
+    border-top: 1px solid #757575;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    line-height: 2em;
+}
+.accordian button:before {
+    content: '🞂';
+}
+.accordian button[aria-expanded=true]:before {
+    content: '⯆';
+}
+.accordian button:focus, .accordian button:hover, .accordian button:active {
+    text-decoration: underline;
+}
+.accordian button:focus {
+  outline: 4px solid #1864ab;
+  outline-offset: 5px;
+}

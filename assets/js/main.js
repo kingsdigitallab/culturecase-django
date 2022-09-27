@@ -1284,4 +1284,16 @@ jQuery(function($) {
         },
         0
     )
+
+    // GN, from https://www.aditus.io/patterns/accordion/#vanilla-js
+    const accordionHeaders = document.querySelectorAll('.accordian h5 button');
+    Array.prototype.forEach.call(accordionHeaders, accordionHeader => {
+      console.log(accordionHeader)
+      let target = accordionHeader.parentElement.nextElementSibling;
+      accordionHeader.onclick = () => {
+        let expanded = accordionHeader.getAttribute('aria-expanded') === 'true' || false;
+        accordionHeader.setAttribute('aria-expanded', !expanded);
+        target.hidden = expanded;
+      }
+    })
 })
