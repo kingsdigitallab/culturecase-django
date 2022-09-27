@@ -2,6 +2,8 @@
 
 {% load wagtailcore_tags  staticfiles compress %}
 
+{% block head_title %} - {{ search_category.title }}{% endblock %}
+
 {% block body_class %}search search-results {{ block.super }}{% endblock %}
 
 {% block title %}
