@@ -19,7 +19,7 @@
 <!--[if IE]>
     <link rel="stylesheet" href="{% static 'www.culturecase.org/wp-content/themes/Avada/css/ie.css' %}" />
     <![endif]-->
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2.0" />
 <!--[if lt IE 10]>
     <style type="text/css">
     .animated { visibility:visible;}
@@ -82,7 +82,7 @@
 </head>
 
 <body class="{% block body_class %}light{% endblock %} {% if not DATA_PORTAL_ENABLED %}data-portal-hidden{% endif %} ">
-  <a class="hidden" role="navigation" href="#main" aria-label="skip">Skip to main content</a>
+  <a href="#main" class="hidden" aria-label="skip">Skip to main content</a>
   <div id="wrapper">
     {% block header%}
       {% include 'includes/header.html' %}
