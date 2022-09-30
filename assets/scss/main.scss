@@ -2455,6 +2455,11 @@ body #sidebar .tab-hold .tabs li.active a {
     }
 }
 
+
+table.research-meta th, table.research-meta td {
+    overflow: auto;
+}
+
 // Cookies
 #cookie-disclaimer{ // TO: Using #cookie-disclaimer instead of .cookies-box to force override
     background: rgb(63, 70, 74);
