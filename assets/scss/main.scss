@@ -2525,3 +2525,7 @@ table.research-meta th, table.research-meta td {
   outline: 4px solid #1864ab;
   outline-offset: 5px;
 }
+// GN: prevent mobile menu from covering home logo link on narrow display
+#nav .dd-container.kdl-mobile-menu {
+    width: 60% !important;
+}
