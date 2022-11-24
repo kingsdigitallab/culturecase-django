@@ -53,39 +53,6 @@
     tags:
       - system
 
-  - name: git-lfs | add git ppa
-    become: true
-    command: add-apt-repository -y ppa:git-core/ppa
-    tags:
-      - system
-      - git
-
-  - name: git-lfs | download
-    become: true
-    get_url:
-      url: '{{ git.url }}'
-      dest: /tmp
-      mode: 0777
-    tags:
-      - system
-      - git
-
-  - name: git-lfs | setup
-    become: true
-    command: /tmp/script.deb.sh
-    tags:
-      - system
-      - git
-
-  - name: git-lfs | install
-    apt:
-      pkg: git-lfs
-      state: present
-      update_cache: yes
-    tags:
-      - system
-      - git
-
   - name: zsh | clone oh-my-zsh repo
     git: repo={{ zsh.oh_my_zsh }} dest={{ user_home }}/.oh-my-zsh
     tags:
