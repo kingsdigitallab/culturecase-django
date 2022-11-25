@@ -15,7 +15,13 @@
     <a href="/">Home</a> 
     {% for category in page.get_breadcrumb %}
         <span aria-hidden="true">&gt;</span>
-        <a href="{{ category.url }}">{{ category.title }}</a> 
+        <a href="{{ category.url }}">
+          {% if forloop.last %}
+            {{ category.title }}
+          {% else %}
+            {{ category.get_shortest_title }}
+          {% endif %}
+        </a>
     {% endfor %}
   </div>
 {% endblock %}
