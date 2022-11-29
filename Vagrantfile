@@ -26,4 +26,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # ansible.tags = ""
     # ansible.verbose = "vvv"
   end
+
+  if Vagrant.has_plugin?("vagrant-vbguest")
+    config.vbguest.auto_update = false
+  end
 end
