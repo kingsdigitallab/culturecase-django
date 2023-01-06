@@ -11,11 +11,17 @@
 {% block post_class %}post post-2 research type-research status-publish hentry{% endblock %}
 
 {% block breadcrumb %}
-  <div class="single-navigation clearfix">
+  <div role="navigation" class="single-navigation clearfix" aria-label="breadcrumb">
     <a href="/">Home</a> 
     {% for category in page.get_breadcrumb %}
-        &gt;
-        <a href="{{ category.url }}">{{ category.title }}</a> 
+        <span aria-hidden="true">&gt;</span>
+        <a href="{{ category.url }}">
+          {% if forloop.last %}
+            {{ category.title }}
+          {% else %}
+            {{ category.get_shortest_title }}
+          {% endif %}
+        </a>
     {% endfor %}
   </div>
 {% endblock %}

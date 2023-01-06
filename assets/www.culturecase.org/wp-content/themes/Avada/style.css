@@ -1476,7 +1476,7 @@ h5.toggle.active + .toggle-content{
 }
 .full-boxed-pricing ul li.pricing-row span{
     font-size:11px !important;
-    color:#888888 !important;
+    color:#757575 !important;
 }
 .full-boxed-pricing ul li.footer-row{
     background:#f7f7f6;
@@ -1524,7 +1524,7 @@ h5.toggle.active + .toggle-content{
 }
 .sep-boxed-pricing ul li.pricing-row span{
     font-size:11px !important;
-    color:#888888 !important;
+    color:#757575 !important;
 }
 .sep-boxed-pricing ul li.footer-row{
     background:#f7f7f6;
@@ -1548,7 +1548,7 @@ h5.toggle.active + .toggle-content{
     font-weight:bold;
 }
 .full-boxed-pricing .price em.time{
-    color:#888 !important;
+    color:#757575 !important;
     font-size:11px !important;
     margin-left:0px !important;
     position:relative;
@@ -1615,7 +1615,7 @@ h5.toggle.active + .toggle-content{
     font-weight:bold;
 }
 .sep-boxed-pricing .price em.time{
-    color:#888 !important;
+    color:#757575 !important;
     font-size:26px !important;
     margin-left:0px !important;
     position:relative;
@@ -2999,11 +2999,11 @@ table{
     margin:0;
     top:0;
     right:5px;
-    color: #888;
+    color: #757575;
 }
 
 #wrapper .dd-container .dd-pointer:hover{
-    color: #FE5900;
+    color: #D14900;
     }
 
 #wrapper .dd-container .dd-pointer:after{
@@ -3029,10 +3029,10 @@ input.dd-selected-value{
 
 
 #wrapper .dd-container label,#wrapper .dd-container a{color:#fff;}
-#wrapper .dd-options{box-shadow:none !important;position:relative !important; background: #888 !important; border: none;}
+#wrapper .dd-options{box-shadow:none !important;position:relative !important; background: #757575 !important; border: none;}
 #wrapper .dd-options li{float:none;height:auto;padding:0;line-height:normal; padding:10px;}
 #wrapper .dd-options li a{border:0 !important;float:none;height:auto;margin:0;line-height:normal;color:#fff;font-size: 14px}
-#wrapper .dd-options li a:hover,#wrapper .dd-options li.dd-option-selected a{background-color:#888 !important; color:#FF9E01 !important;}
+#wrapper .dd-options li a:hover,#wrapper .dd-options li.dd-option-selected a{background-color:#757575 !important; color:#FF9E01 !important;}
 #wrapper .dd-options li a:hover label{color:#FF9E01 !important;}
 
 
@@ -5153,3 +5153,4 @@ html[xmlns] .flexslider .slides {display: block;}
 
 /* Revslider Fix */
 .tp-simpleresponsive .slotholder, .tp-simpleresponsive .slotholder img{-webkit-backface-visibility:visible !important;-webkit-transform:none !important;}
+                     

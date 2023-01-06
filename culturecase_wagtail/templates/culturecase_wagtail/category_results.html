@@ -2,6 +2,8 @@
 
 {% load wagtailcore_tags  staticfiles compress %}
 
+{% block head_title %} - {{ search_category.title }}{% endblock %}
+
 {% block body_class %}search search-results {{ block.super }}{% endblock %}
 
 {% block title %}
@@ -16,7 +18,9 @@
 </div>
 {% endblock %}
 
-{% block no_results %}
-    {# There's already a empty blurb in the desc of the cat #}
-    {#<p></p>#}
+{% block results %}
+    {% if search_category.can_show_results %}
+        {{ block.super }}
+    {% else %}
+    {% endif %}
 {% endblock %}

@@ -2,6 +2,8 @@
 
 {% load wagtailcore_tags  staticfiles compress %}
 
+{% block head_title %} - Search{% if result_page.paginator.count %} results for: {{search_query}}{% endif %}{% endblock %}
+
 {% block body_class %}search search-results {{ block.super }}{% endblock %}
 
 {% block title %}
@@ -13,26 +15,28 @@
   {% block result_intro %}
   {% endblock %}
 
-  {% if result_page.paginator.count %}
-     {% for result in result_page.object_list %}
-       {% include "culturecase_wagtail/search_result.html" with result=result.specific highlights=result.highlights %}
-     {% endfor %}
+  {% block results %}
+    {% if result_page.paginator.count %}
+       {% for result in result_page.object_list %}
+         {% include "culturecase_wagtail/search_result.html" with result=result.specific highlights=result.highlights %}
+       {% endfor %}
 
-     {% include "culturecase_wagtail/pagination.html" with result_page=result_page %}
-  {% elif search_query %}
-      <h2>Couldn't find what you're looking for!</h2>
+       {% include "culturecase_wagtail/pagination.html" with result_page=result_page %}
+    {% elif search_query %}
+        <h2>Couldn't find what you're looking for!</h2>
 
-      <p>Try again!</p>
+        <p>Try again!</p>
 
-      <p>If you want to rephrase your query, here is your chance:</p>
-      <form action="{% url 'search' %}" method="get">
-        <input type="text" name="s" value="{{ search_query }}">
-        <input type="submit" value="Search">
-      </form>
-  {% else %}
-      {% block no_results %}
-        <p>Please type something into the search box</p>
-      {% endblock %}
-  {% endif %}
+        <p>If you want to rephrase your query, here is your chance:</p>
+        <form action="{% url 'search' %}" method="get">
+          <input type="text" name="s" value="{{ search_query }}">
+          <input type="submit" value="Search">
+        </form>
+    {% else %}
+        {% block no_results %}
+          <p>Please type something into the search box</p>
+        {% endblock %}
+    {% endif %}
+  {% endblock %}
 
 {% endblock %}

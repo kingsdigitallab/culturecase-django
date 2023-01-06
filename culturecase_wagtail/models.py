@@ -607,6 +607,11 @@ class ResearchCategory(RichPage):
             }
         )
 
+    def can_show_results(self):
+        # GN: nov 2022 SoW. As requested by partners, we don't show
+        # summaries listing under parent categories like Impacts
+        return self.get_children().live().count() == 0
+
 
 class ResearchCategoriesTree(RoutablePageMixin, RichPage):
     '''

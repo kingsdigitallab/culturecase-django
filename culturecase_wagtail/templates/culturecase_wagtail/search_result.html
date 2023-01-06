@@ -1,7 +1,7 @@
 {% load wagtailcore_tags kdl_culturecase %}
 
-<div id="post-1449"
-  class="post post-1449 research type-research status-publish hentry research-category-education research-tags-critical-thinking research-tags-education-2 research-tags-museums research-tags-students"
+<div id="post-{{result.pk}}"
+  class="post post-{{result.pk}} research type-research status-publish hentry research-category-education research-tags-critical-thinking research-tags-education-2 research-tags-museums research-tags-students"
   >
   <h2 class="entry-title">
     <a href="{{ result.url }}">
@@ -14,7 +14,7 @@
   <div class="post-content">
     {% if highlights %}
         {% for highlight in highlights %}
-            {{ highlight|safe }}
+            {{ highlight|clean_result|safe }}
         {% endfor %}
     {% else %}
         {{ result.body|truncatewords_html:51|safe }}
@@ -22,13 +22,13 @@
   </div>
   <div class="meta-info">
     <div class="alignleft vcard">
-      By <span class="fn"><a href="/author/Culture.Case/" title="Posts by Culture.Case" rel="author">Culture.Case</a></span>
+      By <span class="fn"><a href="/about/" title="Posts by Culture.Case" rel="author">Culture.Case</a></span>
       <span class="sep">|</span>
       <span class="updated">{{ result.go_live_at|date:"j F Y" }}</span>
       <span class="sep">|</span>
     </div>
     <div class="alignright">
-      <a href="{{ result.url }}" class="read-more">Read More</a>
+      <a href="{{ result.url }}" class="read-more" aria-label="Read the research summary '{{ result.title|escape }}'">Read More</a>
     </div>
   </div>
 </div>

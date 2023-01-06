@@ -2,7 +2,10 @@
 def settings(request):
     from django.conf import settings as djsettings
 
-    var_names = ['DEBUG', 'GA_ID', 'DATA_PORTAL_ENABLED', 'NEWSLETTER_URL']
+    var_names = [
+        'DEBUG', 'GA_ID', 'DATA_PORTAL_ENABLED', 'NEWSLETTER_URL',
+        'ACCESSIBILITY_STATEMENT_URL',
+    ]
 
     ret = {
         k: getattr(djsettings, k, None) for k in var_names

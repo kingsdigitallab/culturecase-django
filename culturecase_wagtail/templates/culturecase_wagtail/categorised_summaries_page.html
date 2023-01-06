@@ -17,28 +17,26 @@
 
         <div class="portfolio-wrapper" style="display: block;">
           <div class="accordian">
-          
+
             {% for subcat in category.get_children %}
-              {% if subcat.show_in_menus %} 
-                <div class="faq-item">
-                  <h5 class="toggle">
-                    <a href="#">
-                        <span class="arrow"></span>
-                        <span class="toggle-title">{{ subcat.title }}</span>
-                    </a>
-                  </h5>
-                  <div class="toggle-content post-content" style="display: none;">
-                    <p>
-                      {% for summary in subcat.specific.get_summaries %}
+              {% if subcat.show_in_menus %}
+                <h5>
+                  <button id="accordion-header-{{ forloop.parentloop.counter }}-{{ forloop.counter }}" aria-expanded="false" aria-controls="accordion-panel-{{ forloop.parentloop.counter }}-{{ forloop.counter }}">
+                    {{ subcat.title }}
+                  </button>
+                </h5>
+                <section class="post-content" hidden id="accordion-panel-{{ forloop.parentloop.counter }}-{{ forloop.counter }}" aria-labelledby="accordion-header-{{ forloop.parentloop.counter }}-{{ forloop.counter }}">
+                  <ul>
+                    {% for summary in subcat.specific.get_summaries %}
+                      <li>
                         <a href="{{ summary.url }}">{{ summary.title }}</a>
-                        <br>
-                      {% endfor %}
-                    </p>
-                  </div>
-                </div>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </section>
               {% endif %}
             {% endfor %}
-            
+
           </div>
         </div>
     {% endfor %} 
