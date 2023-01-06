@@ -7,7 +7,7 @@
 
   tasks:
   - name: fix debian sudoers file
-    become: yes
+    become: true
     lineinfile:
       path: /etc/sudoers
       backup: yes
@@ -25,7 +25,7 @@
       -system
 
   - name: apt | add elasticsearch key
-    become: yes
+    become: true
     apt_key:
       url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
       state: present
@@ -54,14 +54,14 @@
       - system
 
   - name: git-lfs | add git ppa
-    become: yes
+    become: true
     command: add-apt-repository -y ppa:git-core/ppa
     tags:
       - system
       - git
 
   - name: git-lfs | download
-    become: yes
+    become: true
     get_url:
       url: '{{ git.url }}'
       dest: /tmp
@@ -71,7 +71,7 @@
       - git
 
   - name: git-lfs | setup
-    become: yes
+    become: true
     command: /tmp/script.deb.sh
     tags:
       - system
@@ -102,19 +102,19 @@
       - system
   
   - name: motd | clean existing
-    become: yes
+    become: true
     shell: 'rm -rf /etc/update-motd.d/*'
     tags:
       - system
 
   - name: motd | deploy motd
-    become: yes
+    become: true
     copy: src={{ motd.file }} dest=/etc/update-motd.d/00-kdl owner=root
     tags:
       - system
 
   - name: motd | permissions
-    become: yes
+    become: true
     shell: 'chmod +x /etc/update-motd.d/*'
     tags:
       - system
@@ -125,7 +125,7 @@
   gather_facts: false
   tasks:
   - name: python | make python3 default version
-    become: yes
+    become: true
     alternatives:
       link: /usr/bin/python
       name: python
@@ -133,7 +133,7 @@
       priority: 10
 
   - name: pip | install virtualenv
-    become: yes
+    become: true
     pip:
       name: virtualenv
       state: latest
@@ -172,10 +172,10 @@
 - hosts: all
   vars_files:
     - vars.yml
-  # gather_facts: false
+  gather_facts: false
   tasks:
   - name: postgresql | setup gb locale
-    become: yes
+    become: true
     locale_gen:
       name: "{{ postgresql.locale }}"
       state: present
@@ -183,14 +183,14 @@
       - db
 
   - name: postgresql | get installed version
-    become: yes
+    become: true
     shell: 'ls /etc/postgresql/*/main/pg_hba.conf | cut -d / -f4'
     register: postgresql_version
     tags:
       - db
 
   - name: postgresql | ensure postgresql user can authenticate
-    become: yes
+    become: true
     lineinfile:
       path: /etc/postgresql/{{ postgresql_version.stdout }}/main/pg_hba.conf
       backup: yes
@@ -200,7 +200,7 @@
       - db
 
   - name: postgresql | ensure all users can authenticate
-    become: yes
+    become: true
     lineinfile:
       path: /etc/postgresql/{{ postgresql_version.stdout }}/main/pg_hba.conf
       backup: yes
@@ -212,7 +212,7 @@
       - db
 
   - name: elasticsearch | change JVM Heap To start at 256M
-    become: yes
+    become: true
     lineinfile:
       path: /etc/elasticsearch/jvm.options
       backup: yes
@@ -225,7 +225,7 @@
 
   handlers:
   - name: postgresql | restart postgres
-    become: yes
+    become: true
     service:
       name: postgresql
       state: restarted
@@ -233,7 +233,7 @@
       - db
 
   - name: elasticsearch | restart elasticsearch
-    become: yes
+    become: true
     service:
       name: elasticsearch
       state: started
@@ -243,6 +243,7 @@
 - hosts: all
   vars_files:
     - vars.yml
+  gather_facts: false
   tasks:
   - name: postgresql | create user
     become_user: "{{ postgresql.admin_user }}"
@@ -321,6 +322,7 @@
 - hosts: all
   vars_files:
     - vars.yml
+  gather_facts: false
   tasks:
   - name: django | default local settings
     copy: src=local_settings.py dest={{ project_root }}/{{ app.name }}/settings/local.py owner=vagrant
@@ -348,6 +350,7 @@
 - hosts: all
   vars_files:
       - vars.yml
+  gather_facts: false
   tasks:
   - name: git | init
     command: "git init"
@@ -358,7 +361,7 @@
 
   - name: git | flake8 pre-commit hook
     command: "{{ user_home }}/venv/bin/flake8 --install-hook=git"
-    ignore_errors: yes # Stop errors if it already exists
+    ignore_errors: true # Stop errors if it already exists
     args:
       chdir: "{{ project_root }}"
   - command: "git config flake8.strict True"
