@@ -63,3 +63,5 @@ local.py
 #local_*.py
 logs/
 static/
+
+/.idea
