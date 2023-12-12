@@ -34,18 +34,22 @@ ALLOWED_HOSTS = []
 # https://docs.djangoproject.com/en/dev/topics/cache/
 # http://redis.io/topics/lru-cache
 # http://niwibe.github.io/django-redis/
-CACHE_REDIS_DATABASE = '0'
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:6379/' + CACHE_REDIS_DATABASE,
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-            'IGNORE_EXCEPTIONS': True
-        }
-    }
-}
+# GN: disabled redis, unnecessary for such a small site
+# default is https://docs.djangoproject.com/en/2.2/topics/cache/#local-memory-caching-1
+
+# CACHE_REDIS_DATABASE = '0'
+#
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django_redis.cache.RedisCache',
+#         'LOCATION': 'redis://127.0.0.1:6379/' + CACHE_REDIS_DATABASE,
+#         'OPTIONS': {
+#             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+#             'IGNORE_EXCEPTIONS': True
+#         }
+#     }
+# }
 
 
 CSRF_COOKIE_SECURE = True
@@ -69,7 +73,7 @@ EMAIL_USE_TLS = False
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
 
 INSTALLED_APPS = [
-    'grappelli',
+    # 'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -274,7 +278,7 @@ COMPRESS_PRECOMPILERS = (
 # http://django-grappelli.readthedocs.org/en/latest/
 # -----------------------------------------------------------------------------
 
-GRAPPELLI_ADMIN_TITLE = PROJECT_TITLE
+## GRAPPELLI_ADMIN_TITLE = PROJECT_TITLE
 
 # -----------------------------------------------------------------------------
 # FABRIC

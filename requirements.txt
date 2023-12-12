@@ -11,7 +11,9 @@ django-libsass<0.19
 django-model-utils<3.2
 
 # MIDDLEWARES
-psycopg2-binary
+# 2.9 will crash when connecting because UTC not set on DB
+# TODO: upgrade django to 3.2
+psycopg2-binary<2.9
 # django-redis<4.11
 # redis<3.3
 elasticsearch>=5.0.0,<6.0.0

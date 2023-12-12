@@ -9,7 +9,8 @@ services:
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     depends_on:
-      - django
+      nginx:
+        condition: service_started
 
   nginx:
     build:
@@ -26,7 +27,8 @@ services:
     ports:
       - "8001:8001"
     depends_on:
-      - django
+      django:
+        condition: service_started
     restart: unless-stopped
 
   django:
