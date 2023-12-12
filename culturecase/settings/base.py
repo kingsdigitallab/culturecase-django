@@ -157,11 +157,11 @@ LOGGING = {
             'level': LOGGING_LEVEL,
             'propagate': True
         },
-        'elasticsearch': {
-            'handlers': ['file'],
-            'level': LOGGING_LEVEL,
-            'propagate': True
-        },
+        # 'elasticsearch': {
+        #     'handlers': ['file'],
+        #     'level': LOGGING_LEVEL,
+        #     'propagate': True
+        # },
     }
 }
 
@@ -308,7 +308,7 @@ WAGTAILSEARCH_BACKENDS = {
         # 'BACKEND': 'wagtail.search.backends.elasticsearch5',
         'BACKEND': 'culturecase_wagtail.search_backend',
         'AUTO_UPDATE': False,
-        'URLS': ['http://127.0.0.1:9200'],
+        'URLS': ['http://elasticsearch:9200'],
         'INDEX': 'culturecase_wagtail',
         'TIMEOUT': 5,
     }

@@ -1,22 +1,32 @@
+# SERVER
+gunicorn==21.2
+
+# DJANGO
 django<2.3
 django-compressor<2.3
 django-extensions<2.2
-django-grappelli<2.13
+# GN: needed? It creates warning in collectstatic b/c overwrite django assets
+# django-grappelli<2.13
 django-libsass<0.19
 django-model-utils<3.2
-django-redis<4.11
+
+# MIDDLEWARES
 psycopg2-binary
-redis<3.3
+# django-redis<4.11
+# redis<3.3
 elasticsearch>=5.0.0,<6.0.0
-mailchimp<3
+
+# GN: Culture no longer uses mailchimp, we redirect to form on KCL site
+# mailchimp<3
+
 weasyprint<48
 
 django-kdl-ldap<1.3
-wagtail<2.6
-djangorestframework<3.10
-
 pyldap
 
-#
-urllib3<1.25
+wagtail<2.6
+# GN: needed?
+djangorestframework<3.10
 
+# What for?
+urllib3<1.25
