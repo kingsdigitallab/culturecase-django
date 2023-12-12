@@ -66,3 +66,5 @@ static/
 
 /.idea
 /.envs
+/volumes
+/server
