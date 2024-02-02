@@ -1,4 +1,6 @@
 
+# DEPRECATED!
+# GN: Culture no longer uses mailchimp, we redirect to form on KCL site
 def signup_to_newsletter(merge_vars):
     '''
     Subscribe a user to a Mailchimp newsletter
