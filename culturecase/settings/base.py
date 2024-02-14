@@ -12,7 +12,7 @@ import getpass
 import logging
 import os
 
-## from kdl_ldap.settings import *  # noqa
+from kdl_ldap.settings import *  # noqa
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
@@ -87,7 +87,7 @@ INSTALLED_APPS = [
 INSTALLED_APPS += [    # your project apps here
     'kdl_wordpress2wagtail',
     'culturecase_wagtail',
-    ## 'kdl_ldap',
+    'kdl_ldap',
     'rest_framework',
     'wagtail.core',
     'wagtail.admin',
@@ -303,7 +303,7 @@ if 'django.contrib.gis' in INSTALLED_APPS:
     db_engine = 'django.contrib.gis.db.backends.postgis'
 
 
-## AUTH_LDAP_REQUIRE_GROUP = 'cn=culturecase,' + LDAP_BASE_OU
+AUTH_LDAP_REQUIRE_GROUP = 'cn=culturecase,' + LDAP_BASE_OU
 WAGTAIL_SITE_NAME = PROJECT_TITLE
 ITEMS_PER_PAGE = 10
 ITEMS_PER_RESULT = 50
