@@ -247,6 +247,12 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 
+# We allow the live django app to serve static (see urls.py).
+# This is needed by weasyprint (PDF output when clicking print button).
+# See 'weasyprint' in models.py.
+SERVE_STATIC = True
+LOCAL_HOST = 'http://localhost:8000'
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_URL.strip('/'))
 

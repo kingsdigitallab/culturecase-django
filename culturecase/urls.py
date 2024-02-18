@@ -38,8 +38,8 @@ except ImportError:
 # -----------------------------------------------------------------------------
 # Static file DEBUGGING
 # -----------------------------------------------------------------------------
-production_debug = getattr(settings, 'PRODUCTION_DEBUG', False)
-if settings.DEBUG or production_debug:
+serve_static = getattr(settings, 'SERVE_STATIC', False)
+if settings.DEBUG or serve_static:
     from django.conf.urls.static import static
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns
     import os.path
@@ -49,7 +49,7 @@ if settings.DEBUG or production_debug:
 
     urlpatterns += [path('test/500/', test_500)]
 
-    if production_debug:
+    if serve_static:
         from django.views.static import serve
         urlpatterns += [
             re_path(

@@ -11,6 +11,6 @@ def settings(request):
         k: getattr(djsettings, k, None) for k in var_names
     }
 
-    ret['in_data_portal'] = request.path.startswith('/data/')
+    ret['in_data_portal'] = request.path.startswith('/data/') if hasattr(request, 'path') else False
 
     return ret
