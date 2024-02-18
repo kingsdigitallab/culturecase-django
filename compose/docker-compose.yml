@@ -49,6 +49,7 @@ services:
         "--timeout",
         "180",
         "--forwarded-allow-ips='*'",
+        "--workers=3",
       ]
     env_file:
       - ../.envs/.shared

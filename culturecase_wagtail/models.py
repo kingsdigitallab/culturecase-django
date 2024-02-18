@@ -25,6 +25,7 @@ from django.shortcuts import render
 from django.http.response import HttpResponseRedirect, HttpResponse
 from weasyprint import CSS
 from modelcluster.models import ClusterableModel
+from django.conf import settings
 
 '''
 Page and Snippet classes:
@@ -395,26 +396,28 @@ class ResearchSummary(RichPage):
 
         if request.GET.get('format') == 'pdf':
             # get the print format HTML
-            print_url = request.build_absolute_uri(self.url + '?format=print')
-            import weasyprint
             # process it with weasyprint
-            doc = weasyprint.HTML(print_url)
-            # convert to PDF and get it as a string
-            print_styles = '''
-            @page {
-                @top-center {
-                    content: '%s';
-                    font-size: 0.65em;
-                    color: #808080;
+            # print_url = 'http://localhost:8000/research/2015/05/why-do-more-women-participate-in-highbrow-cultural-activities/?format=print'
+            print_url = settings.LOCAL_HOST + request.path + '?format=print'
+            if 1:
+                import weasyprint
+                doc = weasyprint.HTML(print_url)
+                # convert to PDF and get it as a string
+                print_styles = '''
+                @page {
+                    @top-center {
+                        content: '%s';
+                        font-size: 0.65em;
+                        color: #808080;
+                    }
                 }
-            }
-            ''' % request.build_absolute_uri(self.url)
-            pdf_string = doc.write_pdf(stylesheets=[CSS(string=print_styles)])
-            # prepare http response
-            ret = HttpResponse(pdf_string, content_type='application/pdf')
+                ''' % request.build_absolute_uri(self.url)
+                pdf_string = doc.write_pdf(stylesheets=[CSS(string=print_styles)])
+                # prepare http response
+                ret = HttpResponse(pdf_string, content_type='application/pdf')
 
-            ret['Content-Disposition'] = 'attachment; filename="' + \
-                self.slug + '.pdf"'
+                ret['Content-Disposition'] = 'attachment; filename="' + \
+                    self.slug + '.pdf"'
         else:
             ret = RichPage.serve(self, request, *args, **kwargs)
 
