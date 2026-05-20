@@ -1,5 +1,5 @@
 # SERVER
-gunicorn==21.2
+gunicorn==22.0.0
 
 # DJANGO
 django<2.3
